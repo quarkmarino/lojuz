@@ -1,0 +1,13 @@
+/bootstrap/compiled.php
+/vendor
+/components
+/node_modules
+/data
+composer.phar
+composer.lock
+.env.local.php
+.env.php
+.DS_Store
+Thumbs.db
+*.log
+*.sqlite
