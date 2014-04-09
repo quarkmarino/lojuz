@@ -1,0 +1,1 @@
+/home/quarkmarino/Development/www/projects/lojuz/app/views/galleries/index.blade.php
