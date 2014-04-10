@@ -15,10 +15,13 @@ class CreateGalleriesTable extends Migration {
 		Schema::create('galleries', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id');
+			$table->integer('user_id')->unsigned()->index();
 			$table->string('name');
+			$table->text('description')->nullable()->default(null);
 			$table->integer('status');
 			$table->timestamps();
+
+			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
 		});
 	}
 

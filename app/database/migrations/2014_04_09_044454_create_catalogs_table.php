@@ -15,10 +15,13 @@ class CreateCatalogsTable extends Migration {
 		Schema::create('catalogs', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id');
-			$table->string('name');
-			$table->integer('status');
+			$table->integer('user_id')->unsigned()->index();
+			$table->string('name', 32);
+			$table->text('description')->nullable()->default(null);
+			$table->integer('status')->default(0);
 			$table->timestamps();
+
+			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
 		});
 	}
 

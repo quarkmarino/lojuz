@@ -15,13 +15,16 @@ class CreateImagesTable extends Migration {
 		Schema::create('images', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('gallery_id');
-			$table->integer('product_id');
+			$table->integer('gallery_id')->nullable()->unsigned()->index();
+			$table->integer('product_id')->nullable()->unsigned()->index();
 			$table->string('name');
 			$table->string('url');
 			$table->integer('status');
 			$table->text('comment');
 			$table->timestamps();
+
+			$table->foreign('gallery_id')->references('id')->on('galleries')->onUpdate('cascade');
+			$table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade');
 		});
 	}
 

@@ -15,12 +15,14 @@ class CreateClientsTable extends Migration {
 		Schema::create('clients', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id');
-			$table->string('name');
-			$table->text('comment');
-			$table->date('since');
+			$table->integer('user_id')->unsigned()->index();
+			$table->string('name', 255);
+			$table->text('comment')->nullable();
+			$table->date('since')->nullable();
 			$table->string('image_url');
 			$table->timestamps();
+
+			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
 		});
 	}
 

@@ -15,8 +15,8 @@ class CreateNewsTable extends Migration {
 		Schema::create('news', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id');
-			$table->integer('product_id');
+			$table->integer('user_id')->unsigned()->index();
+			$table->integer('product_id')->nullable()->unsigned()->index();
 			$table->string('title');
 			$table->text('message');
 			$table->date('since');
@@ -24,6 +24,9 @@ class CreateNewsTable extends Migration {
 			$table->integer('status');
 			$table->boolean('list_link');
 			$table->timestamps();
+
+			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
+			$table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade');
 		});
 	}
 
