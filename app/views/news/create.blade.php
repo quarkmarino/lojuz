@@ -1,1 +1,0 @@
-/home/quarkmarino/Development/www/projects/lojuz/app/views/news/create.blade.php
