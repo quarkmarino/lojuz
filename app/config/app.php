@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'Qi07hko4u6DCR6immQcptpBreq3Ln4kM',
+	'key' => 'RCtEKwznDmNQqoOeCkaTEFHcAQ0WGtDh',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -108,6 +108,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'Way\Generators\GeneratorsServiceProvider',
+		'Repositories\Services\Provider\EloquentProvider',
 
 	),
 

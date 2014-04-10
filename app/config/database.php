@@ -26,11 +26,11 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'local',
 
 	/*
 	|--------------------------------------------------------------------------
-	| Database Connections
+	| Database Connectimysqlons
 	|--------------------------------------------------------------------------
 	|
 	| Here are each of the database connections setup for your application.
@@ -52,11 +52,22 @@ return array(
 			'prefix'   => '',
 		),
 
-		'mysql' => array(
+		'local' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'lojuz',
+			'username'  => 'root',
+			'password'  => '2515',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+
+		'production' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'database',
-			'username'  => 'root',
+			'username'  => 'polarix-q',
 			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',

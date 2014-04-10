@@ -1,0 +1,199 @@
+@extends('layouts.main')
+
+@section('head_title')
+    Contacto
+@stop
+
+@section('nav')
+    <?php $nav['options'] = array('active_item' => 'contact'); ?>
+    @parent
+@stop
+
+@section('content')
+
+    <!-- start: Container -->
+<div class="container">
+
+    <!-- start: Page header / Breadcrumbs -->
+    <section class="breadcrumbs">
+        <div class="page-header">
+            <h1>Contactenos<small></small></h1>
+        </div>
+        <div class="breadcrumbs">
+            Usted se encuentra aquí: <a href="#">Inicio</a><i class="icon-angle-right "></i>Contactenos
+        </div>
+    </section>
+    <!-- end: Page header / Breadcrumbs -->
+
+    <div class="row">
+
+        <!-- start: Page section -->
+        <section id="page-sidebar" class="span12">
+
+            <div class="page-inner">
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="row-fluid">
+                            <strong>Matriz</strong><br>
+                            <div class="gmap">
+                                <iframe class="" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=17.058015,-96.721487&amp;spn=0.00359,0.00456&amp;t=m&amp;z=17&amp;output=embed"></iframe>
+                            </div>
+                            <div class="span6">
+                                <address>
+                                  Carretera Internacional KM. 11<br>
+                                  La Joya Santiago Etla, C.P. 68263<br>
+                                  San Lorenzo Cacaotepec Etla<br>
+                                  <abbr title="Teléfono Local">Tel:</abbr> (951) 521 3333<br>
+                                </address>
+                            </div>
+                            <div class="span4 pull-right">
+                                  <strong>Julio Cesar López Juárez</strong><br>
+                                  <a href="mailto:#">ventas@lojuz.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="row-fluid">
+                            <strong>Matriz</strong><br>
+                            <div class="gmap">
+                                <iframe class="" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=17.058015,-96.721487&amp;spn=0.00359,0.00456&amp;t=m&amp;z=17&amp;output=embed"></iframe>
+                            </div>
+                            <div class="span6">
+                                <address>
+                                  Carretera Internacional KM. 11<br>
+                                  La Joya Santiago Etla, C.P. 68263<br>
+                                  San Lorenzo Cacaotepec Etla<br>
+                                  <abbr title="Teléfono Local">Tel:</abbr> (951) 521 3333<br>
+                                </address>
+                            </div>
+                            <div class="span4 pull-right">
+                                  <strong>Julio Cesar López Juárez</strong><br>
+                                  <a href="mailto:#">ventas@lojuz.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="row-fluid">
+                            <strong>Matriz</strong><br>
+                            <div class="gmap">
+                                <iframe class="" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=17.058015,-96.721487&amp;spn=0.00359,0.00456&amp;t=m&amp;z=17&amp;output=embed"></iframe>
+                            </div>
+                            <div class="span6">
+                                <address>
+                                  Carretera Internacional KM. 11<br>
+                                  La Joya Santiago Etla, C.P. 68263<br>
+                                  San Lorenzo Cacaotepec Etla<br>
+                                  <abbr title="Teléfono Local">Tel:</abbr> (951) 521 3333<br>
+                                </address>
+                            </div>
+                            <div class="span4 pull-right">
+                                  <strong>Julio Cesar López Juárez</strong><br>
+                                  <a href="mailto:#">ventas@lojuz.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="row-fluid">
+                            <strong>Matriz</strong><br>
+                            <div class="gmap">
+                                <iframe class="" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;ll=17.058015,-96.721487&amp;spn=0.00359,0.00456&amp;t=m&amp;z=17&amp;output=embed"></iframe>
+                            </div>
+                            <div class="span6">
+                                <address>
+                                  Carretera Internacional KM. 11<br>
+                                  La Joya Santiago Etla, C.P. 68263<br>
+                                  San Lorenzo Cacaotepec Etla<br>
+                                  <abbr title="Teléfono Local">Tel:</abbr> (951) 521 3333<br>
+                                </address>
+                            </div>
+                            <div class="span4 pull-right">
+                                  <strong>Julio Cesar López Juárez</strong><br>
+                                  <a href="mailto:#">ventas@lojuz.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-inner">
+                    <div class="row-fluid">
+                        <p>Curabitur turpis elit, imperdiet a lacinia consequat, posuere in nisi. Etiam sed egestas lacus. Maecenas nec massa quis metus sollicitudin pellentesque in eget purus. Mauris in nibh vel tellus congue tincidunt et non nibh. Nunc sed odio sed felis accumsan scelerisque. Donec sit amet tempor purus. Nunc cursus tortor eu ipsum tincidunt vitae elementum arcu fringilla. Cras consequat tincidunt nisi nec convallis.</p>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span8">
+                            <h3>Deje su mensaje</h3>
+                            <form name="contact" method="post" action="contact.html" class="af-form" id="af-form">
+                                <div class="row-fluid">
+
+                                    <div class="af-outer af-required">
+                                        <div class="af-inner">
+                                            <input type="text" name="name" id="name" size="30" value="" placeholder="Name" class="text-input span12 placeholder" />
+                                            <label class="error" for="name" id="name_error">El nombre es requerido.</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row-fluid">
+
+                                    <div class="af-outer af-required">
+                                        <div class="af-inner">
+                                            <input type="text" name="email" id="email" size="30" value="" placeholder="Email" class="text-input span12 placeholder" />
+                                            <label class="error" for="email" id="email_error">El correo es requerido.</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row-fluid">
+
+                                    <div class="af-outer af-required">
+                                        <div class="af-inner">
+                                            <textarea name="message" id="input-message" cols="30" placeholder="Message" class="text-input span12 placeholder"></textarea>
+                                            <label class="error" for="input-message" id="message_error">El mensaje es requerido.</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row-fluid">
+
+                                    <div class="af-outer af-required">
+                                        <div class="af-inner">
+                                            <input type="submit" name="submit" class="form-button btn btn-primary btn-large" id="submit_btn" value="Enviar mensaje!" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="span4">
+                            <section>
+                                <h3>Dirección</h3>
+                                <address>
+                                    <ul class="icons">
+                                        <li><i class="icon-map-marker"></i> Xicotencatl 406, Oaxaca, 68000</li>
+                                        <li><i class="icon-Teléfono-local"></i>(951) 240-7629</li>
+                                        <li><i class="icon-print"></i>(951) 514-6143</li>
+                                        <li><i class="icon-envelope"></i><a href="mailto:#">info@polarix-q.com</a></li>
+                                    </ul>
+                                </address>
+                            </section>
+                            <section>
+                                <h3>Horario de atención</h3>
+                                <ul class="unstyled">
+                                    <li class="clearfix">Lunes - Viernes: 9 am  to 6 pm</li>
+                                    <li class="clearfix">Sabado: 10 am  to 4 pm</li>
+                                    <li class="clearfix">Domingo: Cerrado</li>
+                                </ul>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- end: Page section -->
+
+    </div>
+
+</div>
+<!-- end: Container -->
+@stop

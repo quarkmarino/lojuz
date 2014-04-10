@@ -16,7 +16,7 @@ $(document).ready(function(){
             autoStart           : true,
             twoWaySlideshow     : true,
             keybNav             : true,
-            imgPreload          : true,
+            imgPreload          : false,
             navPrevNext         : true,
             navStartStop        : true,
             navButtons          : true,
