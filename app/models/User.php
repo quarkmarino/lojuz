@@ -1,5 +1,8 @@
 <?php
 
+namespace Models;
+
+use Eloquent;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
@@ -66,5 +69,27 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function catalogs(){
 		return $this->hasMany('Catalog');
 	}
+
+	/**
+	 * machuga/authority-l4 roles and permissions relations for user model
+	 */
+
+	public function roles() {
+        return $this->belongsToMany('Role');
+    }
+
+    public function permissions() {
+        return $this->hasMany('Permission');
+    }
+
+    public function hasRole($key) {
+        foreach($this->roles as $role){
+            if($role->name === $key)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

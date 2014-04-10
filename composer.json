@@ -5,7 +5,9 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"way/generators": "dev-master"
+		"way/generators": "dev-master",
+		"fzaninotto/faker": "v1.3.0",
+		"machuga/authority-l4" : "dev-master"
 	},
 	"autoload": {
 		"classmap": [
