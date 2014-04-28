@@ -9,12 +9,17 @@ use View;
 use Redirect;
 use Authority;
 use Repositories\Interfaces\CatalogInterface;
-use Repositories\Exceptions\ValidationException as ValidationException;
+use Repositories\Interfaces\ProductInterface;
+use Repositories\Interfaces\ImageInterface;
+use Repositories\Errors\Exceptions\ValidationException as ValidationException;
+use Repositories\Errors\Exceptions\NotAllowedException as NotAllowedException;
 
 
 class CatalogsController extends BaseController {
 
-	protected $catalogs;
+	protected $catalog;
+	protected $product;
+	protected $image;
 
 	/**
 	 * The layout that should be used for responses.
@@ -25,8 +30,10 @@ class CatalogsController extends BaseController {
    * We will use Laravel's dependency injection to auto-magically
    * "inject" our repository instance into our controller
    */
-  public function __construct(CatalogInterface $catalog){
+  public function __construct(CatalogInterface $catalog, ProductInterface $product, ImageInterface $image){
 		$this->catalog = $catalog;
+		$this->product = $product;
+		$this->image = $image;
   }
 
 	/**
@@ -36,12 +43,17 @@ class CatalogsController extends BaseController {
 	 */
 	public function index()
 	{
-		if( Authority::can('index', 'Catalog') ){
-			$catalogs = $this->catalog->findAll();
-			$this->layout->content = View::make('admin.catalogs.index')->with(compact('catalogs'));
-			return $this->layout->render();
+		try{
+			if( Authority::can('index', 'Catalog') ){
+				$catalogs = $this->catalog->findAll();
+				$this->layout->content = View::make('admin.catalogs.index')->with(compact('catalogs'));
+				return $this->layout->render();
+			}
+			throw new NotAllowedException();
 		}
-		throw new NotAllowedException();
+		catch(NotAllowedException $e){
+			return Redirect::to('admin/dashboard')->with('error', 'No tienes permiso para visitar esta pagina')->withInput()->withErrors($e->getErrors());
+		}
 	}
 
 	/**
@@ -66,12 +78,20 @@ class CatalogsController extends BaseController {
 	 */
 	public function store()
 	{
-		if( Authority::can('create', 'Catalog') ){
-			$input = Input::all();
-			$catalog = $this->catalog->store($input);
-			return Redirect::route('admin.catalogs.show', $catalog->id);//->with('success', 'The new catalog has been created');
+		try{
+			if( Authority::can('create', 'Catalog') ){
+				$input = Input::all();
+				$catalog = $this->catalog->store(\Auth::user()->id, $input);
+				return Redirect::route('admin.catalogs.show', $catalog->id);//->with('success', 'The new catalog has been created');
+			}
+			throw new NotAllowedException();
 		}
-		throw new NotAllowedException();
+		catch(ValidationException $e){
+			return Redirect::to('admin/catalogs/create')->with('error', 'Los datos provistos no son correctos.')->withInput()->withErrors($e->getErrors());
+		}
+		catch(NotAllowedException $e){
+			return Redirect::to('admin/dashboard')->with('error', 'No tienes permiso para visitar esta página.');
+		}
 	}
 
 	/**
@@ -98,9 +118,10 @@ class CatalogsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$catalog = $this->catalog->findById($id);
-		if( Authority::can('update', $catalog) ){
-			$this->layout->content = View::make('admin.catalogs.edit', compact('catalog'));
+		if( Authority::can('update', 'Catalog') ){
+			$catalog = $this->catalog->findById($id);
+			$image = $this->image->instance();
+			$this->layout->content = View::make('admin.catalogs.edit', compact('catalog', 'image'));
 			return $this->layout->render();
 		}
 		throw new NotAllowedException();
@@ -114,12 +135,20 @@ class CatalogsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		if( Authority::can('update', 'Catalog') ){
-			$input = Input::all();
-			$catalog = $this->catalog->update($id, $input);
-			return Redirect::route('admin.catalogs.show', $catalog->id);//->with('success', 'The new catalog has been created');
+		try{
+			if( Authority::can('update', 'Catalog') ){
+				$input = Input::all();
+				$catalog = $this->catalog->update($id, $input);
+				return Redirect::route('admin.catalogs.show', $catalog->id);//->with('success', 'The new catalog has been created');
+			}
+			throw new NotAllowedException();
 		}
-		throw new NotAllowedException();
+		catch(ValidationException $e){
+			return Redirect::route('admin.catalogs.edit', $id)->with('error', 'Los datos provistos no son correctos.')->withInput()->withErrors($e->getErrors());
+		}
+		catch(NotAllowedException $e){
+			return Redirect::route('admin.dashboard')->with('error', 'No tienes permiso para visitar esta página.');
+		}
 	}
 
 	/**

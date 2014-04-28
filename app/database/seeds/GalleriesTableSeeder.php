@@ -2,6 +2,7 @@
 
 // Composer: "fzaninotto/faker": "v1.3.0"
 use Faker\Factory as Faker;
+use Models\Gallery;
 
 class GalleriesTableSeeder extends Seeder {
 
@@ -9,11 +10,15 @@ class GalleriesTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
+		foreach(range(1, 1) as $index)
 		{
-			Gallery::create([
-
-			]);
+			Gallery::create(array(
+				'user_id' => 1,
+				'name' => 'Gallery 1',
+				'tags' => implode(', ', $faker->words(3)),
+				'description' => $faker->sentence(3),
+				'status' => 1
+			));
 		}
 	}
 

@@ -9,11 +9,13 @@ use View;
 use Redirect;
 use Authority;
 use Repositories\Interfaces\GalleryInterface;
-use Repositories\Exceptions\ValidationException as ValidationException;
+use Repositories\Interfaces\ImageInterface;
+use Repositories\errors\Exceptions\ValidationException as ValidationException;
 
 class GalleriesController extends BaseController {
 
-	protected $galleries;
+	protected $gallery;
+	protected $image;
 
 	/**
 	 * The layout that should be used for responses.
@@ -24,8 +26,9 @@ class GalleriesController extends BaseController {
    * We will use Laravel's dependency injection to auto-magically
    * "inject" our repository instance into our controller
    */
-  public function __construct(GalleryInterface $gallery){
+  public function __construct(GalleryInterface $gallery, ImageInterface $image){
 		$this->gallery = $gallery;
+		$this->image = $image;
   }
 
 	/**
@@ -65,12 +68,23 @@ class GalleriesController extends BaseController {
 	 */
 	public function store()
 	{
-		if( Authority::can('create', 'Gallery') ){
-			$input = Input::all();
-			$gallery = $this->gallery->store($input);
-			return Redirect::route('admin.galleries.show', $gallery->id);//->with('success', 'The new gallery has been created');
+		try{
+			if( Authority::can('create', 'Gallery') ){
+				$input = Input::all();
+				$gallery = $this->gallery->store(\Auth::user()->id, $input);
+				return Redirect::route('admin.galleries.show', $gallery->id);//->with('success', 'The new gallery has been created');
+			}
+			throw new NotAllowedException();
 		}
-		throw new NotAllowedException();
+		catch(ValidationException $e){
+			return Redirect::to('admin/galleries/create')->with('error', 'Los datos provistos no son correctos.')->withInput()->withErrors($e->getErrors());
+		}
+		catch(NotAllowedException $e){
+			return Redirect::to('admin/dashboard')->with('error', 'No tienes permiso para visitar esta página.');
+		}
+
+
+		
 	}
 
 	/**
@@ -99,7 +113,8 @@ class GalleriesController extends BaseController {
 	{
 		$gallery = $this->gallery->findById($id);
 		if( Authority::can('update', $gallery) ){
-			$this->layout->content = View::make('admin.galleries.edit', compact('gallery'));
+			$imageInstance = $this->image->instance();
+			$this->layout->content = View::make('admin.galleries.edit', compact('gallery', 'imageInstance'));
 			return $this->layout->render();
 		}
 		throw new NotAllowedException();

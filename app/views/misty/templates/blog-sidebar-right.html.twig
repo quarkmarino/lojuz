@@ -1,0 +1,518 @@
+{% extends 'layouts/main.html.twig' %}
+
+{% block head_title %}blog{% endblock %}
+
+{% block blog_active_class %}active{% endblock %}
+
+{% block content %}
+
+<!-- start: Container -->
+<div class="container">
+
+    <!-- start: Page header / Breadcrumbs -->
+    <section class="breadcrumbs">
+        <div class="page-header">
+            <h1>Bienvenido a nuestro Blog <small>/ Phasellus erat felis</small></h1>
+        </div>
+        <div class="breadcrumbs">
+            <a href="#">Inicio</a><i class="icon-angle-right "></i>Blog
+        </div>
+    </section>
+    <!-- end: Page header / Breadcrumbs -->
+
+    <div class="row">
+
+        <!-- start: Page section -->
+        <section id="page-sidebar" class="pull-left span8">
+
+            <!-- start: posts-->
+
+            <article class="blog-post">
+                <h3 class="post-title"><a href="./blog-single.html">Lorem ipsum dolor sit amet consectetur</a></h3>
+
+                <div class="blog-post-inner">
+                    <div class="post-media">
+                        <div id="mainslider" class="flexslider ps-slider">
+                            <ul class="slides">
+                                <li><img src="example/slider1.jpg" alt="" /></li>
+                                <li><img src="example/slider2.jpg" alt="" /></li>
+                                <li><img src="example/slider3.jpg" alt="" /></li>
+                                <li><img src="example/slider4.jpg" alt="" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="row-fluid">
+                            <ul class="post-meta">
+                                <li>
+                                    <a href="#" class="post-meta-date">
+                                        <span class="line1">21 Ago</span>, <span class="line2">2013</span>
+                                    </a>
+                                </li>
+                                <li><span class="post-meta-label"><i class="icon-user"></i>:</span> <a href="#">DXThemes</a></li>
+                                <li><span class="post-meta-label"><i class="icon-folder-open"></i>:</span> <a href="#">Noticias</a>, <a href="#">Diseño Web</a></li>
+                                <li><span class="post-meta-label"><i class="icon-tags"></i>:</span> <a href="#">CSS3</a>, <a href="#">HTML5</a>, <a href="#">Responsivo</a></li>
+                                <li><span class="post-meta-label"><i class="icon-comments"></i>:</span> <a href="#">12 Comentarios</a></li>
+                            </ul>
+                            <p>
+                                Etiam congue, elit at tristique aliquam, sapien diam eleifend orci, vel tristique augue diam vel turpis. Vestibulum volutpat diam ut tortor vehicula accumsan. Aliquam placerat arcu eu orci pretium sit amet mattis felis convallis. Cras elementum molestie laoreet. Pellentesque malesuada risus pellentesque tortor iaculis in congue leo bibendum.
+                            </p>
+                            <p>
+                                Integer facilisis congue volutpat. Curabitur vel consequat eros. Ut sapien magna, interdum eget imperdiet quis, ultrices nec libero. Etiam ut magna at dolor tristique pretium. Pellentesque rhoncus ornare metus ... <a href="./blog-single.html" class="read-more">read more</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <h3 class="post-title"><a href="./blog-single.html">Lorem ipsum dolor sit amet consectetur</a></h3>
+                <div class="blog-post-inner">
+                    <div class="post-media">
+                        <img src="example/blog1.jpg" alt=""/>
+                    </div>
+                    <div class="post-content">
+                        <div class="row-fluid">
+                            <ul class="post-meta">
+                                <li>
+                                    <a href="#" class="post-meta-date">
+                                        <span class="line1">25 Ago</span>, <span class="line2">2013</span>
+                                    </a>
+                                </li>
+                                <li><span class="post-meta-label"><i class="icon-user"></i>:</span> <a href="#">DXThemes</a></li>
+                                <li><span class="post-meta-label"><i class="icon-folder-open"></i>:</span> <a href="#">Noticias</a>, <a href="#">Diseño Web</a></li>
+                                <li><span class="post-meta-label"><i class="icon-tags"></i>:</span> <a href="#">CSS3</a>, <a href="#">HTML5</a>, <a href="#">Responsivo</a></li>
+                                <li><span class="post-meta-label"><i class="icon-comments"></i>:</span> <a href="#">12 Comentarios</a></li>
+                            </ul>
+                            <p>
+                                Etiam congue, elit at tristique aliquam, sapien diam eleifend orci, vel tristique augue diam vel turpis. Vestibulum volutpat diam ut tortor vehicula accumsan. Aliquam placerat arcu eu orci pretium sit amet mattis felis convallis. Cras elementum molestie laoreet. Pellentesque malesuada risus pellentesque tortor iaculis in congue leo bibendum.
+                            </p>
+                            <p>
+                                Integer facilisis congue volutpat. Curabitur vel consequat eros. Ut sapien magna, interdum eget imperdiet quis, ultrices nec libero. Etiam ut magna at dolor tristique pretium. Pellentesque rhoncus ornare metus ... <a href="./blog-single.html" class="read-more">Leer más</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+
+            <article class="blog-post">
+                <h3 class="post-title"><a href="./blog-single.html">Lorem ipsum dolor sit amet consectetur</a></h3>
+                <div class="blog-post-inner">
+                    <div class="post-media">
+                        <img src="example/blog2.jpg" alt=""/>
+                    </div>
+                    <div class="post-content">
+                        <div class="row-fluid">
+                            <ul class="post-meta">
+                                <li>
+                                    <a href="#" class="post-meta-date">
+                                        <span class="line1">18 Ago</span>, <span class="line2">2013</span>
+                                    </a>
+                                </li>
+                                <li><span class="post-meta-label"><i class="icon-user"></i>:</span> <a href="#">DXThemes</a></li>
+                                <li><span class="post-meta-label"><i class="icon-folder-open"></i>:</span> <a href="#">Noticias</a>, <a href="#">Diseño Web</a></li>
+                                <li><span class="post-meta-label"><i class="icon-tags"></i>:</span> <a href="#">CSS3</a>, <a href="#">HTML5</a>, <a href="#">Responsivo</a></li>
+                                <li><span class="post-meta-label"><i class="icon-comments"></i>:</span> <a href="#">12 Comentarios</a></li>
+                            </ul>
+                            <p>
+                                Etiam congue, elit at tristique aliquam, sapien diam eleifend orci, vel tristique augue diam vel turpis. Vestibulum volutpat diam ut tortor vehicula accumsan. Aliquam placerat arcu eu orci pretium sit amet mattis felis convallis. Cras elementum molestie laoreet. Pellentesque malesuada risus pellentesque tortor iaculis in congue leo bibendum.
+                            </p>
+                            <p>
+                                Integer facilisis congue volutpat. Curabitur vel consequat eros. Ut sapien magna, interdum eget imperdiet quis, ultrices nec libero. Etiam ut magna at dolor tristique pretium. Pellentesque rhoncus ornare metus ... <a href="./blog-single.html" class="read-more">Leer más</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <h3 class="post-title"><a href="./blog-single.html">Lorem ipsum dolor sit amet consectetur</a></h3>
+                <div class="blog-post-inner">
+                    <div class="post-media">
+                        <div class="video">
+                            <iframe src="http://player.vimeo.com/video/53821405?badge=0" width="" height="" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="row-fluid">
+                            <ul class="post-meta">
+                                <li>
+                                    <a href="#" class="post-meta-date">
+                                        <span class="line1">17 Sep</span>, <span class="line2">2013</span>
+                                    </a>
+                                </li>
+                                <li><span class="post-meta-label"><i class="icon-user"></i>:</span> <a href="#">DXThemes</a></li>
+                                <li><span class="post-meta-label"><i class="icon-folder-open"></i>:</span> <a href="#">Noticias</a>, <a href="#">Diseño Web</a></li>
+                                <li><span class="post-meta-label"><i class="icon-tags"></i>:</span> <a href="#">CSS3</a>, <a href="#">HTML5</a>, <a href="#">Responsivo</a></li>
+                                <li><span class="post-meta-label"><i class="icon-comments"></i>:</span> <a href="#">12 Comentarios</a></li>
+                            </ul>
+                            <p>
+                                Etiam congue, elit at tristique aliquam, sapien diam eleifend orci, vel tristique augue diam vel turpis. Vestibulum volutpat diam ut tortor vehicula accumsan. Aliquam placerat arcu eu orci pretium sit amet mattis felis convallis. Cras elementum molestie laoreet. Pellentesque malesuada risus pellentesque tortor iaculis in congue leo bibendum.
+                            </p>
+                            <p>
+                                Integer facilisis congue volutpat. Curabitur vel consequat eros. Ut sapien magna, interdum eget imperdiet quis, ultrices nec libero. Etiam ut magna at dolor tristique pretium. Pellentesque rhoncus ornare metus ... <a href="./blog-single.html" class="read-more">leer más</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <h3 class="post-title"><a href="./blog-single.html">Lorem ipsum dolor sit amet consectetur</a></h3>
+                <div class="blog-post-inner">
+                    <div class="post-media">
+                    </div>
+                    <div class="post-content">
+                        <div class="row-fluid">
+                            <ul class="post-meta">
+                                <li>
+                                    <a href="#" class="post-meta-date">
+                                        <span class="line1">15 Sep</span>, <span class="line2">2013</span>
+                                    </a>
+                                </li>
+                                <li><span class="post-meta-label"><i class="icon-user"></i>:</span> <a href="#">DXThemes</a></li>
+                                <li><span class="post-meta-label"><i class="icon-folder-open"></i>:</span> <a href="#">Noticias</a>, <a href="#">Diseño Web</a></li>
+                                <li><span class="post-meta-label"><i class="icon-tags"></i>:</span> <a href="#">CSS3</a>, <a href="#">HTML5</a>, <a href="#">Responsivo</a></li>
+                                <li><span class="post-meta-label"><i class="icon-comments"></i>:</span> <a href="#">12 Comentarios</a></li>
+                            </ul>
+                            <p>
+                                Etiam congue, elit at tristique aliquam, sapien diam eleifend orci, vel tristique augue diam vel turpis. Vestibulum volutpat diam ut tortor vehicula accumsan. Aliquam placerat arcu eu orci pretium sit amet mattis felis convallis. Cras elementum molestie laoreet. Pellentesque malesuada risus pellentesque tortor iaculis in congue leo bibendum.
+                            </p>
+                            <p>
+                                Integer facilisis congue volutpat. Curabitur vel consequat eros. Ut sapien magna, interdum eget imperdiet quis, ultrices nec libero. Etiam ut magna at dolor tristique pretium. Pellentesque rhoncus ornare metus ... <a href="./blog-single.html" class="read-more">leer más</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <h3 class="post-title"><a href="./blog-single.html">Lorem ipsum dolor sit amet consectetur</a></h3>
+                <div class="blog-post-inner">
+                    <div class="post-media">
+                    </div>
+                    <div class="post-content">
+                        <div class="row-fluid">
+                            <ul class="post-meta">
+                                <li>
+                                    <a href="#" class="post-meta-date">
+                                        <span class="line1">15 Sep</span>, <span class="line2">2013</span>
+                                    </a>
+                                </li>
+                                <li><span class="post-meta-label"><i class="icon-user"></i>:</span> <a href="#">DXThemes</a></li>
+                                <li><span class="post-meta-label"><i class="icon-folder-open"></i>:</span> <a href="#">Noticias</a>, <a href="#">Diseño Web</a></li>
+                                <li><span class="post-meta-label"><i class="icon-tags"></i>:</span> <a href="#">CSS3</a>, <a href="#">HTML5</a>, <a href="#">Responsivo</a></li>
+                                <li><span class="post-meta-label"><i class="icon-comments"></i>:</span> <a href="#">12 Comentarios</a></li>
+                            </ul>
+                            <blockquote>
+                                <p>
+                                    Etiam congue, elit at tristique aliquam, sapien diam eleifend orci, vel tristique augue diam vel turpis. Vestibulum volutpat diam ut tortor vehicula accumsan. Aliquam placerat arcu eu orci pretium sit amet mattis felis convallis. Cras elementum molestie laoreet. Pellentesque malesuada risus pellentesque tortor iaculis in congue leo bibendum.
+                                </p>
+                                <p>
+                                    Integer facilisis congue volutpat. Curabitur vel consequat eros. Ut sapien magna, interdum eget imperdiet quis, ultrices nec libero. Etiam ut magna at dolor tristique pretium ...leer más href="./blog-single.html" class="read-more">read more</a>
+                                </p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- end: posts-->
+
+            <!-- start: Pagination -->
+            <div class="pagination pagination-centered">
+                <ul>
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+            <!-- end: Pagination -->
+
+        </section>
+        <!-- end: Page section -->
+
+        <!-- start: Sidebar -->
+        <aside id="sidebar" class="pull-right span4">
+
+            <section class="widget categories-widget">
+                <h3 class="widget-title">Categorias</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="ca-icon icon-shopping-cart"></i>
+                            <span class="ca-name">Nam Interdum Tellus Nisi</span>
+                        </a>
+                    </li>
+                    <li><a href="#">
+                        <i class="ca-icon icon-list-ul"></i>
+                        <span class="ca-name">Nullam Pharetra Velit Quam</span>
+                    </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ca-icon icon-comment"></i>
+                            <span class="ca-name">Phasellus Blandit Cursus</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ca-icon icon-cog"></i>
+                            <span class="ca-name">Donec Vulputate Justo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ca-icon icon-envelope-alt"></i>
+                            <span class="ca-name">Pellentesque malesuada </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ca-icon icon-group"></i>
+                            <span class="ca-name">Nulla Commodo Leo</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- start: Search widget -->
+            <section class="widget search">
+                <form id="search" class="input-append">
+                    <input class="span4" id="appendedInputButton" type="text" placeholder="Burcar" />
+                    <input class="btn search-bt" type="submit" name="submit" value="" />
+                </form>
+            </section>
+            <!-- end: Search widget -->
+
+            <!-- start: Popular posts -->
+            <section class="widget popular-posts">
+
+                <h3 class="widget-title">Artículos populares</h3>
+                <div class="widget-inner">
+                    <div class="media">
+                        <a class="pull-left" href="./blog-single.html">
+                            <img class="media-object" src="example/sidebar2.jpg" alt=""/>
+                            <span class="frame-overlay"></span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="./blog-single.html">Phasellus Blandit Cursus</a></h4>
+                            <p>Cras sit amet arcu ante, sed adipiscing nibh quisque vitae turpis sit amet dui condimentum</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-inner">
+                    <div class="media">
+                        <a class="pull-left" href="./blog-single.html">
+                            <img class="media-object" src="example/sidebar3.jpg" alt=""/>
+                            <span class="frame-overlay"></span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="./blog-single.html">Phasellus Blandit Cursus</a></h4>
+                            <p>Cras sit amet arcu ante, sed adipiscing nibh quisque vitae turpis sit amet dui condimentum</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-inner">
+                    <div class="media">
+                        <a class="pull-left" href="./blog-single.html">
+                            <img class="media-object" src="example/sidebar4.jpg" alt=""/>
+                            <span class="frame-overlay"></span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="./blog-single.html">Phasellus Blandit Cursus</a></h4>
+                            <p>Cras sit amet arcu ante, sed adipiscing nibh quisque vitae turpis sit amet dui condimentum</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- end: Popular posts -->
+
+            <!-- start: Blog Archives / Accordion -->
+            <section class="widget">
+
+                    <h3 class="widget-title">Blog Archives</h3>
+                    <div class="accordion" id="accordion2">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse1">
+                                    <i class="icon-minus"></i>
+                                    Diciembre 2012
+                                </a>
+                            </div>
+                            <div id="collapse1" class="accordion-body collapse in">
+                                <div class="accordion-inner">
+                                    <ul class="icons">
+                                        <li><i class="icon-ok"></i><a href="#">Diseño Web</a></li>
+                                        <li><i class="icon-ok"></i><a href="#">Responsivo</a></li>
+                                        <li><i class="icon-ok"></i><a href="#">HTML5 / CSS3</a></li>
+                                        <li><i class="icon-ok"></i><a href="#">Mercadotecnia</a></li>
+                                        <li><i class="icon-ok"></i><a href="#">Optimización SEO</a></li></ul>
+                                </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2">
+                                    <i class="icon-plus"></i>
+                                    Noviembre 2012
+                                </a>
+                            </div>
+                            <div id="collapse2" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <ul>
+                                        <li><a href="#">Diseño Web</a></li>
+                                        <li><a href="#">Responsive</a></li>
+                                        <li><a href="#">HTML5 / CSS3</a></li>
+                                        <li><a href="#">Mercadotecnia</a></li>
+                                        <li><a href="#">Optimización SEO</a></li>
+                                    </ul>
+                                </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse3">
+                                    <i class="icon-plus"></i>
+                                    October 2012
+                                </a>
+                            </div>
+                            <div id="collapse3" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <ul class="icons">
+                                        <li><i class="icon-arrow-right"></i><a href="#">Diseño Web</a></li>
+                                        <li><i class="icon-arrow-right"></i><a href="#">Responsivo</a></li>
+                                        <li><i class="icon-arrow-right"></i><a href="#">HTML5 / CSS3</a></li>
+                                        <li><i class="icon-arrow-right"></i><a href="#">Mercadotecnia</a></li>
+                                        <li><i class="icon-arrow-right"></i><a href="#">Optimización SEO</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse4">
+                                    <i class="icon-plus"></i>
+                                    Septiembre 2012
+                                </a>
+                            </div>
+                            <div id="collapse4" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <ul class="icons">
+                                        <li><i class="icon-caret-right"></i><a href="#">Diseño Web</a></li>
+                                        <li><i class="icon-caret-right"></i><a href="#">Responsivo</a></li>
+                                        <li><i class="icon-caret-right"></i><a href="#">HTML5 / CSS3</a></li>
+                                        <li><i class="icon-caret-right"></i><a href="#">Mercadotecnia</a></li>
+                                        <li><i class="icon-caret-right"></i><a href="#">Optimización SEO</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse5">
+                                    <i class="icon-plus"></i>
+                                    Agosto 2012
+                                </a>
+                            </div>
+                            <div id="collapse5" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <ul class="icons">
+                                        <li><i class="icon-chevron-right"></i><a href="#">Diseño Web</a></li>
+                                        <li><i class="icon-chevron-right"></i><a href="#">Responsivo</a></li>
+                                        <li><i class="icon-chevron-right"></i><a href="#">HTML5 / CSS3</a></li>
+                                        <li><i class="icon-chevron-right"></i><a href="#">Mercadotecnia</a></li>
+                                        <li><i class="icon-chevron-right"></i><a href="#">Optimización SEO</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse6">
+                                    <i class="icon-plus"></i>
+                                    Julio 2012
+                                </a>
+                            </div>
+                            <div id="collapse6" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <ul class="icons">
+                                        <li><i class="icon-double-angle-right"></i><a href="#">Diseño Web</a></li>
+                                        <li><i class="icon-double-angle-right"></i><a href="#">Responsivo</a></li>
+                                        <li><i class="icon-double-angle-right"></i><a href="#">HTML5 / CSS3</a></li>
+                                        <li><i class="icon-double-angle-right"></i><a href="#">Mercadotecnia</a></li>
+                                        <li><i class="icon-double-angle-right"></i><a href="#">SEc ó/ Optimizatioa></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </section>
+            <!-- end: Blog Archives / Accordion -->
+
+            <!-- start: Tag Cloud -->
+            <section class="widget">
+
+                    <h3 class="widget-title">Nube de etiquetas</h3>
+                    <div class="tags">
+                        <a href="#"><i class="icon-tag"></i>jquery</a>
+                        <a href="#"><i class="icon-tag"></i>css3</a>
+                        <a href="#"><i class="icon-tag"></i>html5</a>
+                        <a href="#"><i class="icon-tag"></i>diseño web</a>
+                        <a href="#"><i class="icon-tag"></i>negocios</a>
+                        <a href="#"><i class="icon-tag"></i>creatividad</a>
+                        <a href="#"><i class="icon-tag"></i>responsivo</a>
+                        <a href="#"><i class="icon-tag"></i>development</a>
+                        <a href="#"><i class="icon-tag"></i>javascript</a>
+                        <a href="#"><i class="icon-tag"></i>usabilidad</a>
+                        <a href="#"><i class="icon-tag"></i>tipografia</a>
+                        <a href="#"><i class="icon-tag"></i>optimización</a>
+                        <a href="#"><i class="icon-tag"></i>tips</a>
+                        <a href="#"><i class="icon-tag"></i>e-commerce</a>
+                        <a href="#"><i class="icon-tag"></i>seo</a>
+                    </div>
+
+            </section>
+            <!-- end: Tag Cloud -->
+
+            <!-- start: Twitter Widget -->
+            <section id="twitter-sidebar" class="widget">
+
+                    <h3 class="widget-title">Twitter</h3>
+                    <div class="twitter"></div>
+
+            </section>
+            <!-- end: Twitter Widget -->
+
+            <!-- start: Flickr Widget -->
+            <section class="widget">
+
+                    <h3 class="widget-title">Flickr</h3>
+                    <ul class="sidebar-flickr clearfix"></ul>
+
+            </section>
+            <!-- end: Flickr Widget -->
+
+            <!-- start: Text Widget -->
+            <section class="widget">
+                <h3 class="widget-title">Listo para comprar</h3>
+                <div class="widget-inner">
+                    <p>Lorem ipsum dolor sit amet, consect <a href="#">etuer adipi scing</a> elit, sed diam nonummy nibh euis mod tinci dunt ut laoreet dolore magna</p>
+                    <a href="#" class="btn btn-large btn-danger">Comprar</a>
+                </div>
+            </section>
+            <!-- end: Text Widget -->
+
+        </aside>
+        <!-- end: Sidebar -->
+
+    </div>
+
+</div>
+<!-- end: Container -->
+{% endblock %}

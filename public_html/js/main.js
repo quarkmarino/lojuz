@@ -156,7 +156,7 @@ $(document).ready(function(){
 
 	//Portfolio
 	var $portfolioClone = $(".filtrable").clone();
-	$("#filtrable a").live('click', function(e){
+	$("#filtrable a").on('click', function(e){
 		
 		$("#filtrable li").removeClass("current");	
 		

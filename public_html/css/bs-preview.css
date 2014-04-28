@@ -769,9 +769,9 @@ form.bs-docs-example {
   /*background-image: url(../img/glyphicons-halflings-white.png);*/
   opacity: 1;
 }
-.bs-docs-sidenav.affix {
+/*.bs-docs-sidenav.affix {
   top: 70px;
-}
+}*/
 .bs-docs-sidenav.affix-bottom {
   position: absolute;
   top: auto;

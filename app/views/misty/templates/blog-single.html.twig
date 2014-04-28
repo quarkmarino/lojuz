@@ -1,0 +1,447 @@
+{% extends 'layouts/main.html.twig' %}
+
+{% block head_title %}Artículo{% endblock %}
+
+{% block blog_active_class %}active{% endblock %}
+
+{% block content %}
+
+<!-- start: Container -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- start: Page section -->
+        <section id="page-sidebar" class="pull-left span8">
+
+            <!-- start: posts-->
+
+            <article class="blog-post">
+                <h3 class="post-title"><a href="./blog-single.html">Lorem ipsum dolor sit amet consectetur</a></h3>
+
+                <div class="blog-post-inner">
+                    <div class="post-media">
+                        <div id="mainslider" class="flexslider ps-slider">
+                            <ul class="slides">
+                                <li><img src="example/slider1.jpg" alt="" /></li>
+                                <li><img src="example/slider2.jpg" alt="" /></li>
+                                <li><img src="example/slider3.jpg" alt="" /></li>
+                                <li><img src="example/slider4.jpg" alt="" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="row-fluid">
+                            <ul class="post-meta">
+                                <li>
+                                    <a href="#" class="post-meta-date">
+                                        <span class="line1">Oct 30</span>, <span class="line2">2012</span>
+                                    </a>
+                                </li>
+                                <li><span class="post-meta-label"><i class="icon-user"></i>:</span> <a href="#">DXThemes</a></li>
+                                <li><span class="post-meta-label"><i class="icon-folder-open"></i>:</span> <a href="#">News</a>, <a href="#">Web Design</a></li>
+                                <li><span class="post-meta-label"><i class="icon-tags"></i>:</span> <a href="#">CSS3</a>, <a href="#">HTML5</a>, <a href="#">Responsive</a></li>
+                                <li><span class="post-meta-label"><i class="icon-comments"></i>:</span> <a href="#">12 Comments</a></li>
+                            </ul>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis leo imperdiet tortor vulputate dignissim id in odio. Etiam mi risus, commodo ac feugiat non, fringilla eget justo. Ut id porttitor turpis. Sed adipiscing pretium pellentesque. In hac habitasse platea dictumst. Mauris sit amet mauris tellus. In sollicitudin est ut metus accumsan luctus.
+                            </p>
+                            <p>
+                                Sed ut lacus at elit bibendum congue in id nulla. Vestibulum eros neque, venenatis non tincidunt sit amet, gravida adipiscing enim. Quisque tellus dolor, elementum eu faucibus ac, malesuada nec justo. Mauris ut pretium quam. Sed tempus pellentesque imperdiet. Cras semper facilisis dui, vitae ultricies leo imperdiet in. Proin gravida congue pretium. Duis cursus odio eu lorem vulputate pretium ultrices massa ultricies. Cras nec tincidunt sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                            </p>
+                            <blockquote>
+                                Maecenas non nisl et erat tincidunt lobortis. Sed tempus feugiat sem sed auctor. Praesent id leo nec felis tempor viverra. Praesent metus augue, porttitor at bibendum vel, adipiscing consectetur tortor. Phasellus eu ligula turpis. Nulla porta, tortor pulvinar tincidunt tristique, metus nunc vestibulum magna, vel dictum odio tellus ut nisl. Nullam euismod tristique velit at pulvinar.
+                            </blockquote>
+                            <p>
+                                Suspendisse tempus mi sit amet arcu eleifend aliquet. Cras odio tellus, sagittis at auctor sed, semper at eros. Ut consequat euismod dui id eleifend. Integer imperdiet velit nec quam dignissim pretium. Quisque tristique, orci eu fringilla bibendum, turpis arcu consequat massa, vitae porta leo libero gravida lectus. Etiam ac urna at massa molestie vehicula. Sed sit amet odio metus, quis placerat dolor. Proin dignissim ornare hendrerit. Fusce scelerisque mauris vel odio interdum non faucibus libero porttitor. Pellentesque neque turpis, tristique ut condimentum sed, porta ac orci. Nullam vitae dolor eget magna commodo dapibus. Curabitur accumsan ante et sem lacinia eget cursus magna commodo. Ut felis erat, vehicula vel placerat eu, mattis ut odio. Nunc porta consectetur lacus at congue.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <!-- end: posts-->
+
+            <hr>
+
+            <!-- start: Comments -->
+            <h3>4 Comments</h3>
+            <div class="page-inner">
+                <div class="comments">
+                    <ul class="comments-list">
+                        <li class="comments_li">
+                            <div class="comment clearfix">
+                                <img src="images/avatar.png" alt="avatar" class="avatar"/>
+                                <p class="meta">Designmd says:<br/><small>May 18, 2012 </small></p>
+                                <div class="textarea">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet </p>
+                                </div>
+                            </div>
+                            <ul class="clearfix">
+                                <li>
+                                    <div class="comment clearfix">
+                                        <img src="images/avatar.png" alt="avatar" class="avatar"/>
+                                        <p class="meta">bingumd says:<br/><small>May 17, 2012 </small></p>
+                                        <div class="textarea">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                        </div>
+                                    </div>
+                                    <ul class="clearfix">
+                                        <li>
+                                            <div class="comment clearfix">
+                                                <img src="images/avatar.png" alt="avatar" class="avatar"/>
+                                                <p class="meta">bingumd says:<br/><small>May 17, 2012</small> </p>
+                                                <div class="textarea">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="comments_li">
+                            <div class="comment clearfix">
+                                <img src="images/avatar.png" alt="avatar" class="avatar"/>
+                                <p class="meta">Designmd says:<br/><small>May 16, 2012</small></p>
+                                <div class="textarea lastbt">
+                                    <p>Scelerisque felis. Maecenas tincidunt ligula eu magna tincidunt eget imperdiet erat malesuada. Ut in diam et metus facilisis venenatis sit amet vel enim. </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end: Comments -->
+
+            <hr/>
+
+            <!-- start: Comments form -->
+            <h3>Leave A Reply</h3>
+            <div class="page-inner">
+                <form name="comment" method="post" action="" class="af-form" id="af-form">
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="af-outer af-required">
+                                <div class="af-inner">
+                                    <input type="text" name="name" id="name" size="30" value="" placeholder="Your Name" class="text-input span12"/>
+                                    <label class="error" for="name" id="name_error">Name is required.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <div class="af-outer af-required">
+                                <div class="af-inner">
+                                    <input type="text" name="email" id="email" size="30" value="" placeholder="Your Email" class="text-input span12"/>
+                                    <label class="error" for="email" id="email_error">Email is required.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="af-outer af-required">
+                                <div class="af-inner">
+                                    <textarea name="message" id="input-message" cols="30" placeholder="Your Message" class="text-input span12"></textarea>
+                                    <label class="error" for="input-message" id="message_error">Message is required.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="af-outer af-required">
+                                <div class="af-inner">
+                                    <input type="submit" name="submit" class="form-button btn btn-large btn-primary" id="submit_btn" value="Send Message!"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- end: Comments form -->
+
+        </section>
+        <!-- end: Page section -->
+
+        <!-- start: Sidebar -->
+        <aside id="sidebar" class="pull-right span4">
+
+            <section class="widget categories-widget">
+                <h3 class="widget-title">Categories</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="ca-icon icon-shopping-cart"></i>
+                            <span class="ca-name">Nam Interdum Tellus Nisi</span>
+                        </a>
+                    </li>
+                    <li><a href="#">
+                        <i class="ca-icon icon-list-ul"></i>
+                        <span class="ca-name">Nullam Pharetra Velit Quam</span>
+                    </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ca-icon icon-comment"></i>
+                            <span class="ca-name">Phasellus Blandit Cursus</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ca-icon icon-cog"></i>
+                            <span class="ca-name">Donec Vulputate Justo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ca-icon icon-envelope-alt"></i>
+                            <span class="ca-name">Pellentesque malesuada </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ca-icon icon-group"></i>
+                            <span class="ca-name">Nulla Commodo Leo</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- start: Search widget -->
+            <section class="widget search">
+                <form id="search" class="input-append">
+                    <input class="span4" id="appendedInputButton" type="text" placeholder="Search" />
+                    <input class="btn search-bt" type="submit" name="submit" value="" />
+                </form>
+            </section>
+            <!-- end: Search widget -->
+
+            <!-- start: Popular posts -->
+            <section class="widget popular-posts">
+
+                <h3 class="widget-title">Popular Post Widget</h3>
+                <div class="widget-inner">
+                    <div class="media">
+                        <a class="pull-left" href="./blog-single.html">
+                            <img class="media-object" src="example/sidebar2.jpg" alt=""/>
+                            <span class="frame-overlay"></span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="./blog-single.html">Phasellus Blandit Cursus</a></h4>
+                            <p>Cras sit amet arcu ante, sed adipiscing nibh quisque vitae turpis sit amet dui condimentum</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-inner">
+                    <div class="media">
+                        <a class="pull-left" href="./blog-single.html">
+                            <img class="media-object" src="example/sidebar3.jpg" alt=""/>
+                            <span class="frame-overlay"></span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="./blog-single.html">Phasellus Blandit Cursus</a></h4>
+                            <p>Cras sit amet arcu ante, sed adipiscing nibh quisque vitae turpis sit amet dui condimentum</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-inner">
+                    <div class="media">
+                        <a class="pull-left" href="./blog-single.html">
+                            <img class="media-object" src="example/sidebar4.jpg" alt=""/>
+                            <span class="frame-overlay"></span>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="./blog-single.html">Phasellus Blandit Cursus</a></h4>
+                            <p>Cras sit amet arcu ante, sed adipiscing nibh quisque vitae turpis sit amet dui condimentum</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- end: Popular posts -->
+
+            <!-- start: Blog Archives / Accordion -->
+            <section class="widget">
+
+                    <h3 class="widget-title">Blog Archives</h3>
+                    <div class="accordion" id="accordion2">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse1">
+                                    <i class="icon-minus"></i>
+                                    December 2012
+                                </a>
+                            </div>
+                            <div id="collapse1" class="accordion-body collapse in">
+                                <div class="accordion-inner">
+                                    <ul class="icons">
+                                        <li><i class="icon-ok"></i><a href="#">Wed Design</a></li>
+                                        <li><i class="icon-ok"></i><a href="#">Responsive</a></li>
+                                        <li><i class="icon-ok"></i><a href="#">HTML5 / CSS3</a></li>
+                                        <li><i class="icon-ok"></i><a href="#">Coding Essentials</a></li>
+                                        <li><i class="icon-ok"></i><a href="#">SEO Optimization</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2">
+                                    <i class="icon-plus"></i>
+                                    November 2012
+                                </a>
+                            </div>
+                            <div id="collapse2" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <ul>
+                                        <li><a href="#">Wed Design</a></li>
+                                        <li><a href="#">Responsive</a></li>
+                                        <li><a href="#">HTML5 / CSS3</a></li>
+                                        <li><a href="#">Coding Essentials</a></li>
+                                        <li><a href="#">SEO Optimization</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse3">
+                                    <i class="icon-plus"></i>
+                                    October 2012
+                                </a>
+                            </div>
+                            <div id="collapse3" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <ul class="icons">
+                                        <li><i class="icon-arrow-right"></i><a href="#">Wed Design</a></li>
+                                        <li><i class="icon-arrow-right"></i><a href="#">Responsive</a></li>
+                                        <li><i class="icon-arrow-right"></i><a href="#">HTML5 / CSS3</a></li>
+                                        <li><i class="icon-arrow-right"></i><a href="#">Coding Essentials</a></li>
+                                        <li><i class="icon-arrow-right"></i><a href="#">SEO Optimization</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse4">
+                                    <i class="icon-plus"></i>
+                                    September 2012
+                                </a>
+                            </div>
+                            <div id="collapse4" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <ul class="icons">
+                                        <li><i class="icon-caret-right"></i><a href="#">Wed Design</a></li>
+                                        <li><i class="icon-caret-right"></i><a href="#">Responsive</a></li>
+                                        <li><i class="icon-caret-right"></i><a href="#">HTML5 / CSS3</a></li>
+                                        <li><i class="icon-caret-right"></i><a href="#">Coding Essentials</a></li>
+                                        <li><i class="icon-caret-right"></i><a href="#">SEO Optimization</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse5">
+                                    <i class="icon-plus"></i>
+                                    August 2012
+                                </a>
+                            </div>
+                            <div id="collapse5" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <ul class="icons">
+                                        <li><i class="icon-chevron-right"></i><a href="#">Wed Design</a></li>
+                                        <li><i class="icon-chevron-right"></i><a href="#">Responsive</a></li>
+                                        <li><i class="icon-chevron-right"></i><a href="#">HTML5 / CSS3</a></li>
+                                        <li><i class="icon-chevron-right"></i><a href="#">Coding Essentials</a></li>
+                                        <li><i class="icon-chevron-right"></i><a href="#">SEO Optimization</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse6">
+                                    <i class="icon-plus"></i>
+                                    July 2012
+                                </a>
+                            </div>
+                            <div id="collapse6" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <ul class="icons">
+                                        <li><i class="icon-double-angle-right"></i><a href="#">Wed Design</a></li>
+                                        <li><i class="icon-double-angle-right"></i><a href="#">Responsive</a></li>
+                                        <li><i class="icon-double-angle-right"></i><a href="#">HTML5 / CSS3</a></li>
+                                        <li><i class="icon-double-angle-right"></i><a href="#">Coding Essentials</a></li>
+                                        <li><i class="icon-double-angle-right"></i><a href="#">SEO Optimization</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </section>
+            <!-- end: Blog Archives / Accordion -->
+
+            <!-- start: Tag Cloud -->
+            <section class="widget">
+
+                    <h3 class="widget-title">Tag Cloud</h3>
+                    <div class="tags">
+                        <a href="#"><i class="icon-tag"></i>jquery</a>
+                        <a href="#"><i class="icon-tag"></i>css3</a>
+                        <a href="#"><i class="icon-tag"></i>html5</a>
+                        <a href="#"><i class="icon-tag"></i>web design</a>
+                        <a href="#"><i class="icon-tag"></i>busines</a>
+                        <a href="#"><i class="icon-tag"></i>creative</a>
+                        <a href="#"><i class="icon-tag"></i>responsive</a>
+                        <a href="#"><i class="icon-tag"></i>development</a>
+                        <a href="#"><i class="icon-tag"></i>javascript</a>
+                        <a href="#"><i class="icon-tag"></i>usability</a>
+                        <a href="#"><i class="icon-tag"></i>typography</a>
+                        <a href="#"><i class="icon-tag"></i>optimization</a>
+                        <a href="#"><i class="icon-tag"></i>tips</a>
+                        <a href="#"><i class="icon-tag"></i>e-commerce</a>
+                        <a href="#"><i class="icon-tag"></i>seo</a>
+                    </div>
+
+            </section>
+            <!-- end: Tag Cloud -->
+
+            <!-- start: Twitter Widget -->
+            <section id="twitter-sidebar" class="widget">
+
+                    <h3 class="widget-title">Twitter</h3>
+                    <div class="twitter"></div>
+
+            </section>
+            <!-- end: Twitter Widget -->
+
+            <!-- start: Flickr Widget -->
+            <section class="widget">
+
+                    <h3 class="widget-title">Flickr</h3>
+                    <ul class="sidebar-flickr clearfix"></ul>
+
+            </section>
+            <!-- end: Flickr Widget -->
+
+            <!-- start: Text Widget -->
+            <section class="widget">
+                <h3 class="widget-title">Ready to Purchase</h3>
+                <div class="widget-inner">
+                    <p>Lorem ipsum dolor sit amet, consect <a href="#">etuer adipi scing</a> elit, sed diam nonummy nibh euis mod tinci dunt ut laoreet dolore magna</p>
+                    <a href="#" class="btn btn-large btn-danger">Purchase</a>
+                </div>
+            </section>
+            <!-- end: Text Widget -->
+
+        </aside>
+        <!-- end: Sidebar -->
+
+    </div>
+
+</div>
+<!-- end: Container -->
+{% endblock %}

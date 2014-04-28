@@ -2,6 +2,7 @@
 
 // Composer: "fzaninotto/faker": "v1.3.0"
 use Faker\Factory as Faker;
+use Models\Image;
 
 class ImagesTableSeeder extends Seeder {
 
@@ -9,11 +10,13 @@ class ImagesTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
+		foreach(range(1, 3) as $index)
 		{
-			Image::create([
-
-			]);
+			Image::create(array(
+				'product_id' => 1,
+				'name' => $faker->word,
+				'status' => 1,
+			));
 		}
 	}
 

@@ -79,3 +79,5 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+require app_path().'/repositories/services/validators/custom/alpha_spaces.php';
+require app_path().'/repositories/services/validators/custom/alpha_num_spaces.php';

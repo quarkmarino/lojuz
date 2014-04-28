@@ -1,0 +1,65 @@
+{% extends 'layouts/main.html.twig' %}
+
+{% block head_title %}Full width{% endblock %}
+
+{% block features_active_class %}active{% endblock %}
+
+{% block content %}
+
+<!-- start: Container -->
+<div class="container">
+
+    <!-- start: Page header / Breadcrumbs -->
+    <section class="breadcrumbs">
+        <div class="page-header">
+            <h1>404<small>/ (page not found)</small></h1>
+        </div>
+        <div class="breadcrumbs">
+            You are here: <a href="#">Home</a><i class="icon-angle-right "></i>404 (page not found)
+        </div>
+    </section>
+    <!-- end: Page header / Breadcrumbs -->
+
+    <div class="row">
+
+        <!-- start: Page section -->
+        <section id="page-sidebar" class="span12">
+
+            <div class="page-inner">
+                <div class="hero-unit last pull-center">
+                    <div class="row-fluid">
+                        <h2>Uh oh! <br/>404: Page not Found</h2>
+                        <p>
+                            Sorry, but the page you are looking for has not been found.<br/>
+                            Try checking the URL for errors, then hit the refresh button on your browser.
+                        </p>
+                        <div class="spacer"></div>
+
+                        <p>search for something else</p>
+                        <!-- start: Search widget -->
+                        <section class="widget search">
+                            <div class="wrapper clearfix">
+                                <form id="search" class="input-append">
+                                    <input class="span12" id="appendedInputButton" type="text" placeholder="Search" />
+                                    <input class="btn search-bt" type="submit" name="submit" value="" />
+                                </form>
+                            </div>
+                        </section>
+                        <!-- end: Search widget -->
+
+                        <p>- or -</p>
+                        <p><a class="btn btn-large btn-warning" href="./index.html">Go to Home Page</a></p>
+                    </div>
+                </div>
+            </div>
+            <!-- start: posts-->
+            <!-- end: posts-->
+
+        </section>
+        <!-- end: Page section -->
+
+    </div>
+
+</div>
+<!-- end: Container -->
+{% endblock %}

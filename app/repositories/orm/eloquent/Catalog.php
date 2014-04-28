@@ -17,25 +17,49 @@ class Catalog implements CatalogInterface {
   }
 
   public function findById($id){
-    $catalog = \Models\Catalog::where('id', $id)->first();
+    $catalog = \Models\Catalog::where('id', $id)->with(array(
+      'products' => function($q){ 
+        $q->orderBy('created_at', 'asc');
+      }
+    ))
+    ->first();
     if(!$catalog) throw new NotFoundException('Catalog Not Found');
     return $catalog;
   }
 
-  public function findAll(){
-    $authority = new Authority(\Auth::user());
-    if( $authority->user()->hasRole('promoter') )
-      $catalogs = \Models\Catalog::promoted();
-    elseif( $authority->user()->hasRole('owner') )
-      $catalogs = \Models\Catalog::owned();
-    else
-      $catalogs = new \Models\Catalog;
-
-    return $catalogs->with(array(
-      'messages' => function($q){ $q->orderBy('created_at', 'desc'); }
+  /*public function findAllWith($with = 'products:images'){
+    return \Models\Catalog::with(array(
+      'products' => function($q){ 
+        $q->orderBy('created_at', 'desc')->with(array(
+            'images' => function($q){
+              $q->orderBy('created_at', 'desc')->first();
+            }
+        ))->first();
+      }
     ))
-    ->orderBy('created_at', 'desc')
+    ->orderBy('created_at', 'asc')
+    ->paginate(15);
+  }*/
+
+  public function find($ammount = 4){
+    return \Models\Catalog::with('image')
+    ->orderBy('created_at', 'asc')
+    ->limit($ammount)
     ->get();
+  }
+
+  public function findAll(){
+    return \Models\Catalog::with(array(
+      'products' => function($q){ 
+        $q->orderBy('created_at', 'desc')->with(array(
+            'images' => function($q){
+              $q->orderBy('created_at', 'desc')->first();
+            }
+        ));
+      }
+    ))
+    ->orderBy('created_at', 'asc')
+    ->paginate(15);
   }
 
   public function paginate($limit = null){
@@ -48,7 +72,9 @@ class Catalog implements CatalogInterface {
    * @return the created catalog model
   */
 
-  public function store($data){
+  public function store($author_id, $data){
+    //dd($author_id);
+    $data['user_id'] = $author_id;
     $this->validation($data);
     return \Models\Catalog::create($data);
   }

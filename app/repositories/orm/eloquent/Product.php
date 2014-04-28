@@ -22,21 +22,71 @@ class Product implements ProductInterface {
     return $product;
   }
 
-  public function findAllByAuthor($author_id){
+  public function findByIdIn($catalog_id, $id){
+    //$product = \Models\Image::where('id', $id)->first();
+    //if(!$product) throw new NotFoundException('Image Not Found');
+    $product = $this->findById($id);
+    if(!$product || $product->catalog_id != $catalog_id) throw new NotFoundException('Product Not Found');
+    return $product;
+  }
+
+  /*public function findAllByAuthor($author_id){
     return \Models\Product::byAuthor($author_id)->with(array(
-      'author' => function($q){ $q->orderBy('created_at', 'desc'); },
       'images' => function($q){ $q->orderBy('created_at', 'desc'); }
     ))
     ->orderBy('created_at', 'desc')
     ->get();
   }
 
-  public function findAll(){
-    return \Models\Product::with(array(
-      'messages' => function($q){ $q->orderBy('created_at', 'desc'); }
+  public function findAllByCatalog($catalog_id){
+    return \Models\Product::byCatalog($catalog_id)->with(array(
+      'images' => function($q){ $q->orderBy('created_at', 'desc'); }
     ))
     ->orderBy('created_at', 'desc')
     ->get();
+  }*/
+
+  public function findAllRelated($id){
+    $product = $this->findById($id);
+    return \Models\Product::whereCatalogId($product->catalog_id)->where('id', '!=', $product->id)->with(array(
+      'images' => function($q){ $q->orderBy('created_at', 'desc')->first(); }
+    ))
+    ->orderBy('created_at', 'asc')
+    ->get();
+  }
+
+  public function findRelated($id, $ammount = 4){
+    $product = $this->findById($id);
+    return \Models\Product::whereCatalogId($product->catalog_id)->where('id', '!=', $product->id)->with(array(
+      'images' => function($q){ $q->orderBy('created_at', 'desc')->first(); }
+    ))
+    ->orderBy(\DB::raw('RAND()'))
+    ->limit($ammount)
+    ->get();
+  }
+
+  public function findAll(){
+    return \Models\Product::whereNotNull('catalog_id')->with(array(
+      'images' => function($q){ $q->orderBy('created_at', 'desc'); }
+    ))
+    ->orderBy('created_at', 'asc')
+    ->paginate(15);
+  }
+
+  public function findAllBy($catalog_id){
+    return \Models\Product::whereCatalogId($catalog_id)->with(array(
+      'images' => function($q){ $q->orderBy('created_at', 'desc'); }
+    ))
+    ->orderBy('created_at', 'asc')
+    ->paginate(15);
+  }
+
+  public function findAllOrphan(){
+    return \Models\Product::whereNull('catalog_id')->with(array(
+      'images' => function($q){ $q->orderBy('created_at', 'desc'); }
+    ))
+    ->orderBy('created_at', 'asc')
+    ->paginate(15);
   }
 
   public function paginate($limit = null){
@@ -51,7 +101,23 @@ class Product implements ProductInterface {
 
   public function store($data){
     $this->validation($data);
-    return \Models\Product::create($data);
+    $product = \Models\Product::create($data);
+    /*if( isset($data['catalog_id']) && !empty($data['catalog_id']) ){
+      $catalog = $this->catalog->findById($data['catalog_id']);
+      $catalog->products()->attach($product->id);
+    }*/
+    return $product;
+  }
+
+  public function storeIn($catalog_id, $data){
+    $data['catalog_id'] = $catalog_id;
+    $this->validation($data);
+    $product = \Models\Product::create($data);
+    /*if( isset($data['catalog_id']) && !empty($data['catalog_id']) ){
+      $catalog = $this->catalog->findById($data['catalog_id']);
+      $catalog->products()->attach($product->id);
+    }*/
+    return $product;
   }
 
   /**
@@ -69,6 +135,13 @@ class Product implements ProductInterface {
     return $product;
   }
 
+  public function assign($catalog_id, $id){
+    $product = $this->findById($id);
+    $product->catalog_id = $catalog_id;
+    $product->save();
+    return $product;
+  }
+
   /**
    * Finds the the product resource by id and deletes it
    * @param integer $id the id of the resource
@@ -78,6 +151,13 @@ class Product implements ProductInterface {
   public function destroy($id){
     $product = $this->findById($id);
     return $product->delete();
+  }
+
+  public function removeFrom($catalog_id, $id){
+    $product = $this->findByIdIn($catalog_id, $id);
+    $product->catalog_id = null;
+    $product->save();
+    return $product;
   }
 
   public function validation($data){

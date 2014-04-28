@@ -24,6 +24,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password');
 
+	public function getRememberToken()
+	{
+		return $this->remember_token;
+	}
+
+	public function setRememberToken($value)
+	{
+		$this->remember_token = $value;
+	}
+
+	public function getRememberTokenName()
+	{
+		return 'remember_token';
+	}
+
 	/**
 	 * Get the unique identifier for the user.
 	 *
@@ -75,21 +90,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 
 	public function roles() {
-        return $this->belongsToMany('Role');
-    }
+		return $this->belongsToMany('Models\Role');
+	}
 
-    public function permissions() {
-        return $this->hasMany('Permission');
-    }
+	public function permissions() {
+		return $this->hasMany('Models\Permission');
+	}
 
-    public function hasRole($key) {
-        foreach($this->roles as $role){
-            if($role->name === $key)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+	public function hasRole($key) {
+		foreach($this->roles as $role){
+			if($role->name === $key){
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

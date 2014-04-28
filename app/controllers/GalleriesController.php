@@ -1,6 +1,14 @@
 <?php
 
-class GalleriesController extends \BaseController {
+namespace Controllers;
+
+use Controllers\BaseController;
+use Illuminate\Support\Collection;
+use Repositories\Interfaces\GalleryInterface;
+use Repositories\Errors\Exceptions\NotFoundException as NotFoundException;
+
+
+class GalleriesController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.

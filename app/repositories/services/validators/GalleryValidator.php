@@ -8,19 +8,18 @@ class GalleryValidator extends Validation{
 	* Validation rules
 	*/
 	public static $rules = array(
-		'name' => 'required|alpha_spaces|max:32',
-		'email' => 'required|email|max:32',
+		'name' => 'required|alpha_num_spaces',
+		'tags' => 'required',
 		'phone' => 'alpha_dash|max:16',
-		'newsletters' => 'in:0,1',
-		'company' => 'alpha_num_spaces|max:32|min:4',
+		'status' => 'required|in:0,1',
 	);
 
 	/**
 	* Validation messages
 	*/
-	public static $messages = array(
+	/*public static $messages = array(
 		//'alpha_num' => 'El :attribute debe contener solo caracteres alfanumericos.',
 		'max' => 'El :attribute puede ser de maximo :max caracteres.',
 		'newsletters.in' => 'El parametro de suscripcion solo puede tener valores [:values]',
-	);
+	);*/
 }

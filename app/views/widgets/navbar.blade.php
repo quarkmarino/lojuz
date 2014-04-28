@@ -59,7 +59,7 @@
 									</a>
 									<ul class="dropdown-menu">
 										@foreach( $item['items'] as $subname => $subitem )
-											<li><a href="{{ $subname }}">{{ $subitem }}</a></li>
+											<li><a href="/{{ $name }}/{{ $subname }}">{{ $subitem }}</a></li>
 										@endforeach
 									</ul>
 								</li>

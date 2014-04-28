@@ -1,0 +1,208 @@
+{% extends 'layouts/main.html.twig' %}
+
+{% block head_title %}Galeria{% endblock %}
+
+{% block portfolio_active_class %}active{% endblock %}
+
+{% block content %}
+<!-- start: Container -->
+<div class="container">
+
+    <!-- start: Page header / Breadcrumbs -->
+    <section class="breadcrumbs">
+        <div class="page-header">
+            <h1>Galeria<small>/ 4 columnas</small></h1>
+        </div>
+        <div class="breadcrumbs">
+            Usted se encuentra aquí: <a href="#">Inicio</a><i class="icon-angle-right "></i>Galeria 4 columnas
+        </div>
+    </section>
+    <!-- end: Page header / Breadcrumbs -->
+
+    <div class="row">
+
+        <!-- start: Page section -->
+        <section id="page-sidebar" class="span12">
+            <!-- start: Filter-->
+            <div class="row-fluid">
+                <div class="span12">
+                    <ul id="filtrable" class="clearfix">
+                        <li class="current all"><a href="#all">Todas</a></li>
+                        <li class="html"><a href="#html">Html</a></li>
+                        <li class="css"><a href="#css">CSS</a></li>
+                        <li class="php"><a href="#php">PHP</a></li>
+                        <li class="javascript"><a href="#javascript">JavaScript</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end: Filter-->
+        </section>
+        <!-- end: Page section -->
+
+    </div>
+
+    <!-- start: Portfolio -->
+    <section class="row filtrable portfolio thumbnails">
+
+        <article data-id="id-1" data-type="javascript html" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest1.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 1</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+        <article  data-id="id-2" data-type="php" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest2.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 2</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+        <article data-id="id-3" data-type="javascript" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest3.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 3</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+        <article data-id="id-4" data-type="php" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest4.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 4</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+        <article data-id="id-5" data-type="javascript html" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest5.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 5</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+        <article data-id="id-6" data-type="php" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest6.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 6</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+        <article data-id="id-7" data-type="php" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest7.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 7</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+        <article data-id="id-8" data-type="css" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest8.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 8</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+        <article data-id="id-9" data-type="html" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest1.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 9</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+        <article data-id="id-10" data-type="css" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest2.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 10</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+        <article data-id="id-11" data-type="html" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest3.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 1</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+        <article data-id="id-12" data-type="css" class="span3">
+            <div class="thumbnail hover-pf{{ anim }}">
+                <img src="example/latest4.jpg" alt=""/>
+                <div class="mask-1"></div>
+                <div class="mask-2"></div>
+                <div class="caption">
+                    <h2 class="title"><a href="#">Título de imagen 2</a></h2>
+                    <p>Per insolens urbanitas pris tantas corpora cum commune dignissim pro delectus salutatus ever labitur.</p>
+                    <a href="./blog-single.html" class="info btn btn-inverse">Leer más</a>
+                </div>
+            </div>
+        </article>
+
+    </section>
+    <!-- end: Portfolio -->
+
+</div>
+<!-- end: Container -->
+{% endblock %}

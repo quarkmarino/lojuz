@@ -15,5 +15,5 @@
 @stop
 
 @section('content')
-	some content<br>
+	Dashboard<br>
 @stop

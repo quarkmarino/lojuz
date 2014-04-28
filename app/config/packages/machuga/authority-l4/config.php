@@ -5,7 +5,7 @@
 		//dd($authority);
 		$user = $authority->getCurrentUser();
 
-		$authority->addAlias('admin', array('index', 'create', 'read', 'update', 'delete'));
+		$authority->addAlias('admin', array('lists', 'index', 'create', 'read', 'update', 'delete'));
 
 		//dd($user->toArray(), $user->roles->toArray());
 		if($user->hasRole('admin')) {

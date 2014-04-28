@@ -5,8 +5,8 @@ namespace Repositories\ORM\Eloquent;
 use Repositories\Interfaces\GalleryInterface;
 use Repositories\Services\Validators\GalleryValidator;
 use Repositories\Errors\Exceptions\NotFoundException as NotFoundException;
-use Authority\Authority as Authority;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Authority\Authority as Authority;
  
 class Gallery implements GalleryInterface {
 
@@ -16,19 +16,20 @@ class Gallery implements GalleryInterface {
     $this->validator = $validator;
   }
 
-  public function findById($person_id, $id){
+  public function findById($id){
     $gallery = \Models\Gallery::where('id', $id)->first();
     if(!$gallery) throw new NotFoundException('Gallery Not Found');
     return $gallery;
   }
 
-  public function findAll($person_id){
-    $authority = new Authority(\Auth::user());
-    if( $authority->user()->hasRole('owner') )
-      $galleries = \Models\Gallery::owned();
-    else
-      $galleries = new \Models\Gallery;
-    return $galleries->orderBy('created_at', 'desc')->get();
+  public function findAll(){
+    return \Models\Gallery::with(array(
+      'images' => function($q){
+        $q->orderBy('created_at', 'desc');
+      }
+    ))
+    ->orderBy('created_at', 'asc')
+    ->paginate(15);
   }
 
   public function paginate($limit = null){
@@ -41,9 +42,8 @@ class Gallery implements GalleryInterface {
    * @return the created gallery model
   */
 
-  public function store($person_id, $data){
-    $data['person_id'] = $person_id;
-    //dd($data);
+  public function store($author_id, $data){
+    $data['user_id'] = $author_id;
     $this->validation($data);
     return \Models\Gallery::create($data);
   }
@@ -55,8 +55,8 @@ class Gallery implements GalleryInterface {
    * @return the updated gallery model 
   */
 
-  public function update($person_id, $id, $data){
-    $gallery = $this->findById($person_id, $id);
+  public function update($id, $data){
+    $gallery = $this->findById($id);
     $gallery->fill($data);
     $this->validation($data);
     $gallery->save();
@@ -69,8 +69,8 @@ class Gallery implements GalleryInterface {
    * @return the updated gallery model 
   */
 
-  public function destroy($person_id, $id){
-    $gallery = $this->findById($person_id, $id);
+  public function destroy($id){
+    $gallery = $this->findById($id);
     return $gallery->delete();
   }
 

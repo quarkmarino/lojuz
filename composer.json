@@ -6,8 +6,9 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"way/generators": "dev-master",
-		"fzaninotto/faker": "v1.3.0",
-		"machuga/authority-l4" : "dev-master"
+		"fzaninotto/faker": "1.4.*@dev",
+		"machuga/authority-l4" : "dev-master",
+		"intervention/image": "1.*"
 	},
 	"autoload": {
 		"classmap": [

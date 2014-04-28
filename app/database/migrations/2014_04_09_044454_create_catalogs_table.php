@@ -16,9 +16,10 @@ class CreateCatalogsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id')->unsigned()->index();
-			$table->string('name', 32);
+			$table->string('name', 64);
 			$table->text('description')->nullable()->default(null);
-			$table->integer('status')->default(0);
+			$table->text('tags');
+			$table->integer('status')->default(1);
 			$table->timestamps();
 
 			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');

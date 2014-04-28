@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'es',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -110,6 +110,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Repositories\Services\Provider\EloquentProvider',
 		'Authority\AuthorityL4\AuthorityL4ServiceProvider',
+		'Intervention\Image\ImageServiceProvider',
 
 	),
 
@@ -178,6 +179,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 
 		'Authority'				=> 'Authority\AuthorityL4\Facades\Authority',
+		'Image' 					=> 'Intervention\Image\Facades\Image'
 
 	),
 

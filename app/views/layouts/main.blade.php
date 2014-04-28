@@ -11,20 +11,22 @@
     <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-57-precomposed.png"/>
 
 		@section('css')
-			@include('partials.css')
+			@include('assets.css')
 		@show
 
 		@section('javascript')
-			@include('partials.javascript')
+			@include('assets.javascript')
 		@show
 
 	</head>
 	
 	<body>
 		@section('nav')
+			<?php $catalogs = \Models\Catalog::whereStatus(1)->limit(8)->get()->lists('name', 'id'); ?>
+
 			<?php
 				$nav['brand'] = array('logo' => '/img/logo.png');
-				$nav['items'] = array( 'home' => array('label' => 'Inicio', 'url' => '/'), 'about' => 'Información', 'catalog' => 'Catálogo', 'galleries' => 'Galerías', 'contact' => 'Contacto' );
+				$nav['items'] = array( 'home' => array('label' => 'Inicio', 'url' => ''), 'about' => 'Información', 'catalogs' => array( 'label' => 'Catálogos', 'items' => $catalogs), 'galleries' => 'Galerías', 'contact' => 'Contacto' );
 			?>
 			@include( 'widgets.navbar', $nav )
 		@show

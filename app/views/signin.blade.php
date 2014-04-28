@@ -5,7 +5,7 @@
 @stop
 
 @section('css')
-    @include('partials.css')
+    @include('assets.css')
 
     <link rel="stylesheet" href="css/sign-in.css" type="text/css" media="screen" />
 @stop
@@ -125,6 +125,6 @@
 @stop
 
 @section('footer')
-		@include('partials.footer')
+		{{--@include('partials.footer')--}}
 		@include('partials.footer-menu')
 @stop

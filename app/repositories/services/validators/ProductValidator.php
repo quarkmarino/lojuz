@@ -8,16 +8,16 @@ class ProductValidator extends Validation{
 	* Validation rules
 	*/
 	public static $rules = array(
-		'attendant_id' => 'in:1,2,3,4',
-		'dispatch' => 'required',
-		//'recaptcha_response_field' => 'required|recaptcha',
+		'catalog_id' => 'required|integer|exists:catalogs,id',
+		'name' => 'required|alpha_num_spaces',
+		'tags' => 'required',
+		'type' => 'required|in:product,service',
+		'price' => 'required|numeric',
+		'status' => 'required|in:0,1',
 	);
 
 	/**
 	* Validation messages
 	*/
-	public static $messages = array(
-		'alpha_num' => 'El :attribute debe contener solo caracteres alfanumericos.',
-		'max' => 'El :attribute puede ser de maximo :max caracteres.',
-	);
+	//public static $messages = array();
 }

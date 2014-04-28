@@ -13,6 +13,8 @@ abstract class Validation{
 
 	public static $messages = array();
 
+	public static $scenario = 'default';
+
 	/**
 	 * Validator object.
 	 *
