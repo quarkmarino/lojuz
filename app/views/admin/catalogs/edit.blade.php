@@ -117,12 +117,14 @@
 						</div>
 					</div>
 					<div class="af-outer af-required">
-						<div class="af-inner">
-							<br>
-							<input type="submit" name="submit" class="btn btn-primary" id="catalog-submit_btn" value="Guardar">
-							<a href="{{ route('admin.catalogs.show', $catalog->id) }}">
-								<button type="button" class="btn">Cancel</button>
-							</a>
+						<div class="af-inner" style="height: 20px;">
+							<div class="pull-right">
+								<input type="submit" name="submit" class="btn btn-primary" id="catalog-submit_btn" value="Guardar">
+								<a href="{{ route('admin.catalogs.show', $catalog->id) }}">
+									<button type="button" class="btn">Cancel</button>
+								</a>
+								<br />
+							</div>
 						</div>
 					</div>
 				{{ Form::close() }}
@@ -172,6 +174,21 @@
 							<div class="af-outer af-required">
 								<div class="af-inner">
 									<div class="control-group">
+										<label class="control-label" for="inputStatus">Visibilidad</label>
+										<div class="controls">
+											<label class="radio">
+												{{ Form::radio('status', '1', true, array('id' => 'inputStatus')) }} Estara <span class="text-success">visible</span> al publico
+											</label>
+											<label class="radio">
+												{{ Form::radio('status', '0') }} Estara <span class="text-warning">oculto</span> al publico
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="af-outer af-required">
+								<div class="af-inner">
+									<div class="control-group">
 										<label class="control-label" for="inputImage">Archivo</label>
 										<div class="controls">
 											{{ Form::file('file', array('id' => 'inputImageFile')); }}
@@ -201,7 +218,7 @@
 										<h2>
 											<a class="title" href="{{ route('admin.catalogs.images.edit', array($catalog->id, $catalog->image->id)) }}", title="Editar imagen"><i class="icon-pencil"></i> {{ $catalog->image->name }}</a>
 										</h2>
-										<a class="info btn btn-small btn-inverse" href="{{ route('admin.catalogs.images.destroy', array($catalog->id, $catalog->image->id)) }}" onclick='return confirm("¿Esta seguro que desea eliminar la imagen de catálogo?")', title="Quitar imagen"><i class="icon-trash"></i></a>
+										<a class="info btn btn-small btn-inverse" href="{{ route('admin.catalogs.images.destroy', array($catalog->id, $catalog->image->id)) }}" onclick='return confirm("¿Esta seguro que desea eliminar la imagen de catálogo?")', title="Eliminar imagen"><i class="icon-trash"></i></a>
 									</div>
 								</div>
 							</article>
@@ -247,7 +264,9 @@
 										<a class="title" href="{{ route('admin.catalogs.products.show', array($catalog->id, $product->id)) }}", title="Ver producto"><i class="icon-eye-open"></i> {{ $product->name }}</a>
 									</h2>
 									<a class="info btn btn-small btn-inverse" href="{{ route('admin.catalogs.products.edit', array($catalog->id, $product->id)) }}", title="Modificar producto"><i class="icon-pencil"></i></a>
-									<a class="info btn btn-small btn-inverse" href="{{ route('admin.catalogs.products.unassign', array($catalog->id, $product->id)) }}" onclick='return confirm("¿Esta seguro que desea quitar este producto del catalogo? Este procedimiento NO eliminara el producto")', title="Quitar producto"><i class="icon-minus"></i></a>
+									<a class="delete btn btn-small btn-inverse" href="{{ route('admin.catalogs.products.destroy', array($catalog->id, $product->id)) }}" onclick="return confirm('¿Esta seguro que desea eliminar el producto \'{{ $product->name }}\' y todas sus imagenes relacionadas?')">
+										<i class="icon-trash"></i>
+									</a>
 									{{-- HTML::link(
 										route('admin.catalogs.images.destroy',
 											array('catalog' => $catalog->id, 'id' => $product->id)
@@ -321,7 +340,8 @@
 						'<div class="mask-1"></div>' + 
 						'<div class="mask-2"></div>' + 
 						'<div class="caption">' + 
-							'<h2><a class="title" href="images/' + response.id + '/edit", title="Editar image"><i class="icon-pencil"></i> ' + response.name + '</a></h2>' + 
+							'<h2><a class="title" href="images/' + response.id + '/edit", title="Editar image">' + 
+									<i class="icon-pencil"></i> ' + response.name + '</a></h2>' + 
 							'<a class="info btn btn-small btn-inverse" href="images/' + response.id + '/delete" onclick="return confirm(\'¿Esta seguro que desea eliminar la imagen de catálogo?\')", title="Eliminar imagen"><i class="icon-trash"></i></a>' + 
 						'</div>' +
 					'</div>' +

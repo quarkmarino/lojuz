@@ -17,11 +17,17 @@ class Image extends Eloquent {
 	public static function boot(){
 		parent::boot();
 
-		static::creating(function($image){
-			$image->largethumb = $image->grabImage('largethumb', array(250, 185));
-			$image->thumb = $image->grabImage('thumb', 100);
-			$image->minithumb = $image->grabImage('minithumb', array(40, 30));
-			$image->slide = $image->grabImage('slide', array(757, 360));
+		static::saving(function($image){
+			if(\Input::hasFile('file')){
+				$image->largethumb = $image->grabImage('largethumb', array(250, 185));
+				$image->thumb = $image->grabImage('thumb', 100);
+				$image->minithumb = $image->grabImage('minithumb', array(40, 30));
+				$image->slide = $image->grabImage('slide', array(757, 360));
+			}
+		});
+
+		static::updated(function($image){
+			//dd("updated");
 		});
 
 		static::deleting(function($image){
@@ -58,6 +64,7 @@ class Image extends Eloquent {
 			$image->save($this->getDirPath(true) . 'original.jpg');
 			$value = $this->getDirPath() . $image->basename;
 		}
+		//dd($this->attributes['file'], $this->file, $value);
 		$this->attributes['file'] = $value;
 	}
 
@@ -80,7 +87,7 @@ class Image extends Eloquent {
 	public function setThumbAttribute($value){
 		if(\Input::hasFile('thumb')){
 			$image = IntrvImage::make( \Input::file('thumb')->getRealPath() );
-			$value = $this->grabImage('thumb', array(250, 185), $image);
+			$value = $this->grabImage('thumb', array(100), $image);
 		}
 		$this->attributes['thumb'] = $value;
 	}
@@ -96,7 +103,7 @@ class Image extends Eloquent {
 	public function setMinithumbAttribute($value){
 		if(\Input::hasFile('minithumb')){
 			$image = IntrvImage::make( \Input::file('minithumb')->getRealPath() );
-			$value = $this->grabImage('minithumb', array(250, 185), $image);
+			$value = $this->grabImage('minithumb', array(40, 30), $image);
 		}
 		$this->attributes['minithumb'] = $value;
 	}
@@ -112,7 +119,7 @@ class Image extends Eloquent {
 	public function setSlideAttribute($value){
 		if(\Input::hasFile('slide')){
 			$image = IntrvImage::make( \Input::file('slide')->getRealPath() );
-			$value = $this->grabImage('slide', array(250, 185), $image);
+			$value = $this->grabImage('slide', array(757, 360), $image);
 		}
 		$this->attributes['slide'] = $value;
 	}

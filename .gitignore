@@ -3,6 +3,9 @@
 /components
 /node_modules
 /data
+/public_html/images/catalogs/
+/public_html/images/products/
+/public_html/images/galleries/
 composer.phar
 composer.lock
 .env.local.php

@@ -66,7 +66,7 @@
 						'status' => array( 'values' => array( array( 'label' => 'Oculta', 'emph' => 'text-warning' ), array( 'label' => 'Visible', 'emph' => 'text-success' )) ),
 						'type' => array( 'values' => array( 'service' => 'Servicio', 'product' => 'Producto')),
 						'price' => array( 'label' => 'precio', 'prefix' => '$'),
-						'images' => array( 'label' => 'Imagenes', 'stat' => 'count')
+						'images' => array( 'label' => 'Imagenes', 'stat' => 'count', 'link' => route('admin.products.images.index', $product->id), 'title' => 'Ver Imagenes' )
 						) as $key => $label)
 							<td>
 								@if( is_array($label) )
@@ -84,15 +84,21 @@
 										@endif
 									@endif
 
-									@if( isset($label['stat']) )
-										{{ $product->$key->$label['stat']() }}
+									@if( isset($label['link']) )
+										<a href="{{ $label['link'] }}" @if( isset($label['title']) )title="{{ $label['title'] }}" @endif>
+											@if( isset($label['stat']) )
+												{{ $product->$key->$label['stat']() }}
+											@else
+												{{ $product->$key }}
+											@endif
+										</a>
 									@endif
 
-									@if( isset( $label['link'] ) )
+									{{--@if( isset( $label['link'] ) )
 										<a href="{{ $label['link'] }}"@if( isset($label['title']) ) title="{{ $label['title'] }}" @endif>
 											{{ $product->$key }}
 										</a>
-									@endif
+									@endif--}}
 
 									@if( isset( $label['prefix'] ) )
 										{{ $label['prefix'].$product->$key }}

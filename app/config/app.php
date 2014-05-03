@@ -109,8 +109,10 @@ return array(
 
 		'Way\Generators\GeneratorsServiceProvider',
 		'Repositories\Services\Provider\EloquentProvider',
+		'Repositories\Services\Provider\ComposerProvider',
 		'Authority\AuthorityL4\AuthorityL4ServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
+		'Thujohn\Twitter\TwitterServiceProvider',
 
 	),
 
@@ -179,7 +181,8 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 
 		'Authority'				=> 'Authority\AuthorityL4\Facades\Authority',
-		'Image' 					=> 'Intervention\Image\Facades\Image'
+		'Image' 					=> 'Intervention\Image\Facades\Image',
+		'Twitter'					=> 'Thujohn\Twitter\TwitterFacade',
 
 	),
 

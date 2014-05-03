@@ -3,8 +3,8 @@
 return array(
 	'welcome' => 'Welcome to our application',
 
-	'catalogs' => 'catálogo|catálogos',
-	'products' => 'producto|productos',
-	'galleries' => 'galeria|galerias',
-	'images' => 'imagen|imagenes',
+	'catalog' => 'catálogo|catálogos',
+	'product' => 'producto|productos',
+	'gallery' => 'galeria|galerias',
+	'image' => 'imagen|imagenes',
 );

@@ -36,21 +36,20 @@
 		@show
 
 		<div class="container">
-			@section('breadcrumbs')
-				<!-- start: Page header / Breadcrumbs -->
-				<section class="breadcrumbs">
-					<div class="page-header">
-						<h2>Administración<small></small></h2>
-					</div>
-					<ul class="breadcrumb">
-						@section('breadcrumbs')
-							<li><a href="/"><i class="icon-home"></i>Lojuz</a></li>
-							<span class="divider">/</span>
-							<li><a href="{{ route('admin.home') }}"><i class="icon-wrench"></i>Administración</a></li><span class="divider">/</span>
-						@show
-					</ul>
-				</section>
-				<!-- end: Page header / Breadcrumbs -->
+			<!-- start: Page header / Breadcrumbs -->
+			<section class="breadcrumbs">
+				<div class="page-header">
+					<h2>Administración<small></small></h2>
+				</div>
+				<ul class="breadcrumb">
+					@section('breadcrumbs')
+						<li><a href="/"><i class="icon-home"></i>Lojuz</a></li>
+						<span class="divider">/</span>
+						<li><a href="{{ route('admin.home') }}"><i class="icon-wrench"></i>Administración</a></li><span class="divider">/</span>
+					@show
+				</ul>
+			</section>
+			<!-- end: Page header / Breadcrumbs -->
 			<div class="row">
 				<section id="page-sidebar" class="span12">
 					<div class="row">
@@ -76,9 +75,9 @@
 
 								<li class="nav-header">Galerias</li>
 
-								<li @if( Request::is('admin/galleries*') && !Request::is('admin/galleries/*/images*') ) class="active" @endif><a href="{{ route('admin.galleries.index') }}"><i class="icon-th-large"></i><i class="icon-chevron-right"></i> Galerias</a></li>
+								<li @if( Request::is('admin/galleries*') && !Request::is('*/images*') ) class="active" @endif><a href="{{ route('admin.galleries.index') }}"><i class="icon-th-large"></i><i class="icon-chevron-right"></i> Galerias</a></li>
 
-								<li @if( Request::is('admin/galleries/*/images*') ) class="active" @endif><a href="{{ route('admin.galleries.images.lists') }}"><i class="icon-picture"></i><i class="icon-chevron-right"></i> Imagenes</a></li>
+								<li @if( Request::is('admin/galleries/*/images*') || Request::is('admin/galleries/images*') ) class="active" @endif><a href="{{ route('admin.galleries.images.lists') }}"><i class="icon-picture"></i><i class="icon-chevron-right"></i> Imagenes</a></li>
 								
 							</ul>
 						</div>
@@ -91,7 +90,7 @@
 		</div>
 
 		@section('footer')
-			{{-- @include('partials.footer') --}}
+			@include('partials.footer')
 			@include('partials.footer-menu')
 		@show
 	</body>

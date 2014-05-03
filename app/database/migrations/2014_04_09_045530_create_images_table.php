@@ -25,7 +25,7 @@ class CreateImagesTable extends Migration {
 			$table->string('thumb', 255);
 			$table->string('minithumb', 255);
 			$table->string('slide', 255);
-			$table->integer('status');
+			$table->integer('status')->default(1);
 			$table->text('comment');
 			$table->timestamps();
 

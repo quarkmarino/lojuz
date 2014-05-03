@@ -9,21 +9,21 @@ use View;
 use Redirect;
 use Authority;
 use Response;
-use Repositories\Interfaces\ImageInterface;
 use Repositories\Interfaces\ProductInterface;
+use Repositories\Interfaces\ImageInterface;
 use Repositories\Errors\Exceptions\ValidationException as ValidationException;
 use Repositories\Errors\Exceptions\NotAllowedException as NotAllowedException;
 
 
 class ImagesController extends BaseController {
 
-	protected $images;
 	protected $product;
+	protected $images;
 
 	/**
 	 * The layout that should be used for responses.
 	 */
-	protected $layout = 'admin.images.layouts.main';
+	protected $layout = 'admin.products.layouts.image';
 
 	/**
    * We will use Laravel's dependency injection to auto-magically
@@ -39,23 +39,26 @@ class ImagesController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	/*public function index($product_id)
-	{
-		if( Authority::can('index', 'Image') ){
-			$product = $this->product->findById($product_id);
-			$images = $this->image->findAllBy('product', $product_id);
-			$this->layout->content = View::make('admin.images.index')->with(compact('product', 'images'));
-			return $this->layout->render();
-		}
-		throw new NotAllowedException();
-	}*/
 
 	public function lists()
 	{
 		if( Authority::can('lists', 'Image') ){
-			$images = $this->image->findAllIn('products');
-			$this->layout->content = View::make('admin.images.lists')->with(compact('images'));
-			return $this->layout->render();
+			$owner = 'product';
+			$images = $this->image->findAllIn(str_plural($owner));
+			//dd($images);
+			return View::make('admin.images.lists')->with(compact('images', 'owner'));
+		}
+		throw new NotAllowedException();
+	}
+
+	public function index($product_id)
+	{
+		if( Authority::can('index', 'Image') ){
+			$owner = $this->product->findById($product_id);
+			$images = $this->image->findAllBy('product', $product_id);
+			return View::make('admin.images.index')->with(compact('owner', 'images'));
+			//$this->layout->content = View::make('admin.images.index')->with(compact('owner', 'images'));
+			//return $this->layout->with(compact('owner', 'images'))->render();
 		}
 		throw new NotAllowedException();
 	}
@@ -65,7 +68,8 @@ class ImagesController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create($product_id)
+
+	/*public function create($product_id)
 	{
 		if( Authority::can('create', 'Image') ){
 			$product = $this->product->findById($product_id);
@@ -74,7 +78,7 @@ class ImagesController extends BaseController {
 			return $this->layout->render();
 		}
 		throw new NotAllowedException();
-	}
+	}*/
 
 	/**
 	 * Store a newly created resource in storage.
@@ -107,7 +111,7 @@ class ImagesController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($product_id, $id)
+	/*public function show($product_id, $id)
 	{
 		if( Authority::can('read', 'Image') ){
 			$product = $this->product->findById($product_id);
@@ -116,7 +120,7 @@ class ImagesController extends BaseController {
 			return $this->layout->render();
 		}
 		throw new NotAllowedException();
-	}
+	}*/
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -127,10 +131,12 @@ class ImagesController extends BaseController {
 	public function edit($product_id, $id)
 	{
 		if( Authority::can('update', 'Image') ){
-			$product = $this->product->findById($product_id);
-			$image = $this->image->findByIdIn('product', $product_id, $id);
-			$this->layout->content = View::make('admin.images.edit', compact('product', 'image'));
-			return $this->layout->render();
+			$owner = $this->product->findById($product_id);
+			$image = $this->image->findByIdIn('product', $owner->id, $id);
+			//$owner_class = 'products';
+			//$owner_parent_class = 'catalogs';
+			$this->layout->content = View::make('admin.images.edit', compact('owner', 'image'));
+			return $this->layout->with(compact('owner', 'image'))->render();
 		}
 		throw new NotAllowedException();
 	}
@@ -146,8 +152,8 @@ class ImagesController extends BaseController {
 		if( Authority::can('update', 'Image') ){
 			$input = Input::all();
 			$product = $this->product->findById($product_id);
-			$image = $this->image->update('product', $product->id, $id, $input);
-			return Redirect::route('admin.images.show', array($product->id, $image->id));//->with('success', 'The new image has been created');
+			$image = $this->image->updateIn('product', $product->id, $id, $input);
+			return Redirect::route('admin.products.images.edit', array($product->id, $image->id))->with('success', 'La imagen ha sido modificada correctamente.');
 		}
 		throw new NotAllowedException();
 	}
@@ -161,8 +167,9 @@ class ImagesController extends BaseController {
 	public function destroy($product_id, $id)
 	{
 		if( Authority::can('delete', 'Image') ){
-			$this->image->destroyIn('product', $product_id, $id);
-			return Redirect::route('admin.products.edit', $product->id);//->with('success', 'The image has been deleted');
+			$product = $this->product->findById($product_id);
+			$this->image->destroyIn('product', $product->id, $id);
+			return Redirect::route('admin.catalogs.products.edit', array($product->catalog_id, $product->id));//->with('success', 'The image has been deleted');
 		}
 		throw new NotAllowedException();
 	}

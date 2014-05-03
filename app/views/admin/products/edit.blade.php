@@ -18,11 +18,18 @@
 @stop
 
 @section('buttons')
-	<a href="{{ route('admin.catalogs.products.create', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')"><button class="btn" title="Crear nuevo producto"><i class="icon-plus"></i> Crear</button></a>
-	<a href="{{ route('admin.catalogs.products.index', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')"><button class="btn" title="Listar productos"><i class="icon-list"></i> Listar</button></a>
-	<a href="{{ route('admin.catalogs.products.show', array($catalog->id, $product->id)) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')"><button class="btn" title="Ver este producto"><i class="icon-eye-open"></i> Ver</button></a>
-	<a class="delete" href="{{ route('admin.catalogs.products.unassign', array($catalog->id, $product->id)) }}" onclick="return confirm('¿Esta seguro que desea quitar el producto \'{{ $product->name }}\' del catalogo? Este procedimiento NO eliminara el producto')"><button class="btn" title="Quitar producto"><i class="icon-minus"></i> Quitar</button></a>
-	<a class="delete" href="{{ route('admin.catalogs.products.destroy', array($catalog->id, $product->id)) }}" onclick="return confirm('¿Esta seguro que desea eliminar el producto \'{{ $product->name }}\' y todas sus imagenes relacionadas?')"><button class="btn" title="Eliminar producto"><i class="icon-trash"></i> Eliminar</button></a>
+	<a href="{{ route('admin.catalogs.products.create', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')">
+		<button class="btn" title="Crear nuevo producto"><i class="icon-plus"></i> Crear</button>
+	</a>
+	<a href="{{ route('admin.catalogs.products.index', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')">
+		<button class="btn" title="Listar productos"><i class="icon-list"></i> Listar</button>
+	</a>
+	<a href="{{ route('admin.catalogs.products.show', array($catalog->id, $product->id)) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')">
+		<button class="btn" title="Ver este producto"><i class="icon-eye-open"></i> Ver</button>
+	</a>
+	<a class="delete" href="{{ route('admin.catalogs.products.destroy', array($catalog->id, $product->id)) }}" onclick="return confirm('¿Esta seguro que desea eliminar el producto \'{{ $product->name }}\' y todas sus imagenes relacionadas?')">
+		<button class="btn" title="Eliminar producto"><i class="icon-trash"></i> Eliminar</button>
+	</a>
 @stop
 
 @section('content')
@@ -54,7 +61,7 @@
 					<div class="af-outer af-required">
 						<div class="af-inner">
 							<div class="control-group">
-								<label class="control-label" for="inputCatalog_id">Catalogo</label>
+								<label class="control-label" for="inputCatalog_id">Catálogo</label>
 								<div class="controls">
 									<div class="input-prepend">
 										<span class="add-on">@</span>
@@ -148,10 +155,14 @@
 						</div>
 					</div>
 					<div class="af-outer af-required">
-						<div class="af-inner">
-							<br>
-							<input type="submit" name="submit" class="btn btn-primary" id="product-submit_btn" value="Guardar">
-							<a href="{{ route('admin.catalogs.products.show', array($catalog->id, $product->id)) }}"><button type="button" class="btn">Cancel</button></a>
+						<div class="af-inner" style="height: 20px;">
+							<div class="pull-right">
+								<input type="submit" name="submit" class="btn btn-primary" id="product-submit_btn" value="Guardar">
+								<a href="{{ route('admin.catalogs.products.show', array($catalog->id, $product->id)) }}">
+									<button type="button" class="btn">Cancel</button>
+								</a>
+								<br />
+							</div>
 						</div>
 					</div>
 				{{ Form::close() }}
@@ -183,6 +194,21 @@
 									<span class="add-on">''</span>
 										{{ Form::text('comment', '', array('placeholder' => 'Comentario de imagen', 'class' => 'span12', 'id' => 'inputImageComment')) }}
 									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="af-outer af-required">
+						<div class="af-inner">
+							<div class="control-group">
+								<label class="control-label" for="inputStatus">Visibilidad</label>
+								<div class="controls">
+									<label class="radio">
+										{{ Form::radio('status', '1', true, array('id' => 'inputStatus')) }} Estara <span class="text-success">visible</span> al publico
+									</label>
+									<label class="radio">
+										{{ Form::radio('status', '0') }} Estara <span class="text-warning">oculto</span> al publico
+									</label>
 								</div>
 							</div>
 						</div>
@@ -295,7 +321,20 @@
 	}
 
 	function createItem(response){
-		var item = '<article data-id="id-'+response.id+'" data-type="javascript html" class="span6"><div class="thumbnail hover-pf1"><img src="'+response.file+'" alt="'+response.name+'" class="img-rounded"><div class="mask-1"></div><div class="mask-2"></div><div class="caption"><h2><a class="title" href="images/'+response.id+'", title="Ver imagen"><i class="icon-eye-open"></i> '+response.name+'</a></h2><a class="info btn btn-small btn-inverse" href="images/'+response.id+'/delete" onclick="return confirm(\"¿Esta seguro que desea eliminar la imagen relacionada a este producto?\")", title="Eliminar imagen"><i class="icon-trash"></i></a></div></div></article>';
+		var item = '<article data-id="id-'+response.id+'" data-type="javascript html" class="span6">' +
+			'<div class="thumbnail hover-pf1">' +
+				'<img src="'+response.file+'" alt="'+response.name+'" class="img-rounded">' +
+					'<div class="mask-1"></div>' +
+					'<div class="mask-2"></div>' +
+					'<div class="caption">' +
+						'<h2><a class="title" href="/admin/products/{{$product->id}}/images/'+response.id+'/edit", title="Editar imagen">' +
+								'<i class="icon-pencil"></i> '+response.name+'</a></h2>' +
+						'<a class="info btn btn-small btn-inverse" href="images/'+response.id+'/delete" onclick="return confirm(\"¿Esta seguro que desea eliminar la imagen relacionada a este producto?\")", title="Eliminar imagen">' +
+						'<i class="icon-trash"></i>' +
+					'</a>' +
+				'</div>' +
+			'</div>' +
+		'</article>';
 			return item;
 	}
 	</script>

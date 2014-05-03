@@ -53,7 +53,7 @@ class Catalog extends Eloquent {
 	}
 
 	public function getImagesPath($absolute = false, $imagesDir = 'images/'){
-		$path = $imagesDir . 'catalog/' . $this->id . '_' . $this->name . '/';
+		$path = $imagesDir . 'catalogs/' . $this->id . '_' . $this->name . '/';
 		//dd($path);
 		$abs_path = public_path() . '/' . $path;
 		if( !\File::exists($abs_path) )

@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers\Admin;
+namespace Controllers\Admin\Gallery;
  
 //import classes that are not in this new namespace
 use Controllers\BaseController;
@@ -15,7 +15,7 @@ use Repositories\Errors\Exceptions\ValidationException as ValidationException;
 use Repositories\Errors\Exceptions\NotAllowedException as NotAllowedException;
 
 
-class GalleryImagesController extends BaseController {
+class ImagesController extends BaseController {
 
 	protected $images;
 	protected $gallery;
@@ -39,12 +39,23 @@ class GalleryImagesController extends BaseController {
 	 *
 	 * @return Response
 	 */
+
+	public function lists()
+	{
+		if( Authority::can('lists', 'Image') ){
+			$owner = 'gallery';
+			$images = $this->image->findAllIn(str_plural($owner));
+			return View::make('admin.images.lists')->with(compact('images', 'owner'));
+		}
+		throw new NotAllowedException();
+	}
+
 	public function index($gallery_id)
 	{
 		if( Authority::can('index', 'Image') ){
-			$gallery = $this->gallery->findById($gallery_id);
+			$owner = $this->gallery->findById($gallery_id);
 			$images = $this->image->findAllBy('gallery', $gallery_id);
-			$this->layout->content = View::make('admin.galleries.images.index')->with(compact('gallery', 'images'));
+			$this->layout->content = View::make('admin.images.index')->with(compact('owner', 'images'));
 			return $this->layout->render();
 		}
 		throw new NotAllowedException();
@@ -55,7 +66,7 @@ class GalleryImagesController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create($gallery_id)
+	/*public function create($gallery_id)
 	{
 		if( Authority::can('create', 'Image') ){
 			$gallery = $this->gallery->findById($gallery_id);
@@ -64,7 +75,7 @@ class GalleryImagesController extends BaseController {
 			return $this->layout->render();
 		}
 		throw new NotAllowedException();
-	}
+	}*/
 
 	/**
 	 * Store a newly created resource in storage.
@@ -96,7 +107,7 @@ class GalleryImagesController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($gallery_id, $id)
+	/*public function show($gallery_id, $id)
 	{
 		if( Authority::can('read', 'Image') ){
 			$gallery = $this->gallery->findById($gallery_id);
@@ -105,7 +116,7 @@ class GalleryImagesController extends BaseController {
 			return $this->layout->render();
 		}
 		throw new NotAllowedException();
-	}
+	}*/
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -116,9 +127,9 @@ class GalleryImagesController extends BaseController {
 	public function edit($gallery_id, $id)
 	{
 		if( Authority::can('update', 'Image') ){
-			$gallery = $this->gallery->findById($gallery_id);
-			$image = $this->image->findByIdIn('gallery', $gallery->id, $id);
-			$this->layout->content = View::make('admin.galleries.images.edit', compact('gallery', 'image'));
+			$owner = $this->gallery->findById($gallery_id);
+			$image = $this->image->findByIdIn('gallery', $owner->id, $id);
+			$this->layout->content = View::make('admin.images.edit', compact('owner', 'image'));
 			return $this->layout->render();
 		}
 		throw new NotAllowedException();
@@ -136,7 +147,7 @@ class GalleryImagesController extends BaseController {
 			$input = Input::all();
 			$gallery = $this->gallery->findById($gallery_id);
 			$image = $this->image->updateIn('gallery', $gallery->id, $id, $input);
-			return Redirect::route('admin.galleries.images.show', $image->id);//->with('success', 'The new image has been created');
+			return Redirect::route('admin.galleries.images.edit', array($gallery->id, $image->id))->with('success', 'La imagen ha sido modificada correctamente.');
 		}
 		throw new NotAllowedException();
 	}

@@ -1,4 +1,4 @@
-@extends('admin.products.layouts.main')
+@extends('admin.galleries.layouts.main')
 
 @section('title')
 	<h3>Galerias</h3>

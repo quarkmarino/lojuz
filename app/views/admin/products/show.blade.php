@@ -133,7 +133,7 @@
 				<div class="span5">
 					<div class="btn-toolbar clearfix">
 						<div class="btn-group pull-right">
-							<a href="{{ route('admin.products.edit', $product->id) }}">
+							<a href="{{ route('admin.catalogs.products.edit', array($catalog->id, $product->id)) }}">
 								<button class="btn" title="Crear y agregar un nuevo producto a este catalogo"><i class="icon-plus"></i> Agregar</button>
 							</a>
 						</div>

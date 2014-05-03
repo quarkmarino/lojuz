@@ -11,6 +11,8 @@ class HomeController extends BaseController {
 
 	protected $catalog;
 
+	public $layout = 'layouts.main';
+
 	/**
 	 * The layout that should be used for responses.
 	 */
@@ -39,10 +41,11 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
+		//dd($this->tweets);
 		$catalogs = $this->catalog->find();
-		/*$this->layout->content = \View::make('catalogs.index')->with(compact('catalogs'));
-		return $this->layout->render();*/
-		return \View::make('home', compact('catalogs'));
+		$this->layout->content = \View::make('home')->with(compact('catalogs'));
+		return $this->layout->render();
+		/*return \View::make('home', compact('catalogs'))->with('tweets', $this->tweets);*/
 	}
 
 }

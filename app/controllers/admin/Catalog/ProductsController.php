@@ -101,7 +101,7 @@ class ProductsController extends BaseController {
 				$input = Input::all();
 				$catalog = $this->catalog->findById($catalog_id);
 				$product = $this->product->storeIn($catalog->id, $input);
-				return Redirect::route('admin.products.show', array($catalog->id, $product->id))->with('success', "El producto '$product->name' ha sido creado correctamente");
+				return Redirect::route('admin.catalogs.products.show', array($catalog->id, $product->id))->with('success', "El producto '$product->name' ha sido creado correctamente");
 			}
 			throw new NotAllowedException();
 		}
@@ -166,7 +166,7 @@ class ProductsController extends BaseController {
 			$catalog = $this->catalog->findById($catalog_id);
 			$input['catalog_id'] = $catalog->id;
 			$product = $this->product->update($id, $input);
-			return Redirect::route('admin.products.show', array($catalog->id, $product->id))->with('success', "El producto '$product->name' ha sido modificado correctamente.");
+			return Redirect::route('admin.catalogs.products.show', array($catalog->id, $product->id))->with('success', "El producto '$product->name' ha sido modificado correctamente.");
 		}
 		throw new NotAllowedException();
 	}

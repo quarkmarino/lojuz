@@ -16,7 +16,7 @@
 @section('content')
 	@parent
 	<table class="table table-striped table-hover table-bordered">
-		{{-- <caption>Lista de Catalogos</caption> --}}
+		<caption>Lista de Catálogos</caption>
 		<thead>
 			<tr>
 				@foreach(array('id' => '#', 'name' => 'Nombre', 'tags' =>'Etiquetas', 'status' => 'Estatus', /*'description' =>'Descripción',*/ 'products' => array( 'icon' => 'list-alt', 'label' => '# de Productos' )) as $key => $attribute)
@@ -81,7 +81,7 @@
 							</td>
 					@endforeach
 					<td>
-						<div class="btn-group pull-right">
+						<div class="btn-group">
 							<a href="catalogs/{{ $catalog->id }}"><button class="btn" title="Inspeccionar catalogos"><i class="icon-eye-open"></i></button></a>
 							<a href="catalogs/{{ $catalog->id }}/edit"><button class="btn" title="Modificar catalogos"><i class="icon-pencil"></i></button></a>
 							<a class="delete" href="catalogs/{{ $catalog->id }}/delete" onclick="return confirm('¿Esta seguro que desea eliminar el catalogos \'{{ $catalog->name }}\' y todas sus imagenes relacionadas?')"><button class="btn" title="Eliminar catalogos"><i class="icon-trash"></i></button></a>

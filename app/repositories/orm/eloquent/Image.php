@@ -46,13 +46,16 @@ class Image implements ImageInterface {
   }
 
   public function findAllIn($in = 'products'){
-    $owners = array('products' => 'product_id', 'catalogs' => 'catalog_id', 'galeries' => 'gallery_id');
-    $image = new \Models\Image();
-    foreach($owners as $owner => $fkey){
-      $image = $owner === $in ? $image->whereNotNull($owners[$owner]) : $image->whereNull($owners[$owner]);
-    }
-    $image->orderBy('created_at', 'desc')
+    $image = \Models\Image::where(function($q) use ($in){
+      $owners = array('products' => 'product_id', 'catalogs' => 'catalog_id', 'galleries' => 'gallery_id');
+      $q->whereNotNull($owners[$in]);
+      foreach($owners as $owner => $fkey){
+        if($owner !== $in)
+          $q->whereNull($fkey);
+      }
+    })
     ->paginate(15);
+    //dd($image, \DB::getQueryLog());
     return $image;
   }
 

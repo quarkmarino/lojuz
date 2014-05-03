@@ -106,9 +106,13 @@
 					</div>
 					<div class="af-outer af-required">
 						<div class="af-inner">
-							<br>
-							<input type="submit" name="submit" class="btn btn-primary" id="product-submit_btn" value="Guardar">
-							<a href="{{ route('admin.galleries.show', $gallery->id) }}"><button type="button" class="btn">Cancel</button></a>
+							<div class="pull-right">
+								<input type="submit" name="submit" class="btn btn-primary" id="product-submit_btn" value="Guardar">
+								<a href="{{ route('admin.galleries.show', $gallery->id) }}">
+									<button type="button" class="btn">Cancel</button>
+								</a>
+							</div>
+							<br />
 						</div>
 					</div>
 				{{ Form::close() }}
@@ -147,6 +151,21 @@
 					<div class="af-outer af-required">
 						<div class="af-inner">
 							<div class="control-group">
+								<label class="control-label" for="inputStatus">Visibilidad</label>
+								<div class="controls">
+									<label class="radio">
+										{{ Form::radio('status', '1', true, array('id' => 'inputStatus')) }} Estara <span class="text-success">visible</span> al publico
+									</label>
+									<label class="radio">
+										{{ Form::radio('status', '0') }} Estara <span class="text-warning">oculto</span> al publico
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="af-outer af-required">
+						<div class="af-inner">
+							<div class="control-group">
 								<label class="control-label" for="inputImage">Archivo</label>
 								<div class="controls">
 									{{ Form::file('file', array('id' => 'inputImageFile')); }}
@@ -174,7 +193,7 @@
 								<div class="mask-1"></div>
 								<div class="mask-2"></div>
 								<div class="caption">
-									<h2><a class="title" href="{{ route('admin.galleries.images.show', $image->id) }}", title="Ver imagen"><i class="icon-eye-open"></i> {{ $image->name }}</a></h2>
+									<h2><a class="title" href="{{ route('admin.galleries.images.edit', array($gallery->id, $image->id)) }}", title="Editar imagen"><i class="icon-pencil"></i> {{ $image->name }}</a></h2>
 									<a class="info btn btn-small btn-inverse" href="{{ route('admin.galleries.images.destroy', array( $gallery->id, $image->id )) }}" onclick='return confirm("¿Esta seguro que desea eliminar la imagen relacionada a este galeria?")', title="Eliminar imagen"><i class="icon-trash"></i></a>
 									{{-- HTML::link(
 										route('admin.galleries.images.destroy',
@@ -252,7 +271,7 @@
 	}
 
 	function createItem(response){
-		var item = '<article data-id="id-'+response.id+'" data-type="javascript html" class="span6"><div class="thumbnail hover-pf1"><img src="'+response.file+'" alt="'+response.name+'" class="img-rounded"><div class="mask-1"></div><div class="mask-2"></div><div class="caption"><h2><a class="title" href="images/'+response.id+'", title="Ver imagen"><i class="icon-eye-open"></i> '+response.name+'</a></h2><a class="info btn btn-small btn-inverse" href="images/'+response.id+'/delete" onclick="return confirm(\"¿Esta seguro que desea eliminar la imagen relacionada a este galeria?\")", title="Eliminar imagen"><i class="icon-trash"></i></a></div></div></article>';
+		var item = '<article data-id="id-'+response.id+'" data-type="javascript html" class="span6"><div class="thumbnail hover-pf1"><img src="'+response.file+'" alt="'+response.name+'" class="img-rounded"><div class="mask-1"></div><div class="mask-2"></div><div class="caption"><h2><a class="title" href="images/'+response.id+'/edit", title="Editar imagen"><i class="icon-pencil"></i> '+response.name+'</a></h2><a class="info btn btn-small btn-inverse" href="images/'+response.id+'/delete" onclick="return confirm(\"¿Esta seguro que desea eliminar la imagen relacionada a este galeria?\")", title="Eliminar imagen"><i class="icon-trash"></i></a></div></div></article>';
 			return item;
 	}
 	</script>

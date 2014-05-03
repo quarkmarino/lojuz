@@ -23,7 +23,7 @@ class ImagesController extends BaseController {
 	/**
 	 * The layout that should be used for responses.
 	 */
-	protected $layout = 'admin.catalogs.layouts.main';
+	protected $layout = 'admin.catalogs.layouts.image';
 
 	/**
    * We will use Laravel's dependency injection to auto-magically
@@ -50,7 +50,7 @@ class ImagesController extends BaseController {
 		throw new NotAllowedException();
 	}*/
 
-	public function lists($catalog_id)
+	/*public function lists($catalog_id)
 	{
 		if( Authority::can('index', 'Image') ){
 			$catalog = $this->catalog->findById($catalog_id);
@@ -59,23 +59,24 @@ class ImagesController extends BaseController {
 			return $this->layout->render();
 		}
 		throw new NotAllowedException();
-	}
+	}*/
 
 	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	/*public function create($catalog_id)
+	public function create($catalog_id)
 	{
 		//dd(\Request::is('admin/products/*'));
 		if( Authority::can('create', 'Image') ){
-			$image = $this->image->instance(array('catalog_id' => $catalog_id));
+			$catalog = $this->catalog->findById($catalog_id);
+			$image = $this->image->instance(array('catalog_id' => $catalog->id));
 			$this->layout->content = View::make('admin.images.create', compact('image'));
 			return $this->layout->render();
 		}
 		throw new NotAllowedException();
-	}*/
+	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -129,9 +130,10 @@ class ImagesController extends BaseController {
 		if( Authority::can('update', 'Image') ){
 			$owner = $this->catalog->findById($catalog_id);
 			$image = $this->image->findByIdIn('catalog', $owner->id, $id);
-			$class = 'catalogs';
-			$this->layout->content = View::make('admin.images.edit', compact('owner', 'image', 'class'));
-			return $this->layout->render();
+			//$owner_class = 'catalogs';
+			//$owner_parent_class = '';
+			$this->layout->content = View::make('admin.images.edit', compact('owner', 'image'));
+			return $this->layout->with(compact('owner', 'image'))->render();
 		}
 		throw new NotAllowedException();	
 	}
@@ -145,9 +147,10 @@ class ImagesController extends BaseController {
 	public function update($catalog_id, $id)
 	{
 		if( Authority::can('update', 'Image') ){
+			$input = Input::all();
 			$catalog = $this->catalog->findById($catalog_id);
-			$product = $this->product->assign($catalog_id, $id);
-			return Redirect::route('admin.catalogs.products.index', $catalog->id)->with('success', "El producto \"$product->name\" ha sido asignado correctamente.");
+			$image = $this->image->updateIn('catalog', $catalog_id, $id, $input);
+			return Redirect::route('admin.catalogs.show', $catalog->id)->with('success', "El producto \"$image->name\" ha sido actualizada correctamente.");
 		}
 		throw new NotAllowedException();
 	}

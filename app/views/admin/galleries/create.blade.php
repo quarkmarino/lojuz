@@ -95,10 +95,14 @@
 						</div>
 					</div>
 					<div class="af-outer af-required">
-						<div class="af-inner">
-							<br>
-							<input type="submit" name="submit" class="btn btn-primary" id="submit_btn" value="Crear">
-							<a href="{{ route('admin.galleries.index') }}"><button type="button" class="btn">Cancel</button></a>
+						<div class="af-inner" style="height: 20px;">
+							<div class="pull-right">
+								<input type="submit" name="submit" class="btn btn-primary" id="submit_btn" value="Crear">
+								<a href="{{ route('admin.galleries.index') }}">
+									<button type="button" class="btn">Cancel</button>
+								</a>
+								<br />
+							</div>
 						</div>
 					</div>
 				</div>

@@ -10,8 +10,9 @@
 @stop
 
 @section('breadcrumbs')
-	@parent
-	<li class="active">Administración</li>
+	<li><a href="/"><i class="icon-home"></i>Lojuz</a></li>
+	<span class="divider">/</span>
+	<li class="active"><i class="icon-wrench"></i>Administración</li>
 @stop
 
 @section('content')

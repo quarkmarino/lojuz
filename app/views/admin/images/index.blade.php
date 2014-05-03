@@ -1,4 +1,7 @@
-@extends('admin.images.layouts.main')
+<?php $owner_class = strtolower(basename(strtr(get_class($owner), "\\", "/"))); ?>
+<?php $owner_class_plural = str_plural($owner_class); ?>
+
+@extends("admin.$owner_class_plural.layouts.image")
 
 @section('title')
 	<h3>Imagenes</h3>
@@ -18,36 +21,17 @@
 
 @section('content')
 	@parent
-	<div class="row-fluid">
-		<div class="span12">
-			<div class="alert-box text-success">
-				@if(Session::has('success'))
-					<h3>{{ Session::get('success') }}</h3>
-				@endif
-			</div>
-			<div class="alert-box text-error">
-				@if(Session::has('error'))
-					<h3>{{ Session::get('error') }}</h3>
-				@endif
-			</div>
-			<ul class="errors">
-				@foreach($errors->all() as $message)
-				<li>{{ $message }}</li>
-				@endforeach
-			</ul>
-		</div>
-	</div>
 	<table class="table table-striped table-hover table-bordered">
-		<caption>Lista de imagenes asignadas actualmente asignadas al producto
-			@if($image->product_id !== null)
-				{{ HTML::link(route('admin.catalogs.images.show', array($image->product_id, $image->id)), $image->name) }}
-			@else
-				{{ HTML::link(route('admin.images.show', $image->id), $image->name) }}
+		<caption>Lista de imagenes asignadas actualmente
+			@if($owner_class === 'product')
+				al {{ Lang::choice($owner_class, 1) }} {{ HTML::link(route('admin.catalogs.products.show', array($owner->catalog_id, $owner->id)), $owner->name) }}
+			@elseif($owner_class === 'gallery')
+				a la {{ Lang::choice($owner_class, 1) }} {{ HTML::link(route('admin.galleries.show', $owner->id), $owner->name) }}
 			@endif
-			</caption>
+		</caption>
 		<thead>
 			<tr>
-				@foreach(array('id' => '#', 'name' => 'Nombre', 'product' => 'Producto', 'status' => 'Estatus') as $key => $attribute)
+				@foreach(array('id' => '#', 'name' => 'Nombre', $owner_class => Lang::choice($owner_class, 1), 'status' => 'Estatus') as $key => $attribute)
 					@if(is_array( $attribute ))
 						<th title="{{ $attribute['label'] }}"><i class="icon-{{ $attribute['icon'] }}"></i></th>
 					@else
@@ -62,18 +46,18 @@
 				<tr>
 					@foreach(array(
 						'id' => '#',
-						'name' => array( 'label' => 'Nombre', 'link' => route('admin.images.show', array($image->id, $image->id)) ),
-						'image' => array( 'label' => 'Galería', 'attr' => 'name' ),
+						'name' => array( 'label' => 'Nombre', 'link' => route("admin.$owner_class_plural.images.edit", array($owner->id, $image->id)) ),
+						$owner_class => array( 'label' => Lang::choice($owner_class, 1), 'attr' => 'name' ),
 						'status' => array( 'values' => array( array( 'label' => 'Oculta', 'emph' => 'text-warning' ), array( 'label' => 'Visible', 'emph' => 'text-success' )) ),
 						) as $key => $label)
 							<td>
 								@if( is_array($label) )
 									@if( isset( $label['attr'] ) )
 										@if( !empty( $image->$key->$label['attr'] ) )
-											@if($image->product_id !== null)
-												{{ HTML::link(route('admin.catalogs.images.show', array($image->product_id, $image->id)), $image->$key->$label['attr'], array( 'title' => 'Ver producto' ) ) }}
-											@else
-												{{ HTML::link(route('admin.images.show', $image->$key->id), $image->$key->$label['attr'], array( 'title' => 'Ver producto' ) ) }}
+											@if($owner_class === 'product')
+												{{ HTML::link(route("admin.catalogs.products.show", array($owner->catalog_id, $owner->id)), $image->$key->$label['attr'], array( 'title' => 'Ver '.Lang::choice($owner_class, 1) ) ) }}
+											@elseif($owner_class === 'gallery')
+												{{ HTML::link(route("admin.galleries.show", $owner->id), $image->$key->$label['attr'], array( 'title' => 'Ver '.Lang::choice($owner_class, 1) ) ) }}
 											@endif
 										@endif
 									@endif
@@ -97,9 +81,8 @@
 					@endforeach
 					<td>
 						<div class="btn-group">
-							{{--<a href="{{ route('admin.images.show', array($image->id, $image->id) ) }}"><button class="btn" title="Inspeccionar imagen"><i class="icon-eye-open"></i></button></a>--}}
-							<a href="{{ route('admin.images.edit', $image->id ) }}"><button class="btn" title="Modificar imagen"><i class="icon-pencil"></i></button></a>
-							<a class="delete" href="{{ route('admin.images.destroy', $image->id) }}" onclick="return confirm('¿Esta seguro que desea eliminar la imagen \'{{ $image->name }}\' relacionada?')"><button class="btn" title="Eliminar imagen"><i class="icon-trash"></i></button></a>
+							<a href="{{ route("admin.$owner_class_plural.images.edit", array($owner->id, $image->id)) }}"><button class="btn" title="Modificar imagen"><i class="icon-pencil"></i></button></a>
+							<a class="delete" href="{{ route("admin.$owner_class_plural.images.destroy", array($owner->id, $image->id)) }}" onclick="return confirm('¿Esta seguro que desea eliminar la imagen \'{{ $image->name }}\' relacionada?')"><button class="btn" title="Eliminar imagen"><i class="icon-trash"></i></button></a>
 						</div>
 					</td>
 				</tr>
