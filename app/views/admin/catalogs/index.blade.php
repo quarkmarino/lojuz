@@ -19,67 +19,31 @@
 		<caption>Lista de Catálogos</caption>
 		<thead>
 			<tr>
-				@foreach(array('id' => '#', 'name' => 'Nombre', 'tags' =>'Etiquetas', 'status' => 'Estatus', /*'description' =>'Descripción',*/ 'products' => array( 'icon' => 'list-alt', 'label' => '# de Productos' )) as $key => $attribute)
-					@if(is_array( $attribute ))
-						<th title="{{ $attribute['label'] }}"><i class="icon-{{ $attribute['icon'] }}"></i></th>
-					@else
-						<th>{{ $attribute }}</th>
-					@endif
-				@endforeach
+				<th title="#">id</th>
+				<th title="Nombre del catálogo">Nombre</th>
+				<th title="Etiquetas del catálogo">Etiquetas</th>
+				<th title="Visibilidad del catálogo">Estatus</th>
+				<th title="# de Productos asociados"><i class="icon-list-alt"></i></th>
 				<th colspan="3">Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach($catalogs as $catalog)
 				<tr>
-					@foreach(array(
-						'id' => '#',
-						'name' => array( 'label' => 'Nombre', 'link' => route('admin.catalogs.show', $catalog->id), 'title' => 'Ver Catálogo' ),
-						'tags' => array( 'label' => 'Etiquetas', 'pick' => 3 ),
-						'status' => array( 'values' => array( array( 'label' => 'Oculta', 'emph' => 'text-warning' ), array( 'label' => 'Visible', 'emph' => 'text-success' )) ),
-						//'description' =>'Descripción',
-						'products' => array( 'label' => 'Productos', 'stat' => 'count', 'link' => route('admin.catalogs.products.index', $catalog->id), 'title' => 'Ver Productos' )
-						) as $key => $label)
-							<td>
-								@if( is_array($label) )
-									{{--@if( isset( $label['attr'] ) )
-										@if( !empty( $catalog->$key->$label['attr'] ) )
-											{{ HTML::link(route('admin.catalogs.show', array('id' => $catalog->$key->id)), $catalog->$key->$label['attr'], array( 'title' => 'Ver catalogo' ) ) }}
-										@else
-											{{ HTML::link(route('admin.catalogs.edit', array('id' => $catalog->id)), 'Asignar catalogo' ) }}
-										@endif
-									@endif--}}
-
-									@if( isset( $label['values'] ) )
-										@if( is_array( $label['values'][$catalog->$key] ) )
-											<span class="{{ $label['values'][$catalog->$key]['emph'] }}">{{ $label['values'][$catalog->$key]['label'] }}</span>
-										@else
-											{{ $label['values'][$catalog->$key] }}
-										@endif
-									@endif
-
-									@if( isset( $label['link'] ) )
-										<a href="{{ $label['link'] }}" @if( isset($label['title']) )title="{{ $label['title'] }}" @endif>
-											@if( isset($label['stat']) )
-												{{ $catalog->$key->$label['stat']() }}
-											@else
-												{{ $catalog->$key }}
-											@endif
-										</a>
-									@endif
-
-									@if( isset( $label['prefix'] ) )
-										{{ $label['prefix'].$catalog->$key }}
-									@endif
-
-									@if( isset( $label['pick'] ) )
-										{{ implode(', ', array_slice(explode(', ', $catalog->$key), 0, $label['pick'])).( count(explode(', ', $catalog->$key)) > $label['pick'] ? HTML::link(route('admin.catalogs.show', $catalog->id), ', ...') : '' )  }}
-									@endif
-								@else
-										{{ $catalog->$key }}
-								@endif
-							</td>
-					@endforeach
+					<td>{{ $catalog->id }}</td>
+					<td>
+						<a href="{{ route('admin.catalogs.show', $catalog->id) }}" title="Ver Catálogo">{{ $catalog->name }}</a>
+					</td>
+					<td>
+						{{ implode(', ', array_slice(explode(', ', $catalog->tags), 0, 3)).( count(explode(', ', $catalog->tags)) > 3 ? HTML::link(route('admin.catalogs.show', $catalog->id), ', ...') : '' ) }}
+					</td>
+					<td>
+						<?php $values = array( 'label' => array( 'Oculta', 'Visible' ), 'emph' => array( 'text-warning', 'text-success' ) ); ?>
+						<span class="{{ $values['emph'][$catalog->status] }}">{{ $values['label'][$catalog->status] }}</span>
+					</td>
+					<td>
+						<a href="{{ route('admin.catalogs.products.index', $catalog->id) }}" title="Ver Productos">{{ $catalog->products->count() }}</a>
+					</td>
 					<td>
 						<div class="btn-group">
 							<a href="catalogs/{{ $catalog->id }}"><button class="btn" title="Inspeccionar catalogos"><i class="icon-eye-open"></i></button></a>

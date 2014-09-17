@@ -45,81 +45,54 @@
 		<caption>Lista de productos pertenecientes al catálogo {{ HTML::link(route('admin.catalogs.show', $catalog->id), $catalog->name) }}</caption>
 		<thead>
 			<tr>
-				@foreach(array('id' => '#', 'name' => 'Nombre', /*'catalog' => 'Catalogo', */'tags' =>'Etiquetas', 'status' => 'Estatus', 'type' => 'Tipo', 'price' => 'Precio', 'images' => array( 'icon' => 'picture', 'label' => '# de Imagenes' )) as $key => $attribute)
-					@if(is_array( $attribute ))
-						<th title="{{ $attribute['label'] }}"><i class="icon-{{ $attribute['icon'] }}"></i></th>
-					@else
-						<th>{{ $attribute }}</th>
-					@endif
-				@endforeach
+				<th title="#">id</th>
+				<th title="Nombre del producto">Nombre</th>
+				<th title="Etiquetas del producto">Etiquetas</th>
+				<th title="Visibilidad del producto">Estatus</th>
+				<th title="Producto/Servicio">Tipo</th>
+				<th title="Precio del producto">Precio</th>
+				<th title="# de Imagenes asociadas"><i class="icon-picture"></i></th>
 				<th colspan="3">Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach($products as $product)
 				<tr>
-					@foreach(array(
-						'id' => '#',
-						'name' => array( 'label' => 'Nombre', 'link' => route('admin.catalogs.products.show', array($catalog->id, $product->id)) ),
-						//'catalog' => array( 'label' => 'Catalogo', 'attr' => 'name' ),
-						'tags' =>array( 'label' => 'Etiquetas', 'pick' => 2),
-						'status' => array( 'values' => array( array( 'label' => 'Oculta', 'emph' => 'text-warning' ), array( 'label' => 'Visible', 'emph' => 'text-success' )) ),
-						'type' => array( 'values' => array( 'service' => 'Servicio', 'product' => 'Producto')),
-						'price' => array( 'label' => 'precio', 'prefix' => '$'),
-						'images' => array( 'label' => 'Imagenes', 'stat' => 'count', 'link' => route('admin.products.images.index', $product->id), 'title' => 'Ver Imagenes' )
-						) as $key => $label)
-							<td>
-								@if( is_array($label) )
-									@if( isset( $label['attr'] ) )
-										@if( !empty( $product->$key->$label['attr'] ) )
-											{{ HTML::link(route('admin.catalogs.show', $product->$key->id), $product->$key->$label['attr'], array( 'title' => 'Ver catalogo' ) ) }}
-										@endif
-									@endif
-
-									@if( isset( $label['values'] ) )
-										@if( is_array( $label['values'][$product->$key] ) )
-											<span class="{{ $label['values'][$product->$key]['emph'] }}">{{ $label['values'][$product->$key]['label'] }}</span>
-										@else
-											{{ $label['values'][$product->$key] }}
-										@endif
-									@endif
-
-									@if( isset($label['link']) )
-										<a href="{{ $label['link'] }}" @if( isset($label['title']) )title="{{ $label['title'] }}" @endif>
-											@if( isset($label['stat']) )
-												{{ $product->$key->$label['stat']() }}
-											@else
-												{{ $product->$key }}
-											@endif
-										</a>
-									@endif
-
-									{{--@if( isset( $label['link'] ) )
-										<a href="{{ $label['link'] }}"@if( isset($label['title']) ) title="{{ $label['title'] }}" @endif>
-											{{ $product->$key }}
-										</a>
-									@endif--}}
-
-									@if( isset( $label['prefix'] ) )
-										{{ $label['prefix'].$product->$key }}
-									@endif
-
-									@if( isset( $label['pick'] ) )
-										{{ implode(', ', array_slice(explode(', ', $product->$key), 0, $label['pick'])).( count(explode(', ', $product->$key)) > $label['pick'] ? HTML::link(route('admin.catalogs.products.show', $product->id), ', ...') : '' )  }}
-									@endif
-								@else
-										{{ $product->$key }}
-								@endif
-							</td>
-					@endforeach
+					<td>{{ $product->id }}</td>
+					<td>
+						<a href="{{ route('admin.catalogs.products.show', array($catalog->id, $product->id)) }}" title="Ver Producto">{{ $product->name }}</a>
+					</td>
+					<td>
+						{{ implode(', ', array_slice(explode(', ', $product->tags), 0, 2)).( count(explode(', ', $product->tags)) > 2 ? HTML::link(route('admin.catalogs.products.show', $product->id), ', ...') : '' )  }}
+					</td>
+					<td>
+						<?php $values = array( 'label' => array( 'Oculta', 'Visible' ), 'emph' => array( 'text-warning', 'text-success' ) ); ?>
+						<span class="{{ $values['emph'][$product->status] }}">{{ $values['label'][$product->status] }}</span>
+					</td>
+					<td>
+						<?php $values = array( 'service' => 'Servicio', 'product' => 'Producto'); ?>
+						{{ $values[$product->type] }}
+					</td>
+					<td>${{ $product->price }}</td>
+					<td>
+						@if( $product->images->count() > 0 )
+							<a href="{{ route('admin.products.images.index', $product->id) }}" title="Ver Imagenes">
+								{{ $product->images->count() }}
+							</a>
+						@else
+							0
+						@endif
+					</td>
 					<td>
 						<div class="btn-group">
 							<a href="{{ route('admin.catalogs.products.show', array($catalog->id, $product->id) ) }}">
 								<button class="btn" title="Inspeccionar producto"><i class="icon-eye-open"></i></button>
 							</a>
+
 							<a href="{{ route('admin.catalogs.products.edit', array($catalog->id, $product->id) ) }}">
 								<button class="btn" title="Modificar producto"><i class="icon-pencil"></i></button>
 							</a>
+							
 							<a class="delete" href="{{ route('admin.catalogs.products.destroy', array($catalog->id, $product->id) ) }}" onclick="return confirm('¿Esta seguro que desea eliminar el producto \'{{ $product->name }}\' y todas sus imagenes relacionadas?')">
 								<button class="btn" title="Eliminar producto"><i class="icon-trash"></i></button>
 							</a>

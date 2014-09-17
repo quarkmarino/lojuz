@@ -11,7 +11,7 @@
 @stop
 
 @section('buttons')
-	<a href="{{ route('admin.galleries.index') }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de la galería?')"><button class="btn" title="Listar galerias"><i class="icon-list"></i> Listar</button></a>
+	<a href="{{ route('admin.galleries.index') }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de la galería?')"><button class="btn" title="Volver a galerias"><i class="icon-backward"></i> Volver</button></a>
 @stop
 
 @section('content')
@@ -59,7 +59,7 @@
 								<div class="controls">
 									<div class="input-prepend">
 										<span class="add-on">''</span>
-											{{ Form::textarea('description', Input::old('description'), array('placeholder' => 'Descripción del galleryo', 'class' => 'input-large', 'id' => 'inputDescription', 'rows' => 3)) }}
+											{{ Form::textarea('description', Input::old('description'), array('placeholder' => 'Descripción de la galería', 'class' => 'input-large', 'id' => 'inputDescription', 'rows' => 3)) }}
 										</span>
 									</div>
 								</div>

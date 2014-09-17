@@ -13,7 +13,7 @@
 
 @section('breadcrumbs')
 	@parent
-	<li class="active"><i class="icon-picture"></i>Imagen</li>
+	<li class="active"><i class="icon-picture"></i> {{ $image->name }}</li>
 @stop
 
 @section('content')
@@ -59,7 +59,7 @@
 					<div class="af-outer af-required">
 						<div class="af-inner">
 							<div class="control-group">
-								<label class="control-label" for="inputComment">Comentario</label>
+								<label class="control-label" for="inputImageComment">Comentario</label>
 								<div class="controls">
 									<div class="input-prepend">
 										<span class="add-on">''</span>
@@ -72,10 +72,23 @@
 					<div class="af-outer af-required">
 						<div class="af-inner">
 							<div class="control-group">
-								<label class="control-label" for="inputStatus">Visibilidad</label>
+								<label class="control-label" for="inputImageTags">Etiquetas</label>
+								<div class="controls">
+									<div class="input-prepend">
+										<span class="add-on"><i class="icon-tags"></i></span>
+										{{ Form::text('tags', Input::old('tags'), array('placeholder' => 'Etiquetas, separadas por comas', 'class' => 'span12', 'id' => 'inputImageTags')) }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="af-outer af-required">
+						<div class="af-inner">
+							<div class="control-group">
+								<label class="control-label" for="inputImageStatus">Visibilidad</label>
 								<div class="controls">
 									<label class="radio">
-										{{ Form::radio('status', '1', true, array('id' => 'inputStatus')) }} Estara <span class="text-success">visible</span> al publico
+										{{ Form::radio('status', '1', true, array('id' => 'inputImageStatus')) }} Estara <span class="text-success">visible</span> al publico
 									</label>
 									<label class="radio">
 										{{ Form::radio('status', '0') }} Estara <span class="text-warning">oculto</span> al publico
@@ -87,7 +100,7 @@
 					<div class="af-outer af-required">
 						<div class="af-inner">
 							<div class="control-group">
-								<label class="control-label" for="inputImage">Archivo</label>
+								<label class="control-label" for="inputImageFile">Imagen</label>
 								<div class="controls">
 									{{ Form::file('file', array('id' => 'inputImageFile')); }}
 								</div>
@@ -127,7 +140,7 @@
 								<div class="mask-2"></div>
 								<div class="caption">
 									<h2>
-										<a class="title" href="#", title="Editar imagen"><i class="icon-pencil"></i> Imagen de {{ Lang::choice("messages.$owner_class", 1) }} </a>
+										<a class="title" href="#", title="{{ $image->name }}">Imagen de {{ Lang::choice("messages.$owner_class", 1) }} </a>
 									</h2>
 									<a class="info btn btn-small btn-inverse" href="{{ route("admin.$owner_class_plural.images.destroy", array($owner->id, $image->id)) }}" onclick='return confirm("¿Esta seguro que desea eliminar la imagen de catálogo?")', title="Quitar imagen"><i class="icon-trash"></i></a>
 								</div>

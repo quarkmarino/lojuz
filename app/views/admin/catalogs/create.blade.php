@@ -11,7 +11,12 @@
 @stop
 
 @section('buttons')
-	<a href="{{ route('admin.catalogs.index') }}"><button class="btn" title="Listar productos"><i class="icon-list"></i> Listar</button></a>
+	{{--<a href="{{ route('admin.catalogs.index') }}">
+		<button class="btn" title="Listar catálogos"><i class="icon-list"></i> Listar</button>
+	</a>--}}
+	<a href="{{ route('admin.catalogs.index') }}">
+		<button class="btn" title="Volver a catálogos"><i class="icon-backward"></i> Volver</button>
+	</a>
 @stop
 
 @section('content')

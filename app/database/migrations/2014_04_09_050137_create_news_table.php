@@ -19,10 +19,10 @@ class CreateNewsTable extends Migration {
 			$table->integer('product_id')->nullable()->unsigned()->index();
 			$table->string('title');
 			$table->text('message');
-			$table->date('since');
-			$table->date('until');
+			//$table->date('since');
+			//$table->date('until');
 			$table->integer('status');
-			$table->boolean('list_link');
+			//$table->boolean('show_link');
 			$table->timestamps();
 
 			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');

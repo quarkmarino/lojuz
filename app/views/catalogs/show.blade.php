@@ -34,12 +34,12 @@
 					<div class="span12">
 						<ul id="filtrable" class="clearfix">
 							<li class="current all"><a href="#all">Todos</a></li>
-							@foreach($catalog->products as $product)
+							@foreach($catalog->products()->whereStatus(1)->get() as $product)
 								@foreach(explode(', ', $product->tags) as $tag)
-									@if( !isset($tags[$tag]) )
-										<li class="{{ strtolower($tag) }}"><a href="#{{ strtolower($tag) }}">{{ $tag }}</a></li>
+									@if( !isset($used_tags[$tag]) )
+										<li class="{{ strtolower($tag) }}"><a href="#{{ strtolower($tag) }}">{{ str_replace('_', ' ', $tag) }}</a></li>
 									@endif
-									<?php $tags[$tag] = true ?>
+									<?php $used_tags[$tag] = true ?>
 								@endforeach
 							@endforeach
 						</ul>
@@ -54,7 +54,7 @@
 		<!-- start: Portfolio -->
 		<section class="row filtrable portfolio thumbnails">
 
-			@foreach($catalog->products as $product)
+			@foreach($catalog->products()->whereStatus(1)->get() as $product)
 				<article data-id="id-{{ $product->id }}" data-type="{{ implode(' ', explode(', ', strtolower( $product->tags ) ) ) }}" class="span3">
 					<div class="thumbnail hover-pf1">
 						@if($product->images()->first() !== null)

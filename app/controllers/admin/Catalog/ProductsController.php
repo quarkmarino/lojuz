@@ -106,10 +106,10 @@ class ProductsController extends BaseController {
 			throw new NotAllowedException();
 		}
 		catch(ValidationException $e){
-			return Response::json(array('success' => false, 'error' => 'Los datos provistos no son correctos.' ,'errors' => $e->getErrors()->toArray()));
+			return Redirect::route('admin.catalogs.products.create', $catalog->id)->with('error', 'Los datos provistos no son correctos.')->withInput()->withErrors($e->getErrors());
 		}
 		catch(NotAllowedException $e){
-			return Response::json(array('success' => false, 'errors' => $e->getErrors()));
+			return Redirect::to('admin/dashboard')->with('error', 'No tienes permiso para visitar esta página.');
 		}
 	}
 
@@ -161,14 +161,22 @@ class ProductsController extends BaseController {
 	 */
 	public function update($catalog_id, $id)
 	{
-		if( Authority::can('update', 'Product') ){
-			$input = Input::all();
-			$catalog = $this->catalog->findById($catalog_id);
-			$input['catalog_id'] = $catalog->id;
-			$product = $this->product->update($id, $input);
-			return Redirect::route('admin.catalogs.products.show', array($catalog->id, $product->id))->with('success', "El producto '$product->name' ha sido modificado correctamente.");
+		try{
+			if( Authority::can('update', 'Product') ){
+				$input = Input::all();
+				$catalog = $this->catalog->findById($catalog_id);
+				$input['catalog_id'] = $catalog->id;
+				$product = $this->product->update($id, $input);
+				return Redirect::route('admin.catalogs.products.show', array($catalog->id, $product->id))->with('success', "El producto '$product->name' ha sido modificado correctamente.");
+			}
+			throw new NotAllowedException();
 		}
-		throw new NotAllowedException();
+		catch(ValidationException $e){
+			return Redirect::route('admin.catalogs.products.edit', array($catalog->id, $id))->with('error', 'Los datos provistos no son correctos.')->withInput()->withErrors($e->getErrors());
+		}
+		catch(NotAllowedException $e){
+			return Redirect::to('admin/dashboard')->with('error', 'No tienes permiso para visitar esta página.');
+		}
 	}
 
 	/*public function assign($catalog_id, $id)

@@ -6,51 +6,59 @@
 				<div class="widget-inner">
 					<address>
 						<ul class="icons">
-							<li><i class="icon-map-marker"></i> Xicotencatl 406, Oaxaca, 68000</li>
-							<li><i class="icon-phone"></i>(951) 240-7629</li>
-							<li><i class="icon-print"></i>(951) 514-6143</li>
-							<li><i class="icon-envelope"></i><a href="mailto:#">info@polarix-q.com</a></li>
+							<li><i class="icon-map-marker"></i>SAN SEBASTIAN ETLA OAXACA</li>
+							<li>(Cerca de gasolinera y oxxo caporales)</li>
+							<li><i class="icon-phone"></i>(951) 521 33 33</li>
+							<li><i class="icon-mobile-phone"></i>(951) 199 66 66</li>
+							<li><i class="icon-envelope"></i><a href="mailto:matriz@lojuz.com">matriz@lojuz.com</a></li>
 						</ul>
 					</address>
 					<p><a href="contact" class="btn btn-primary">Contactenos</a></p>
 				</div>
-				<h3 class="widget-title">Siganos</h3>
-				<div class="widget-inner">
-					<ul class="social clearfix">
-					<li>
-						<a href="#" data-original-title="Facebook" data-placement="top" rel="tooltip">
-							<i class="icon-facebook-sign"></i>
-						</a>
-					</li>
-					<li>
-						<a href="#" data-original-title="Twitter" data-placement="top" rel="tooltip">
-							<i class="icon-twitter-sign"></i>
-						</a>
-					</li>
-					<li>
-						<a href="#" data-original-title="Linkedin" data-placement="top" rel="tooltip">
-							<i class="icon-linkedin-sign"></i>
-						</a>
-					</li>
-					<li>
-						<a href="#" data-original-title="Pinterest" data-placement="top" rel="tooltip">
-							<i class="icon-pinterest-sign"></i>
-						</a>
-					</li>
-					<li>
-						<a href="#" data-original-title="Google+" data-placement="top" rel="tooltip">
-							<i class="icon-google-plus-sign"></i>
-						</a>
-					</li>
-					</ul>
-				</div>
 			</div>
 			<div class="span4">
-				<h3 class="widget-title">Acerca de</h3>
+				<h3 class="widget-title">Acerca de Lojuz</h3>
 				<div class="widget-inner">
-					<p>Ut eu nulla eget massa blandit eleifend vel sedis lacus. Sed at viverra nulla. Fusce vel adipisci odio. Phasellus commodo, mauris eget pharetra scelerisque, est justo lacinia tortor.</p>
+					<p>
+              Somos una empresa dedicada a la fabricación de uniformes escolares, deportivos y empresariales.
+          </p>
+          <p>
+              Nuestra prioridad es ofrecerle productos de gran calidad confort y durabilidad para el desarrollo óptimo en las actividades que usted desempeña.
+          </p>
 				</div>
-				<h3 class="widget-title">Reciba nuetras noticias</h3>
+				<div class="row-fluid">
+					<h3 class="widget-title span3">Siganos</h3>
+					<div class="span6" style="margin-top: 17px;">
+						<ul class="social">
+							<li>
+								<a href="#" data-original-title="Facebook" data-placement="top" rel="tooltip">
+									<i class="icon-facebook-sign"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#" data-original-title="Twitter" data-placement="top" rel="tooltip">
+									<i class="icon-twitter-sign"></i>
+								</a>
+							</li>
+							{{--<li>
+								<a href="#" data-original-title="Linkedin" data-placement="top" rel="tooltip">
+									<i class="icon-linkedin-sign"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#" data-original-title="Pinterest" data-placement="top" rel="tooltip">
+									<i class="icon-pinterest-sign"></i>
+								</a>
+							</li>--}}
+							<li>
+								<a href="#" data-original-title="Google+" data-placement="top" rel="tooltip">
+									<i class="icon-google-plus-sign"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				{{--<h3 class="widget-title">Reciba nuetras noticias</h3>
 				<div class="widget-inner">
 					<p>Registrese para recibir nuestras novedades. Nunca compartiremos su correo electronico.</p>
 					<form>
@@ -59,7 +67,7 @@
 							<button class="btn btn-primary">Regístrese</button>
 						</div>
 					</form>
-				</div>
+				</div>--}}
 			</div>
 			<div class="span4">
 				<h3 class="widget-title">Últimas noticias</h3>

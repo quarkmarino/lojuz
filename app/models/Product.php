@@ -6,6 +6,8 @@ use Eloquent;
 
 class Product extends Eloquent {
 
+	protected $fillable = array('catalog_id', 'name', 'description', 'tags', 'type', 'price', 'status');
+
 	public static function boot(){
 		parent::boot();
 		
@@ -15,9 +17,11 @@ class Product extends Eloquent {
 			if(\File::exists($path))
 				\File::deleteDirectory($path);
 		});
-	}
+	}	
 
-	protected $fillable = array('catalog_id', 'name', 'description', 'tags', 'type', 'price', 'status');
+	public function scopeActive($query){
+		return $query->whereStatus(1);
+	}
 
 	public function catalogs(){
 		return $this->belongsToMany('Models\Catalog');
@@ -44,7 +48,7 @@ class Product extends Eloquent {
 		$i = 0;
 		foreach($tags as $key => $tag){
 			if(!empty($tag))
-				$tags2[$i++] = ucfirst(strtolower(trim($tag)));
+				$tags2[$i++] = ucfirst(strtolower(str_replace(' ', '_', trim($tag))));
 		}
 		$this->attributes['tags'] = implode(', ', $tags2);
 	}

@@ -10,6 +10,7 @@ class CatalogValidator extends Validation{
 	public static $rules = array(
 		'name' => 'required|alpha_num_spaces',
 		'tags' => 'required',
+		'status' => 'required|in:0,1'
 	);
 
 	/**

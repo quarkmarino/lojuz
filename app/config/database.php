@@ -65,10 +65,10 @@ return array(
 
 		'production' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'database',
-			'username'  => 'polarix-q',
-			'password'  => '',
+			'host'      => '10.33.143.26',
+			'database'  => 'lojuzcom_sitedb',
+			'username'  => 'lojuzcom_access',
+			'password'  => 'TAmR85hOpgpNhEo7',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

@@ -19,7 +19,13 @@ class CreateClientsTable extends Migration {
 			$table->string('name', 255);
 			$table->text('comment')->nullable();
 			$table->date('since')->nullable();
-			$table->string('image_url');
+			$table->integer('status')->default(1);
+			$table->string('unique', 255);
+			$table->string('logo', 255);
+			$table->string('largethumb', 255);
+			$table->string('thumb', 255);
+			$table->string('slide', 255);
+			$table->string('tinythumb', 255);
 			$table->timestamps();
 
 			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');

@@ -45,7 +45,9 @@ class ImagesController extends BaseController {
 		if( Authority::can('lists', 'Image') ){
 			$owner = 'gallery';
 			$images = $this->image->findAllIn(str_plural($owner));
-			return View::make('admin.images.lists')->with(compact('images', 'owner'));
+			//return View::make('admin.images.lists')->with(compact('images', 'owner'));
+			$this->layout->content = View::make('admin.images.lists')->with(compact('images', 'owner'));
+			return $this->layout->render();
 		}
 		throw new NotAllowedException();
 	}
@@ -56,7 +58,7 @@ class ImagesController extends BaseController {
 			$owner = $this->gallery->findById($gallery_id);
 			$images = $this->image->findAllBy('gallery', $gallery_id);
 			$this->layout->content = View::make('admin.images.index')->with(compact('owner', 'images'));
-			return $this->layout->render();
+			return $this->layout->with(compact('owner', 'images'))->render();
 		}
 		throw new NotAllowedException();
 	}
@@ -130,7 +132,7 @@ class ImagesController extends BaseController {
 			$owner = $this->gallery->findById($gallery_id);
 			$image = $this->image->findByIdIn('gallery', $owner->id, $id);
 			$this->layout->content = View::make('admin.images.edit', compact('owner', 'image'));
-			return $this->layout->render();
+			return $this->layout->with(compact('owner', 'image'))->render();
 		}
 		throw new NotAllowedException();
 	}

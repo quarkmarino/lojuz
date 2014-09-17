@@ -66,7 +66,7 @@ class ImagesController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create($catalog_id)
+	/*public function create($catalog_id)
 	{
 		//dd(\Request::is('admin/products/*'));
 		if( Authority::can('create', 'Image') ){
@@ -76,7 +76,7 @@ class ImagesController extends BaseController {
 			return $this->layout->render();
 		}
 		throw new NotAllowedException();
-	}
+	}*/
 
 	/**
 	 * Store a newly created resource in storage.

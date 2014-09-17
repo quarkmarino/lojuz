@@ -11,10 +11,21 @@
 @stop
 
 @section('buttons')
-	<a href="{{ route('admin.galleries.create') }}"><button class="btn" title="Crear nueva galería"><i class="icon-plus"></i> Crear</button></a>
-	<a href="{{ route('admin.galleries.index') }}"><button class="btn" title="Listar galerias"><i class="icon-list"></i> Listar</button></a>
-	<a href="{{ route('admin.galleries.edit', $gallery->id) }}"><button class="btn" title="Modificar este galería"><i class="icon-pencil"></i> Editar</button></a>
-	<a class="delete" href="{{ route('admin.galleries.destroy', $gallery->id) }}" onclick="return confirm('¿Esta seguro que desea eliminar el galería \'{{ $gallery->name }}\' y todas sus imagenes relacionadas?')"><button class="btn" title="Eliminar galería"><i class="icon-trash"></i> Eliminar</button></a>
+	{{--<a href="{{ route('admin.galleries.create') }}">
+		<button class="btn" title="Crear nueva galería"><i class="icon-plus"></i> Crear</button>
+	</a>--}}
+	{{--<a href="{{ route('admin.galleries.index') }}">
+		<button class="btn" title="Listar galerias"><i class="icon-list"></i> Listar</button>
+	</a>--}}
+	<a href="{{ route('admin.galleries.index') }}">
+		<button class="btn" title="Volver a las galerias"><i class="icon-backward"></i> Volver</button>
+	</a>
+	<a href="{{ route('admin.galleries.edit', $gallery->id) }}">
+		<button class="btn" title="Modificar este galería"><i class="icon-pencil"></i> Editar</button>
+	</a>
+	{{--<a class="delete" href="{{ route('admin.galleries.destroy', $gallery->id) }}" onclick="return confirm('¿Esta seguro que desea eliminar el galería \'{{ $gallery->name }}\' y todas sus imagenes relacionadas?')">
+		<button class="btn" title="Eliminar galería"><i class="icon-trash"></i> Eliminar</button>
+	</a>--}}
 @stop
 
 @section('content')
@@ -24,56 +35,31 @@
 			<h3>Detalles</h3>
 			<div class="page-inner">
 				<dl class="dl-horizontal">
-					@foreach(array(
-						'name' => array( 
-							'label' => 'Nombre',
-							'link' => route('admin.galleries.edit', array('id' => $gallery->id)),
-						),
-						'description' => 'Descripción',
-						'tags' => 'Etiquetas',
-						'status' => array(
-							'label' => 'Estatus',
-							'values' => array(
-								array( 'label' => 'Oculta', 'emph' => 'text-warning' ),
-								array( 'label' => 'Visible', 'emph' => 'text-success' )
-							)
-						),
-						'images' => array( 'label' => 'Imagenes', 'stat' => 'count')
-					) as $attr => $label)
-							<?php $caption = is_array( $label ) ? $label['label'] : $label ?>
-							<dt>{{ $caption }}:</dt>
-								<dd>
-								@if( is_array($label) )
-									{{-- statistical query for related entity --}}
-									@if( isset( $label['stat'] ) )
-										@if( $gallery->$attr->$label['stat']() > 0 )
-											{{ HTML::link(route('admin.galleries.images.index', $gallery->id), $gallery->$attr->$label['stat'](), array('title' => 'Listar imagenes') )}}
-										@else
-											{{ 'Ninguna' }}
-										@endif
-									@endif
-									{{-- multiple attribute value traduction definition --}}
-									@if( isset( $label['values'] ) )
-										@if( is_array( $label['values'][$gallery->$attr] ) )
-											<span class="{{ $label['values'][$gallery->$attr]['emph'] }}">{{ $label['values'][$gallery->$attr]['label'] }}</span>
-										@else
-											{{ $label['values'][$gallery->$attr] }}
-										@endif
-									@endif
-									{{-- link definition for attribute --}}
-									@if( isset( $label['link'] ) )
-										{{ HTML::link($label['link'], $gallery->$attr) }}
-									@endif
-									{{-- attribute prefix definition  --}}
-									{{--@if( isset( $label['prefix'] ) )
-										{{ $label['prefix'].$gallery->$attr }}
-									@endif--}}
-
-								@else
-									{{ $gallery->$attr }}
-								@endif
-							</dd>
-					@endforeach
+					<dt>Nombre:</dt>
+						<dd>
+							{{ HTML::link( route('admin.galleries.edit', array('id' => $gallery->id)), $gallery->name) }}
+						</dd>
+					<dt>Descripción:</dt>
+						<dd>
+							{{ $gallery->description }}
+						</dd>
+					<dt>Etiquetas:</dt>
+						<dd>
+							{{ $gallery->tags }}
+						</dd>
+					<dt>Estatus:</dt>
+						<dd>
+							<?php $values = array('label' => array('Oculta', 'Visible'), 'emph' => array('text-warning', 'text-success')); ?>
+							<span class="{{ $values['emph'][$gallery->status] }}">{{ $values['label'][$gallery->status] }}</span>
+						</dd>
+					<dt>Imagenes:</dt>
+						<dd>
+							@if( $gallery->images->count() > 0 )
+								{{ $gallery->images->count() }}
+							@else
+								{{ 'Ninguna' }}
+							@endif
+						</dd>
 				</dl>
 			</div>
 		</div>
@@ -85,7 +71,9 @@
 				<div class="span5">
 					<div class="btn-toolbar clearfix">
 						<div class="btn-group pull-right">
-							<a href="{{ route('admin.galleries.edit', $gallery->id) }}"><button class="btn" title="Crear y agregar una nueva imagen a esta galería"><i class="icon-plus"></i> Agregar</button></a>
+							<a href="{{ route('admin.galleries.edit', $gallery->id) }}">
+								<button class="btn" title="Crear y agregar una nueva imagen a esta galería"><i class="icon-plus"></i> Agregar</button>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -101,7 +89,7 @@
 								<div class="mask-1"></div>
 								<div class="mask-2"></div>
 								<div class="caption">
-									<h2><a class="title" href="{{ route('admin.galleries.images.show', array($gallery->id, $image->id)) }}", title="Ver imagen"><i class="icon-eye-open"></i> Ver</a></h2>
+									<h2><a class="title" href="{{ route('admin.galleries.images.edit', array($gallery->id, $image->id)) }}", title="Ver imagen"><i class="icon-pencil"></i> Editar</a></h2>
 								</div>
 							</div>
 						</article>

@@ -47,6 +47,7 @@
 						<span class="divider">/</span>
 						<li><a href="{{ route('admin.home') }}"><i class="icon-wrench"></i>Administración</a></li><span class="divider">/</span>
 					@show
+					<li class="pull-right"><i class="icon-user"></i><strong>{{ ucfirst( Auth::user()->username ) }}</strong></li>
 				</ul>
 			</section>
 			<!-- end: Page header / Breadcrumbs -->
@@ -63,11 +64,11 @@
 
 								<li @if( Request::is('admin/clients*') ) class="active" @endif><a href="{{ route('admin.clients.index') }}"><i class="icon-bookmark"></i><i class="icon-chevron-right"></i> Clientes</a></li>
 
-								<li @if( Request::is('admin/users') || Request::is('admin/users/*') ) class="active" @endif><a href="{{ route('admin.users.index') }}"><i class="icon-user"></i><i class="icon-chevron-right"></i> Usuarios</a></li>
+								{{--<li @if( Request::is('admin/users') || Request::is('admin/users/*') ) class="active" @endif><a href="{{ route('admin.users.index') }}"><i class="icon-user"></i><i class="icon-chevron-right"></i> Usuarios</a></li>--}}
 
-								<li class="nav-header">Catalogos</li>
+								<li class="nav-header">Catálogos</li>
 
-								<li @if( Request::is('admin/catalogs*') && !Request::is('admin/catalogs/*/products*') ) class="active" @endif><a href="{{ route('admin.catalogs.index') }}"><i class="icon-briefcase"></i><i class="icon-chevron-right"></i> Catalogos</a></li>
+								<li @if( Request::is('admin/catalogs*') && !Request::is('admin/catalogs/*/products*') ) class="active" @endif><a href="{{ route('admin.catalogs.index') }}"><i class="icon-briefcase"></i><i class="icon-chevron-right"></i> Catálogos</a></li>
 
 								<li @if( ( Request::is('admin/products*') || Request::is('admin/catalogs/*/products*') ) && !Request::is('*images*') ) class="active" @endif><a href="{{ route('admin.products.lists') }}"><i class="icon-list-alt"></i><i class="icon-chevron-right"></i> Productos</a></li>
 

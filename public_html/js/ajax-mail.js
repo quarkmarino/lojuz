@@ -9,15 +9,16 @@ $(function () {
         $(this).css({backgroundColor:"#FFFFFF"});
     });
 
-    $(".form-button").click(function () {
+    $(".form-button").click(function (e) {
         // validate and process form
         // first hide any error messages
         $('.error').hide();
 
         var name = $("input#name").val();
-        if (name == "" || name == "Name") {
+        if (name == "" || name == "*Indiquenos su nombre.") {
             $("label#name_error").show();
             $("input#name").focus();
+            e.preventDefault();
             return false;
         }
         var email = $("input#email").val();
@@ -26,19 +27,30 @@ $(function () {
         if (!filter.test(email)) {
             $("label#email_error").show();
             $("input#email").focus();
+            e.preventDefault();
+            return false;
+        }
+        var phone = $("input#phone").val();
+        //alert(phone);
+        var filter = /^(\(\d{3}\)|\d{3})[" "-]?\d{3}[" "-]?\d{2}[" "-]?\d{2}$/;
+        if (phone != "Introduzca su teléfono de contacto aquí. (XXX) XXX-XX-XX" && !filter.test(phone)) {
+            $("label#phone_error").show();
+            $("input#phone").focus();
+            e.preventDefault();
             return false;
         }
         var message = $("#input-message").val();
-        if (message == "") {
+        if (message == "" || message == "*Escriba su mensaje aquí.") {
             $("label#message_error").show();
             $("#input-message").focus();
+            e.preventDefault();
             return false;
         }
 
         var dataString = 'name=' + name + '&email=' + email + '&message=' + message;
         //alert (dataString);return false;
 
-        $.ajax({
+        /*$.ajax({
             type:"POST",
             url:"process.php",
             data:dataString,
@@ -46,8 +58,8 @@ $(function () {
                 $('#af-form').prepend("<div class=\"alert alert-success fade in\"><button class=\"close\" data-dismiss=\"alert\" type=\"button\">&times;</button><strong>Contact Form Submitted!</strong> We will be in touch soon.</div>");
                 $('#af-form')[0].reset();
             }
-        });
-        return false;
+        });*/
+        //return false;
     });
 });
 
@@ -85,7 +97,7 @@ $(function () {
         var dataString = 'name=' + name + '&email=' + email + '&message=' + message;
         //alert (dataString);return false;
 
-        $.ajax({
+        /*$.ajax({
             type:"POST",
             url:"process.php",
             data:dataString,
@@ -94,7 +106,7 @@ $(function () {
                 $('#contactModal').modal();
                 $('#contact')[0].reset();
             }
-        });
-        return false;
+        });*/
+        //return false;
     });
 });

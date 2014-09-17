@@ -4,6 +4,7 @@ namespace Models;
 
 use Eloquent;
 use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
@@ -90,11 +91,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 
 	public function roles() {
-		return $this->belongsToMany('Models\Role');
+		return $this->belongsToMany('Models\Authority\Role');
 	}
 
 	public function permissions() {
-		return $this->hasMany('Models\Permission');
+		return $this->hasMany('Models\Authority\Permission');
 	}
 
 	public function hasRole($key) {

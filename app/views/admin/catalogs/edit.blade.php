@@ -11,8 +11,8 @@
 	<li><a href="{{ route('admin.catalogs.show', $catalog->id) }}"><i class="icon-file"></i>{{ $catalog->name }}</a></li>
 	<span class="divider">/</span>
 	<li class="active"><i class="icon-pencil"></i>Editar</li>
-	<span class="divider">/</span>
-	<li class="active"><a href="{{ route('admin.catalogs.products.index', $catalog->id) }}"><i class="icon-folder-open"></i>Productos</a></li>
+	{{--<span class="divider">/</span>
+	<li class="active"><a href="{{ route('admin.catalogs.products.index', $catalog->id) }}"><i class="icon-folder-open"></i>Productos</a></li>--}}
 @stop
 
 @section('javascript')
@@ -21,17 +21,23 @@
 @stop
 
 @section('buttons')
-	<a href="{{ route('admin.catalogs.create') }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catalogo?')">
-		<button class="btn" title="Crear nuevo catalogo"><i class="icon-plus"></i> Crear</button>
+	{{--<a href="{{ route('admin.catalogs.create') }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catálogo?')">
+		<button class="btn" title="Crear nuevo catálogo"><i class="icon-plus"></i> Crear</button>
+	</a>--}}
+	{{--<a href="{{ route('admin.catalogs.index') }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catálogo?')">
+		<button class="btn" title="Listar catálogos"><i class="icon-list"></i> Listar</button>
+	</a>--}}
+	{{--<a href="{{ route('admin.catalogs.index') }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catálogo?')">
+		<button class="btn" title="Volver a catálogos"><i class="icon-backward"></i> Volver</button>
+	</a>--}}
+	{{--<a href="{{ route('admin.catalogs.show',$catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catálogo?')">
+		<button class="btn" title="Ver este catálogo"><i class="icon-eye-open"></i> Ver</button>
+	</a>--}}
+	<a href="{{ route('admin.catalogs.show',$catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catálogo?')">
+		<button class="btn" title="Volver a catálogo"><i class="icon-backward"></i> Volver</button>
 	</a>
-	<a href="{{ route('admin.catalogs.index') }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catalogo?')">
-		<button class="btn" title="Listar catalogos"><i class="icon-list"></i> Listar</button>
-	</a>
-	<a href="{{ route('admin.catalogs.show',$catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catalogo?')">
-		<button class="btn" title="Ver este catalogo"><i class="icon-eye-open"></i> Ver</button>
-	</a>
-	<a class="delete" href="{{ route('admin.catalogs.destroy',$catalog->id) }}" onclick="return confirm('¿Esta seguro que desea eliminar el catalogo \'{{ $catalog->name }}\' y todas sus productos relacionados?')">
-		<button class="btn" title="Eliminar catalogo"><i class="icon-trash"></i> Eliminar</button>
+	<a class="delete" href="{{ route('admin.catalogs.destroy',$catalog->id) }}" onclick="return confirm('¿Esta seguro que desea eliminar el catálogo \'{{ $catalog->name }}\' y todas sus productos relacionados?')">
+		<button class="btn" title="Eliminar catálogo"><i class="icon-trash"></i> Eliminar</button>
 	</a>
 @stop
 
@@ -94,7 +100,7 @@
 								<div class="controls">
 									<div class="input-prepend">
 										<span class="add-on">''</span>
-											{{ Form::textarea('description', Input::old('description'), array('placeholder' => 'Descripción del catalogo', 'class' => 'input-large', 'id' => 'inputDescription', 'rows' => 6)) }}
+											{{ Form::textarea('description', Input::old('description'), array('placeholder' => 'Descripción del catálogo', 'class' => 'input-large', 'id' => 'inputDescription', 'rows' => 6)) }}
 										</span>
 									</div>
 								</div>
@@ -161,7 +167,7 @@
 							<div class="af-outer af-required">
 								<div class="af-inner">
 									<div class="control-group">
-										<label class="control-label" for="inputComment">Comentario</label>
+										<label class="control-label" for="inputImageComment">Comentario</label>
 										<div class="controls">
 											<div class="input-prepend">
 												<span class="add-on">''</span>
@@ -171,13 +177,26 @@
 									</div>
 								</div>
 							</div>
-							<div class="af-outer af-required">
+							{{--<div class="af-outer af-required">
 								<div class="af-inner">
 									<div class="control-group">
-										<label class="control-label" for="inputStatus">Visibilidad</label>
+										<label class="control-label" for="inputImageTags">Etiquetas</label>
+										<div class="controls">
+											<div class="input-prepend">
+												<span class="add-on"><i class="icon-tags"></i></span>
+												{{ Form::text('tags', '', array('placeholder' => 'Etiquetas, separadas por comas', 'class' => 'span12', 'id' => 'inputImageTags')) }}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>--}}
+							{{--<div class="af-outer af-required">
+								<div class="af-inner">
+									<div class="control-group">
+										<label class="control-label" for="inputImageStatus">Visibilidad</label>
 										<div class="controls">
 											<label class="radio">
-												{{ Form::radio('status', '1', true, array('id' => 'inputStatus')) }} Estara <span class="text-success">visible</span> al publico
+												{{ Form::radio('status', '1', true, array('id' => 'inputImageStatus')) }} Estara <span class="text-success">visible</span> al publico
 											</label>
 											<label class="radio">
 												{{ Form::radio('status', '0') }} Estara <span class="text-warning">oculto</span> al publico
@@ -185,11 +204,11 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div>--}}
 							<div class="af-outer af-required">
 								<div class="af-inner">
 									<div class="control-group">
-										<label class="control-label" for="inputImage">Archivo</label>
+										<label class="control-label" for="inputImageFile">Archivo</label>
 										<div class="controls">
 											{{ Form::file('file', array('id' => 'inputImageFile')); }}
 										</div>
@@ -231,13 +250,13 @@
 		<div class="span12">
 			<div class="row-fluid">
 				<div class="span7">
-					<h3><a href="{{ route('admin.catalogs.products.index', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catalogo?')">Productos</a></h3>
+					<h3><a href="{{ route('admin.catalogs.products.index', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catálogo?')">Productos</a></h3>
 				</div>
 				<div class="span5">
 					<div class="btn-toolbar clearfix">
 						<div class="btn-group pull-right">
-							<a href="{{ route('admin.catalogs.products.create', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catalogo?')">
-								<button class="btn" title="Crear y agregar un nuevo producto a este catalogo"><i class="icon-plus"></i> Agregar</button>
+							<a href="{{ route('admin.catalogs.products.create', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles de catálogo?')">
+								<button class="btn" title="Crear y agregar un nuevo producto a este catálogo"><i class="icon-plus"></i> Agregar</button>
 							</a>
 						</div>
 					</div>
@@ -275,7 +294,7 @@
 										array(
 											'class' => 'delete info btn btn-inverse',
 											'title' => 'Eliminar imagen',
-											'onClick' => 'return confirm("¿Esta seguro que desea eliminar la imagen relacionada a este catalogo?")'
+											'onClick' => 'return confirm("¿Esta seguro que desea eliminar la imagen relacionada a este catálogo?")'
 										)
 									) --}}
 								</div>
@@ -341,7 +360,7 @@
 						'<div class="mask-2"></div>' + 
 						'<div class="caption">' + 
 							'<h2><a class="title" href="images/' + response.id + '/edit", title="Editar image">' + 
-									<i class="icon-pencil"></i> ' + response.name + '</a></h2>' + 
+									'<i class="icon-pencil"></i> ' + response.name + '</a></h2>' + 
 							'<a class="info btn btn-small btn-inverse" href="images/' + response.id + '/delete" onclick="return confirm(\'¿Esta seguro que desea eliminar la imagen de catálogo?\')", title="Eliminar imagen"><i class="icon-trash"></i></a>' + 
 						'</div>' +
 					'</div>' +

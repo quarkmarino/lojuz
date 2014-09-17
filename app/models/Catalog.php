@@ -22,6 +22,10 @@ class Catalog extends Eloquent {
 		});
 	}
 
+	public function scopeActive($query){
+		return $query->whereStatus(1);
+	}
+
 	/*public function products(){
 		return $this->belongsToMany('Models\Product');
 	}*/

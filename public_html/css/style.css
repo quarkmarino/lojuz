@@ -355,7 +355,7 @@ h6 {
 .ls-label {
   font-family: 'Open Sans', sans-serif;
   color: #ffffff;
-  background-color: #1faeff;
+  background-color:rgba(31, 174, 255, .6);
   padding: 2px 4px;
 }
 a.ls-label:hover {
@@ -2836,7 +2836,7 @@ section.breadcrumbs .breadcrumbs i {
   margin-bottom: 0;
 }
 #af-form textarea {
-  height: 160px !important;
+  height: 123px !important;
   overflow: auto;
   resize: none;
 }

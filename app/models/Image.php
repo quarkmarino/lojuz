@@ -22,7 +22,7 @@ class Image extends Eloquent {
 				$image->largethumb = $image->grabImage('largethumb', array(250, 185));
 				$image->thumb = $image->grabImage('thumb', 100);
 				$image->minithumb = $image->grabImage('minithumb', array(40, 30));
-				$image->slide = $image->grabImage('slide', array(757, 360));
+				$image->slide = $image->grabImage('slide', array(757, 478));
 			}
 		});
 
@@ -35,6 +35,10 @@ class Image extends Eloquent {
 			if(\File::exists($path))
 				\File::deleteDirectory($path);
 		});
+	}
+
+	public function scopeActive($query){
+		return $query->whereStatus(1);
 	}
 
 	public function catalog(){
@@ -68,13 +72,13 @@ class Image extends Eloquent {
 		$this->attributes['file'] = $value;
 	}
 
-	public function setLargethumbAttribute($value){
+	/*public function setLargethumbAttribute($value){
 		if(\Input::hasFile('largethumb')){
 			$image = IntrvImage::make( \Input::file('largethumb')->getRealPath() );
 			$value = $this->grabImage('largethumb', array(250, 185), $image);
 		}
 		$this->attributes['largethumb'] = $value;
-	}
+	}*/
 
 	public function getLargethumbAttribute($value){
 		if($this->attributes['largethumb'] == null){
@@ -84,52 +88,63 @@ class Image extends Eloquent {
 		return $value;
 	}
 	
-	public function setThumbAttribute($value){
+	/*public function setThumbAttribute($value){
 		if(\Input::hasFile('thumb')){
 			$image = IntrvImage::make( \Input::file('thumb')->getRealPath() );
 			$value = $this->grabImage('thumb', array(100), $image);
 		}
 		$this->attributes['thumb'] = $value;
-	}
+	}*/
 
-	public function getThumbAttribute($value){
+	/*public function getThumbAttribute($value){
 		if($this->attributes['thumb'] == null){
 			$value = $this->root.'no-image-thumb.jpg';
 			//$value = $this->grabImage('thumb', 100, true);
 		}
 		return $value;
-	}
+	}*/
 
-	public function setMinithumbAttribute($value){
+	/*public function setMinithumbAttribute($value){
 		if(\Input::hasFile('minithumb')){
 			$image = IntrvImage::make( \Input::file('minithumb')->getRealPath() );
 			$value = $this->grabImage('minithumb', array(40, 30), $image);
 		}
 		$this->attributes['minithumb'] = $value;
-	}
+	}*/
 
-	public function getMinithumbAttribute($value){
+	/*public function getMinithumbAttribute($value){
 		if($this->attributes['minithumb'] == null){
 			$value = $this->root.'no-image-minithumb.jpg';
 			//$value = $this->grabImage('minithumb', 60, true);
 		}
 		return $value;
-	}
+	}*/
 
-	public function setSlideAttribute($value){
+	/*public function setSlideAttribute($value){
 		if(\Input::hasFile('slide')){
 			$image = IntrvImage::make( \Input::file('slide')->getRealPath() );
 			$value = $this->grabImage('slide', array(757, 360), $image);
 		}
 		$this->attributes['slide'] = $value;
-	}
+	}*/
 
-	public function getSlideAttribute($value){
+	/*public function getSlideAttribute($value){
 		if($this->attributes['slide'] == null){
 			$value = $this->root.'no-image-slide.jpg';
 			//$value = $this->grabImage('slide', array(757, 360), true);
 		}
 		return $value;
+	}*/
+
+	public function setTagsAttribute($value){
+		$tags = explode(',', $value);
+		$i = 0;
+		$tags2 = array();
+		foreach($tags as $key => $tag){
+			if(!empty($tag))
+				$tags2[$i++] = ucfirst(strtolower(trim($tag)));
+		}
+		$this->attributes['tags'] = implode(', ', $tags2);
 	}
 
 	public function grabImage($name = 'thumb', $resize = null, $image = null, $save = false){

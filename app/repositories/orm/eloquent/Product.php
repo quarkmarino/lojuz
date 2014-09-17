@@ -22,6 +22,12 @@ class Product implements ProductInterface {
     return $product;
   }
 
+  public function findActiveById($id){
+    $product = \Models\Product::active()->where('id', $id)->first();
+    if(!$product) throw new NotFoundException('Product Not Found');
+    return $product;
+  }
+
   public function findByIdIn($catalog_id, $id){
     //$product = \Models\Image::where('id', $id)->first();
     //if(!$product) throw new NotFoundException('Image Not Found');
@@ -57,7 +63,7 @@ class Product implements ProductInterface {
 
   public function findRelated($id, $ammount = 4){
     $product = $this->findById($id);
-    return \Models\Product::whereCatalogId($product->catalog_id)->where('id', '!=', $product->id)->with(array(
+    return \Models\Product::active()->whereCatalogId($product->catalog_id)->where('id', '!=', $product->id)->with(array(
       'images' => function($q){ $q->orderBy('created_at', 'desc')->first(); }
     ))
     ->orderBy(\DB::raw('RAND()'))

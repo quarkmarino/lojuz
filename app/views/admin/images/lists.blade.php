@@ -1,4 +1,7 @@
-@extends('admin.images.layouts.main')
+<?php $owner_class = strtolower($owner); ?>
+<?php $owner_class_plural = str_plural($owner_class); ?>
+
+@extends("admin.$owner_class_plural.layouts.image")
 
 @section('title')
 	<h3>Imagenes</h3>

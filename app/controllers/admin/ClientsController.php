@@ -9,7 +9,7 @@ use View;
 use Redirect;
 use Authority;
 use Repositories\Interfaces\ClientInterface;
-use Repositories\Exceptions\ValidationException as ValidationException;
+use Repositories\Errors\Exceptions\ValidationException as ValidationException;
 
 
 class ClientsController extends BaseController {
@@ -36,12 +36,18 @@ class ClientsController extends BaseController {
 	 */
 	public function index()
 	{
-		if( Authority::can('index', 'Client') ){
-			$clients = $this->client->findAll();
-			$this->layout->content = View::make('admin.clients.index')->with(compact('clients'));
-			return $this->layout->render();
+		try{
+			if( Authority::can('index', 'Client') ){
+				$clients = $this->client->findAll();
+				$this->layout->content = View::make('admin.clients.index')->with(compact('clients'));
+				return $this->layout->render();
+			}
+			throw new NotAllowedException();
 		}
-		throw new NotAllowedException();
+		catch(NotAllowedException $e){
+			return Redirect::to('admin/dashboard')->with('error', 'No tienes permiso para visitar esta pagina')->withInput()->withErrors($e->getErrors());
+		}
+		
 	}
 
 	/**
@@ -66,12 +72,20 @@ class ClientsController extends BaseController {
 	 */
 	public function store()
 	{
-		if( Authority::can('create', 'Client') ){
-			$input = Input::all();
-			$client = $this->client->store($input);
-			return Redirect::route('admin.clients.show', $client->id);//->with('success', 'The new client has been created');
+		try{
+			if( Authority::can('create', 'Client') ){
+				$input = Input::all();
+				$client = $this->client->store(\Auth::user()->id, $input);
+				return Redirect::route('admin.clients.show', $client->id);//->with('success', 'The new client has been created');
+			}
+			throw new NotAllowedException();
 		}
-		throw new NotAllowedException();
+		catch(ValidationException $e){
+			return Redirect::to('admin/clients/create')->with('error', 'Los datos provistos no son correctos.')->withInput()->withErrors($e->getErrors());
+		}
+		catch(NotAllowedException $e){
+			return Redirect::to('admin/dashboard')->with('error', 'No tienes permiso para visitar esta página.');
+		}
 	}
 
 	/**

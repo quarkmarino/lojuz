@@ -44,19 +44,19 @@
 					{{ Form::close() }}
 				</div>
 
-				{{--<div class="span12 proof">
+				<div class="span12 proof">
 					<div class="span5 remember">
-						<label class="checkbox">
+						{{--<label class="checkbox">
 							<input type="checkbox"> Recordarme
-						</label>
-						<a href="reset">¿Olvido sus datos?</a>
+						</label>--}}
+						¿Olvido sus datos? <a href="/remind">Recuperar contraseña</a>
 					</div>
 
-					<div class="span3 dosnt">
+					{{--<div class="span3 dosnt">
 						<span>¿Aun no tiene una cuenta?</span>
 						<a href="sign-up">Registrarse</a>
-					</div>
-				</div>--}}
+					</div>--}}
+				</div>
 			</div>
 		</div>
 	</div>

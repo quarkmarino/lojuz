@@ -24,61 +24,39 @@
 	<table class="table table-striped table-hover table-bordered">
 		<caption>Lista de imagenes asignadas actualmente
 			@if($owner_class === 'product')
-				al {{ Lang::choice($owner_class, 1) }} {{ HTML::link(route('admin.catalogs.products.show', array($owner->catalog_id, $owner->id)), $owner->name) }}
+				al {{ ucfirst(Lang::choice('messages.'.$owner_class, 1)) }} {{ HTML::link(route('admin.catalogs.products.show', array($owner->catalog_id, $owner->id)), $owner->name) }}
 			@elseif($owner_class === 'gallery')
-				a la {{ Lang::choice($owner_class, 1) }} {{ HTML::link(route('admin.galleries.show', $owner->id), $owner->name) }}
+				a la {{ ucfirst(Lang::choice('messages.'.$owner_class, 1)) }} {{ HTML::link(route('admin.galleries.show', $owner->id), $owner->name) }}
 			@endif
 		</caption>
 		<thead>
 			<tr>
-				@foreach(array('id' => '#', 'name' => 'Nombre', $owner_class => Lang::choice($owner_class, 1), 'status' => 'Estatus') as $key => $attribute)
-					@if(is_array( $attribute ))
-						<th title="{{ $attribute['label'] }}"><i class="icon-{{ $attribute['icon'] }}"></i></th>
-					@else
-						<th>{{ $attribute }}</th>
-					@endif
-				@endforeach
+				<th title="#">id</th>
+				<th title="Nombre de imagen">Nombre</th>
+				<th title="{{ $owner_class }}">{{ ucfirst(Lang::choice('messages.'.$owner_class, 1)) }}</th>
+				<th title="Visibilidad de imagen">Estatus</th>
 				<th colspan="3">Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach($images as $image)
 				<tr>
-					@foreach(array(
-						'id' => '#',
-						'name' => array( 'label' => 'Nombre', 'link' => route("admin.$owner_class_plural.images.edit", array($owner->id, $image->id)) ),
-						$owner_class => array( 'label' => Lang::choice($owner_class, 1), 'attr' => 'name' ),
-						'status' => array( 'values' => array( array( 'label' => 'Oculta', 'emph' => 'text-warning' ), array( 'label' => 'Visible', 'emph' => 'text-success' )) ),
-						) as $key => $label)
-							<td>
-								@if( is_array($label) )
-									@if( isset( $label['attr'] ) )
-										@if( !empty( $image->$key->$label['attr'] ) )
-											@if($owner_class === 'product')
-												{{ HTML::link(route("admin.catalogs.products.show", array($owner->catalog_id, $owner->id)), $image->$key->$label['attr'], array( 'title' => 'Ver '.Lang::choice($owner_class, 1) ) ) }}
-											@elseif($owner_class === 'gallery')
-												{{ HTML::link(route("admin.galleries.show", $owner->id), $image->$key->$label['attr'], array( 'title' => 'Ver '.Lang::choice($owner_class, 1) ) ) }}
-											@endif
-										@endif
-									@endif
-
-									@if( isset( $label['values'] ) )
-										@if( is_array( $label['values'][$image->$key] ) )
-											<span class="{{ $label['values'][$image->$key]['emph'] }}">{{ $label['values'][$image->$key]['label'] }}</span>
-										@else
-											{{ $label['values'][$image->$key] }}
-										@endif
-									@endif
-
-									@if( isset( $label['link'] ) )
-										{{ HTML::link($label['link'], $image->$key) }}
-									@endif
-
-								@else
-										{{ $image->$key }}
-								@endif
-							</td>
-					@endforeach
+					<td>{{ $image->id }}</td>
+					<td>
+						<a href="{{ route("admin.$owner_class_plural.images.edit", array($owner->id, $image->id)) }}" title="Ver Imagen">{{ $image->name }}
+						</a>
+					</td>
+					<td>
+						@if($owner_class === 'product')
+							{{ HTML::link(route("admin.catalogs.products.show", array($owner->catalog_id, $owner->id)), $image->product->name, array( 'title' => 'Ver '.Lang::choice('messages.'.$owner_class, 1) ) ) }}
+						@elseif($owner_class === 'gallery')
+							{{ HTML::link(route("admin.galleries.show", $owner->id), $image->gallery->name, array( 'title' => 'Ver '.Lang::choice('messages.'.$owner_class, 1) ) ) }}
+						@endif
+					</td>
+					<td>
+						<?php $values = array( 'label' => array( 'Oculta', 'Visible' ), 'emph' => array( 'text-warning', 'text-success' ) ); ?>
+						<span class="{{ $values['emph'][$image->status] }}">{{ $values['label'][$image->status] }}</span>
+					</td>
 					<td>
 						<div class="btn-group">
 							<a href="{{ route("admin.$owner_class_plural.images.edit", array($owner->id, $image->id)) }}"><button class="btn" title="Modificar imagen"><i class="icon-pencil"></i></button></a>

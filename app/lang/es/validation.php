@@ -108,7 +108,7 @@ return array(
 		),
 		'price' => array(
 			'required' => 'El precio es requerido.',
-			"numeric" => "El precio debe ser numerico",
+			"numeric" => "El precio debe ser numérico",
 			"alpha_num_spaces" => "El nombre solo puede contener letras, numeros y espacios.",
 		),
 		'type' => array(
@@ -121,6 +121,12 @@ return array(
 		),
 		'comment' => array(
 			'required' => 'El comentario es obligatorio.',
+		),
+		'recaptcha_response_field' => array(
+			'required' => 'El codigo de verificación es requerido'
+		),
+		'message' => array(
+			'required' => 'El mensaje es obligatorio'
 		),
 	),
 

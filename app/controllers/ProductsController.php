@@ -32,14 +32,14 @@ class ProductsController extends BaseController {
 	public function show($id)
 	{
 		try{
-			$product = $this->product->findById($id);
+			$product = $this->product->findActiveById($id);
 			$related_products = $this->product->findRelated($id);
 			//dd(\DB::getQueryLog());
 			$this->layout->content = \View::make('products.show', compact('product', 'related_products'));
 			return $this->layout->render();
 		}
 		catch(NotFoundException $e){
-			return Redirect::to('/')->with('error', 'El producto que estas buscando no existe, o hay algun problema al temporal. Por favor intentalo mas tarde.');
+			return \Redirect::to('/')->with('error', 'El producto que estas buscando no existe, o hay algun problema temporal. Por favor intentalo mas tarde.');
 		}
 	}
 

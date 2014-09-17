@@ -9,7 +9,8 @@
 		"fzaninotto/faker": "1.4.*@dev",
 		"machuga/authority-l4" : "dev-master",
 		"intervention/image": "1.*",
-		"thujohn/twitter": "dev-master"
+		"thujohn/twitter": "dev-master",
+		"greggilbert/recaptcha": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

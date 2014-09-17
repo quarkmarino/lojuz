@@ -20,6 +20,10 @@ class Gallery extends Eloquent {
 		});
 	}
 
+	public function scopeActive($query){
+		return $query->whereStatus(1);
+	}
+
 	public function author(){
 		return $this->belongsTo('Models\User', 'user_id');
 	}

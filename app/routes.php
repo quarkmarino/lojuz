@@ -14,6 +14,8 @@
 
 	Route::get('/', array( 'uses' => 'Controllers\HomeController@showWelcome'));
 
+	Route::get('404', function(){ return View::make('404'); });
+
 	Route::get('about', function(){ return View::make('about'); });
 
 	Route::resource('catalogs', 'Controllers\CatalogsController', array('only' => array('index', 'show')));
@@ -25,6 +27,7 @@
 	Route::resource('news', 'Controllers\NewsController', array('only' => array('index')));
 
 	Route::get('contact', function(){ return View::make('contact'); });
+	Route::post('messages', array('before' => 'csrf', 'uses' => 'Controllers\MessagesController@send', 'as' => 'messages.store'));
 
 	Route::get('signin', function(){ return View::make('signin'); });
 
@@ -42,6 +45,12 @@
 	});
 
 	Route::get('signout', function(){ Auth::logout(); return Redirect::to('signin');  });
+
+	Route::get('remind', array('as' => 'remind', 'uses' => 'Controllers\RemindersController@getRemind'));
+	Route::post('remind', array('as' => 'remind', 'uses' => 'Controllers\RemindersController@postRemind', 'before' => 'csrf'));
+
+	Route::get('reset/{token}', array('as' => 'reset', 'uses' => 'Controllers\RemindersController@getReset'));
+	Route::post('reset', array('as' => 'reset', 'uses' => 'Controllers\RemindersController@postReset', 'before' => 'csrf'));
 
 	Route::group(array('prefix' => 'admin', 'before' => 'auth'), function(){
 		/*
@@ -61,7 +70,7 @@
 		Route::resource('news', 'Controllers\Admin\NewsController');
 		Route::get('news/{news}/delete', array( 'uses' => 'Controllers\Admin\NewsController@destroy', 'as' => 'admin.news.destroy'));
 
-		Route::resource('clients', 'Controllers\Admin\ClientsController');
+		Route::resource('clients', 'Controllers\Admin\ClientsController', array('except' => array('store', 'update', 'destroy')));
 		Route::get('clients/{clients}/delete', array( 'uses' => 'Controllers\Admin\ClientsController@destroy', 'as' => 'admin.clients.destroy'));
 
 		Route::group(array('before' => 'csrf'), function() {

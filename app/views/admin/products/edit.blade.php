@@ -18,14 +18,17 @@
 @stop
 
 @section('buttons')
-	<a href="{{ route('admin.catalogs.products.create', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')">
+	{{--<a href="{{ route('admin.catalogs.products.create', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')">
 		<button class="btn" title="Crear nuevo producto"><i class="icon-plus"></i> Crear</button>
-	</a>
-	<a href="{{ route('admin.catalogs.products.index', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')">
+	</a>--}}
+	{{--<a href="{{ route('admin.catalogs.products.index', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')">
 		<button class="btn" title="Listar productos"><i class="icon-list"></i> Listar</button>
-	</a>
-	<a href="{{ route('admin.catalogs.products.show', array($catalog->id, $product->id)) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')">
+	</a>--}}
+	{{--<a href="{{ route('admin.catalogs.products.show', array($catalog->id, $product->id)) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')">
 		<button class="btn" title="Ver este producto"><i class="icon-eye-open"></i> Ver</button>
+	</a>--}}
+	<a href="{{ route('admin.catalogs.products.show', array($catalog->id, $product->id)) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')">
+		<button class="btn" title="Volver al producto"><i class="icon-backward"></i> Volver</button>
 	</a>
 	<a class="delete" href="{{ route('admin.catalogs.products.destroy', array($catalog->id, $product->id)) }}" onclick="return confirm('¿Esta seguro que desea eliminar el producto \'{{ $product->name }}\' y todas sus imagenes relacionadas?')">
 		<button class="btn" title="Eliminar producto"><i class="icon-trash"></i> Eliminar</button>
@@ -188,7 +191,7 @@
 					<div class="af-outer af-required">
 						<div class="af-inner">
 							<div class="control-group">
-								<label class="control-label" for="inputComment">Comentario</label>
+								<label class="control-label" for="inputImageComment">Comentario</label>
 								<div class="controls">
 									<div class="input-prepend">
 									<span class="add-on">''</span>
@@ -201,10 +204,23 @@
 					<div class="af-outer af-required">
 						<div class="af-inner">
 							<div class="control-group">
-								<label class="control-label" for="inputStatus">Visibilidad</label>
+								<label class="control-label" for="inputImageTags">Etiquetas</label>
+								<div class="controls">
+									<div class="input-prepend">
+										<span class="add-on"><i class="icon-tags"></i></span>
+										{{ Form::text('tags', Input::old('tags'), array('placeholder' => 'Etiquetas, separadas por comas', 'class' => 'span12', 'id' => 'inputImageTags')) }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="af-outer af-required">
+						<div class="af-inner">
+							<div class="control-group">
+								<label class="control-label" for="inputImageStatus">Visibilidad</label>
 								<div class="controls">
 									<label class="radio">
-										{{ Form::radio('status', '1', true, array('id' => 'inputStatus')) }} Estara <span class="text-success">visible</span> al publico
+										{{ Form::radio('status', '1', true, array('id' => 'inputImageStatus')) }} Estara <span class="text-success">visible</span> al publico
 									</label>
 									<label class="radio">
 										{{ Form::radio('status', '0') }} Estara <span class="text-warning">oculto</span> al publico
@@ -216,7 +232,7 @@
 					<div class="af-outer af-required">
 						<div class="af-inner">
 							<div class="control-group">
-								<label class="control-label" for="inputImage">Archivo</label>
+								<label class="control-label" for="inputImageFile">Archivo</label>
 								<div class="controls">
 									{{ Form::file('file', array('id' => 'inputImageFile')); }}
 								</div>
@@ -314,6 +330,7 @@
 			lastImagesRow.append(createItem(response));
 			$('#inputImageName').val('');
 			$('#inputImageComment').val('');
+			$('#inputImageTags').val('');
 			$('#inputImageFile').val('');
 			//$("#output").css('display','block');
 		}

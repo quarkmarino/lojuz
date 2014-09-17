@@ -38,56 +38,35 @@
 			<caption>Lista de productos asignados</caption>
 			<thead>
 				<tr>
-					@foreach(array('id' => '#', 'name' => 'Nombre', 'description' => 'Descripción', 'tags' =>'Etiquetas', 'status' => 'Estatus', 'images' => array( 'icon' => 'picture', 'label' => '# de Imagenes' )) as $key => $attribute)
-						@if(is_array( $attribute ))
-							<th title="{{ $attribute['label'] }}"><i class="icon-{{ $attribute['icon'] }}"></i></th>
-						@else
-							<th>{{ $attribute }}</th>
-						@endif
-					@endforeach
+					<th title="#">id</th>
+					<th title="Nombre de la galeria">Nombre</th>
+					<th title="Descripción de la galeria">Descripción</th>
+					<th title="Etiquetas del catálogo">Etiquetas</th>
+					<th title="Visibilidad del catálogo">Estatus</th>
+					<th title="# de Imagenes"><i class="icon-picture"></i></th>
 					<th colspan="3">Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
 			@foreach($galleries as $gallery)
 				<tr>
-					@foreach(array(
-						'id' => '#',
-						'name' => array( 'label' => 'Nombre', 'link' => route('admin.galleries.show', $gallery->id) ),
-						'description' => 'Descripción',
-						'tags' => array( 'label' => 'Etiquetas', 'pick' => 3 ),
-						'status' => array( 'values' => array( array( 'label' => 'Oculta', 'emph' => 'text-warning' ), array( 'label' => 'Visible', 'emph' => 'text-success' )) ),
-						'images' => array( 'label' => 'Imagenes', 'stat' => 'count', 'link' => route('admin.galleries.images.index', $gallery->id))
-						) as $key => $label)
-							<td>
-								@if( is_array($label) )
-
-									@if( isset( $label['values'] ) )
-										@if( is_array( $label['values'][$gallery->$key] ) )
-											<span class="{{ $label['values'][$gallery->$key]['emph'] }}">{{ $label['values'][$gallery->$key]['label'] }}</span>
-										@else
-											{{ $label['values'][$gallery->$key] }}
-										@endif
-									@endif
-
-									@if( isset( $label['link'] ) )
-										<a href="{{ $label['link'] }}" @if( isset($label['title']) )title="{{ $label['title'] }}" @endif>
-											@if( isset($label['stat']) )
-												{{ $gallery->$key->$label['stat']() }}
-											@else
-												{{ $gallery->$key }}
-											@endif
-										</a>
-									@endif
-
-									@if( isset( $label['pick'] ) )
-										{{ implode(', ', array_slice(explode(', ', $gallery->$key), 0, $label['pick'])).( count(explode(', ', $gallery->$key)) > $label['pick'] ? HTML::link(route('admin.galleries.show', $gallery->id), ', ...') : '' )  }}
-									@endif
-								@else
-										{{ $gallery->$key }}
-								@endif
-							</td>
-					@endforeach
+					<td>{{ $gallery->id }}</td>
+					<td>
+						<a href="{{ route('admin.galleries.show', $gallery->id) }}" title="Ver Galeria">{{ $gallery->name }}</a>
+					</td>
+					<td>{{ $gallery->description }}</td>
+					<td>
+						{{ implode(', ', array_slice(explode(', ', $gallery->tags), 0, 3)).( count(explode(', ', $gallery->tags)) > 3 ? HTML::link(route('admin.galleries.show', $gallery->id), ', ...') : '' ) }}
+					</td>
+					<td>
+						<?php $values = array( 'label' => array( 'Oculta', 'Visible' ), 'emph' => array( 'text-warning', 'text-success' ) ); ?>
+						<span class="{{ $values['emph'][$gallery->status] }}">{{ $values['label'][$gallery->status] }}</span>
+					</td>
+					<td>
+						<a href="{{ route('admin.galleries.images.index', $gallery->id) }}" title="Ver Imagenes">
+							{{ $gallery->images->count() }}
+						</a>
+					</td>
 					<td>
 						<div class="btn-group">
 							<a href="{{ route('admin.galleries.show', $gallery->id ) }}"><button class="btn" title="Inspeccionar galeria"><i class="icon-eye-open"></i></button></a>

@@ -46,7 +46,9 @@ class ImagesController extends BaseController {
 			$owner = 'product';
 			$images = $this->image->findAllIn(str_plural($owner));
 			//dd($images);
-			return View::make('admin.images.lists')->with(compact('images', 'owner'));
+			//return View::make('admin.images.lists')->with(compact('images', 'owner'));
+			$this->layout->content = View::make('admin.images.lists')->with(compact('images', 'owner'));
+			return $this->layout->render();
 		}
 		throw new NotAllowedException();
 	}
@@ -56,9 +58,9 @@ class ImagesController extends BaseController {
 		if( Authority::can('index', 'Image') ){
 			$owner = $this->product->findById($product_id);
 			$images = $this->image->findAllBy('product', $product_id);
-			return View::make('admin.images.index')->with(compact('owner', 'images'));
-			//$this->layout->content = View::make('admin.images.index')->with(compact('owner', 'images'));
-			//return $this->layout->with(compact('owner', 'images'))->render();
+			//return View::make('admin.images.index')->with(compact('owner', 'images'));
+			$this->layout->content = View::make('admin.images.index')->with(compact('owner', 'images'));
+			return $this->layout->with(compact('owner', 'images'))->render();
 		}
 		throw new NotAllowedException();
 	}

@@ -17,8 +17,19 @@ class Catalog implements CatalogInterface {
   }
 
   public function findById($id){
-    $catalog = \Models\Catalog::where('id', $id)->with(array(
-      'products' => function($q){ 
+    $catalog = \Models\Catalog::whereId($id)->with(array(
+      'products' => function($q){
+        $q->orderBy('created_at', 'asc');
+      }
+    ))
+    ->first();
+    if(!$catalog) throw new NotFoundException('Catalog Not Found');
+    return $catalog;
+  }
+
+  public function findByIdActive($id){
+    $catalog = \Models\Catalog::active()->whereId($id)->with(array(
+      'products' => function($q){
         $q->orderBy('created_at', 'asc');
       }
     ))
@@ -51,7 +62,7 @@ class Catalog implements CatalogInterface {
   public function findAll(){
     return \Models\Catalog::with(array(
       'products' => function($q){ 
-        $q->orderBy('created_at', 'desc')->with(array(
+        $q->orderBy('created_at', 'asc')->with(array(
             'images' => function($q){
               $q->orderBy('created_at', 'desc')->first();
             }
@@ -60,6 +71,12 @@ class Catalog implements CatalogInterface {
     ))
     ->orderBy('created_at', 'asc')
     ->paginate(15);
+  }
+
+  public function findAllActive(){
+    return \Models\Catalog::active()
+    ->orderBy('created_at', 'asc')
+    ->get();
   }
 
   public function paginate($limit = null){

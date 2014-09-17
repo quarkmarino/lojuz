@@ -22,6 +22,12 @@ class Gallery implements GalleryInterface {
     return $gallery;
   }
 
+  public function findByIdActive($id){
+    $gallery = \Models\Gallery::active()->whereId($id)->first();
+    if(!$gallery) throw new NotFoundException('Gallery Not Found');
+    return $gallery;
+  }
+
   public function findAll(){
     return \Models\Gallery::with(array(
       'images' => function($q){
@@ -30,6 +36,12 @@ class Gallery implements GalleryInterface {
     ))
     ->orderBy('created_at', 'asc')
     ->paginate(15);
+  }
+
+  public function findAllActive(){
+    return \Models\Gallery::active()
+    ->orderBy('created_at', 'asc')
+    ->get();
   }
 
   public function paginate($limit = null){

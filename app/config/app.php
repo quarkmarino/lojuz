@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://lojuz.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -113,6 +113,7 @@ return array(
 		'Authority\AuthorityL4\AuthorityL4ServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Thujohn\Twitter\TwitterServiceProvider',
+		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
 
 	),
 

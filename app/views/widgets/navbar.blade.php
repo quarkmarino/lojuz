@@ -45,7 +45,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="/"><img src="/img/logo.png"> Lojuz</a>
+			<a class="brand" href="/"><img src="/images/logo_small.png"></a>
 			<div class="nav-collapse collapse">
 				<ul class="nav pull-right">
 					@if( isset( $items ) )

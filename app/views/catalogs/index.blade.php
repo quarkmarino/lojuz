@@ -32,10 +32,10 @@
 						<li class="current all"><a href="#all">Todos</a></li>
 						@foreach($catalogs as $catalog)
 							@foreach(explode(', ', $catalog->tags) as $tag)
-								@if( !isset($tags[$tag]) )
-									<li class="{{ strtolower($tag) }}"><a href="#{{ strtolower($tag) }}">{{ $tag }}</a></li>
+								@if( !isset($used_tags[$tag]) )
+									<li class="{{ strtolower($tag) }}"><a href="#{{ strtolower($tag) }}">{{ str_replace('_', ' ', $tag) }}</a></li>
 								@endif
-								<?php $tags[$tag] = true ?>
+								<?php $used_tags[$tag] = true ?>
 							@endforeach
 						@endforeach
 					</ul>

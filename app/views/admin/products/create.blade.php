@@ -6,13 +6,18 @@
 
 @section('breadcrumbs')
 	@parent
-	<li><a href="{{ route('admin.catalogs.show', $catalog->id) }}"><i class="icon-file"></i>{{ $catalog->name }}</a></li><span class="divider">/</span>
-	<li><a href="{{ route('admin.catalogs.products.index', $catalog->id) }}"><i class="icon-folder-open"></i>Productos</a></li><span class="divider">/</span>
-	<li class="active"><i class="icon-plus"></i>Crear</li>
+	<li><a href="{{ route('admin.catalogs.show', $catalog->id) }}"><i class="icon-file"></i> {{ $catalog->name }}</a></li><span class="divider">/</span>
+	<li><a href="{{ route('admin.catalogs.products.index', $catalog->id) }}"><i class="icon-folder-open"></i> Productos</a></li><span class="divider">/</span>
+	<li class="active"><i class="icon-plus"></i> Crear</li>
 @stop
 
 @section('buttons')
-	<a href="{{ route('admin.catalogs.products.index', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')"><button class="btn" title="Listar productos"><i class="icon-list"></i> Listar</button></a>
+	<a href="{{ route('admin.catalogs.products.index', $catalog->id) }}">
+		<button class="btn" title="Volver a productos"><i class="icon-backward"></i> Volver</button>
+	</a>
+	{{--<a href="{{ route('admin.catalogs.products.index', $catalog->id) }}" onclick="return confirm('¿Esta seguro que desea salir sin guardar los detalles del producto?')">
+		<button class="btn" title="Listar productos"><i class="icon-list"></i> Listar</button>
+	</a>--}}
 @stop
 
 @section('content')
